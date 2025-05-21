@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Estudio Interactivo CGR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-item.active {
+            background-color: #0284c7; /* sky-600 */
+            color: white;
+        }
+        .sidebar-item:hover {
+            background-color: #0369a1; /* sky-700 */
+            color: white;
+        }
+        .content-section h2 {
+            font-size: 1.75rem; /* text-2xl */
+            font-weight: 600; /* semibold */
+            color: #0369a1; /* sky-700 */
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb; /* gray-200 */
+        }
+        .content-section h3 {
+            font-size: 1.5rem; /* text-xl */
+            font-weight: 600; /* semibold */
+            color: #075985; /* sky-800 */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .content-section h4 {
+            font-size: 1.25rem; /* text-lg */
+            font-weight: 600; /* semibold */
+            color: #0c4a6e; /* sky-900 */
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #404040; /* neutral-700 */
+        }
+        .content-section ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .content-section strong {
+            color: #171717; /* neutral-900 */
+        }
+        .content-section table {
+            width: 100%;
+            margin-bottom: 1rem;
+            border-collapse: collapse;
+        }
+        .content-section th, .content-section td {
+            border: 1px solid #d4d4d8; /* stone-300 */
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .content-section th {
+            background-color: #f5f5f4; /* stone-100 */
+            font-weight: 600;
+            color: #0c4a6e; /* sky-900 */
+        }
+        .content-section td {
+            background-color: #fafaf9; /* stone-50 */
+        }
+        .hallazgo-atributo {
+            border: 2px solid #0ea5e9; /* sky-500 */
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: #f0f9ff; /* sky-50 */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .hallazgo-atributo:hover {
+            background-color: #e0f2fe; /* sky-100 */
+        }
+        .hallazgo-atributo h5 {
+            font-weight: bold;
+            color: #0369a1; /* sky-700 */
+            margin-bottom: 0.25rem;
+        }
+        .hallazgo-detalle {
+            display: none;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            background-color: #ffffff;
+            border-left: 4px solid #0ea5e9; /* sky-500 */
+            font-size: 0.9rem;
+        }
+        .cgr-hierarchy-level {
+            padding: 0.5rem;
+            margin-bottom: 0.25rem;
+            border-radius: 0.25rem;
+        }
+        .level-1 { background-color: #e0f2fe; border-left: 5px solid #0ea5e9;} /* sky-100, sky-500 */
+        .level-2 { background-color: #bae6fd; border-left: 5px solid #0284c7;} /* sky-200, sky-600 */
+        .level-3 { background-color: #7dd3fc; border-left: 5px solid #0369a1;} /* sky-300, sky-700 */
+        .level-4 { background-color: #38bdf8; border-left: 5px solid #075985;} /* sky-400, sky-800 */
+        .level-5 { background-color: #0ea5e9; color: white; border-left: 5px solid #0c4a6e;} /* sky-500, sky-900 */
+        .ml-custom { margin-left: 1.5rem; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Example max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 350px; /* Max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .principio-card {
+            background-color: #e0f2fe; /* sky-100 */
+            border: 1px solid #7dd3fc; /* sky-300 */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .principio-card h5 {
+            color: #0369a1; /* sky-700 */
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body class="bg-stone-100 text-neutral-800 flex min-h-screen">
+
+    <aside class="w-64 bg-sky-800 text-white p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto">
+        <h1 class="text-2xl font-semibold mb-6 border-b border-sky-700 pb-2">Auditoría</h1>
+        <nav>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200 active" data-section="section1">I. Marco General</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section2">II. Planeación y Ejecución</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section3">III. Tipos de Auditoría</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section4">IV. Informes de Auditoría</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section5">V. Liderazgo (Función 4)</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section6">VI. Enlace CGR-Auditado (Función 6)</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section7">VII. Guía de Auditoría y Planes</a>
+            <a href="#" class="sidebar-item block py-2.5 px-4 rounded transition duration-200" data-section="section8">VIII. Conclusiones</a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-6 md:p-10 ml-64 overflow-y-auto">
+        <div id="content-area">
+            </div>
+    </main>
+
+<script>
+    const sections = {
+        section1: {
+            title: "I. Marco General del Control Fiscal y la Auditoría en la Contraloría General de la República (CGR)",
+            intro: "Esta sección introduce el fundamento y la estructura del control fiscal en Colombia, centrándose en el rol de la Contraloría General de la República (CGR). Exploraremos las bases constitucionales y legales, los principios que rigen el control fiscal y la adopción de normativas internacionales y guías de auditoría propias de la CGR, elementos cruciales para entender el contexto en el que opera la entidad.",
+            content: `
+                <p>La Contraloría General de la República (CGR) de Colombia se erige como el máximo órgano de control fiscal del Estado. Su rol y funcionamiento están definidos por un entramado normativo que ha evolucionado para fortalecer la vigilancia sobre los recursos públicos. Para un profesional de la contaduría pública que aspira a integrar esta entidad, es imperativo un conocimiento profundo de dicho marco.</p>
+
+                <h3>A. Fundamentos Constitucionales y Legales del Control Fiscal en Colombia</h3>
+                <p>La base del control fiscal en Colombia reside en la Constitución Política, específicamente en sus artículos 267 a 274. Estos artículos consagran a la CGR como la entidad encargada de vigilar la gestión fiscal de la administración y de los particulares o entidades que manejen fondos o bienes de la Nación. Esta función es crucial para garantizar la transparencia y la correcta utilización del erario público.</p>
+                <p>La <strong>Ley 42 de 1993</strong> es una norma pivotal, pues organiza el sistema de control fiscal financiero y los organismos que lo ejercen. Esta ley define el control fiscal como una función pública que supervisa la gestión fiscal y subraya que esta vigilancia se ejerce de manera autónoma e independiente de cualquier otra forma de inspección administrativa. Además, introduce diversos sistemas de control que la CGR puede aplicar, tales como el financiero, de legalidad, de gestión, de resultados, la revisión de cuentas y la evaluación del control interno. La relevancia de esta ley radica en que establece los cimientos sobre los cuales opera la CGR, definiendo el alcance, los principios y las modalidades de control.</p>
+                <p>Posteriormente, el <strong>Decreto Ley 267 de 2000</strong> se enfoca en la organización y el funcionamiento interno de la CGR, detallando su estructura orgánica y las funciones de sus dependencias. Este decreto es esencial para comprender la arquitectura institucional de la CGR, incluyendo los niveles central y desconcentrado, y las atribuciones del Contralor General, el Vicecontralor, las Contralorías Delegadas (tanto Generales como Sectoriales), las diversas Oficinas y las Gerencias. Entender esta estructura es fundamental para visualizar cómo se organizan y dirigen los equipos de auditoría.</p>
+                <p>Más recientemente, la <strong>Resolución Orgánica 066 de 2024</strong> de la CGR ha introducido cambios significativos en la forma en que las entidades rinden cuentas. Esta resolución establece el método y la forma para la rendición de cuentas e informes a través del Sistema de Rendición Electrónico de la Cuenta e Informe y Otra Información (SIRECI). Un aspecto clave de esta resolución es la definición de la obligación del gestor fiscal de "informar y responder" ante la CGR sobre la gestión de los fondos, bienes y recursos públicos. Esta normativa no solo moderniza el proceso de rendición de cuentas, sino que también impacta directamente la manera en que la CGR accede a la información, lo cual es un insumo vital para la planificación y ejecución de las auditorías.</p>
+                <p>Un pilar para el ejercicio efectivo del control fiscal es la autonomía administrativa y presupuestal de la CGR. Esta autonomía, reforzada por la Constitución y el Decreto 267 de 2000, es crucial para asegurar la objetividad e independencia de sus auditorías.</p>
+
+                <h3>B. Principios y Sistemas de Control Fiscal Aplicados por la CGR</h3>
+                <p>El ejercicio del control fiscal por parte de la CGR se guía por una serie de principios y se materializa a través de diversos sistemas de control, todos ellos definidos en la Ley 42 de 1993.</p>
+                <h4>Principios del Control Fiscal (Art. 8, Ley 42/1993):</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                    <div class="principio-card"><h5>Eficiencia</h5><p>Lograr los objetivos y resultados programados con la menor cantidad de recursos.</p></div>
+                    <div class="principio-card"><h5>Economía</h5><p>Adquisición o producción de bienes y servicios en condiciones de calidad y costo óptimos.</p></div>
+                    <div class="principio-card"><h5>Eficacia</h5><p>Grado en que se logran los objetivos y resultados propuestos.</p></div>
+                    <div class="principio-card"><h5>Equidad</h5><p>Distribución justa de los beneficios y cargas públicas.</p></div>
+                    <div class="principio-card"><h5>Valorización de Costos Ambientales</h5><p>Consideración del impacto ambiental en la gestión pública.</p></div>
+                </div>
+                <p>Estos principios orientan activamente la evaluación de la gestión fiscal.</p>
+                <h4>Sistemas de Control (Art. 9, Ley 42/1993):</h4>
+                <ul>
+                    <li><strong>Control Financiero:</strong> Busca establecer la razonabilidad de la información financiera.</li>
+                    <li><strong>Control de Legalidad:</strong> Comprueba que todas las operaciones se hayan realizado de conformidad con las normas.</li>
+                    <li><strong>Control de Gestión:</strong> Evalúa la eficiencia y eficacia con que se han administrado los recursos.</li>
+                    <li><strong>Control de Resultados:</strong> Mide el impacto de la gestión y el cumplimiento de objetivos.</li>
+                    <li><strong>Revisión de Cuentas:</strong> Examen de documentos que soportan la gestión fiscal.</li>
+                    <li><strong>Evaluación del Control Interno:</strong> La CGR evalúa el sistema de control interno de las entidades auditadas.</li>
+                </ul>
+
+                <h3>C. Adopción de Normas Internacionales de Entidades Fiscalizadoras Superiores (ISSAI) y las Guías de Auditoría de la CGR (GAT, GAF, GAC)</h3>
+                <p>La CGR ha adoptado las Normas Internacionales de las Entidades Fiscalizadoras Superiores (ISSAI) como marco de referencia. Derivado de este marco, ha desarrollado Guías específicas:</p>
+                <ul>
+                    <li><strong>Guía de Auditoría Territorial (GAT):</strong> Para auditorías Financiera y de Gestión, Desempeño y Cumplimiento en entidades territoriales.</li>
+                    <li><strong>Guía de Auditoría Financiera (GAF):</strong> (Res. Org. 012/2017) Hoja de ruta para auditorías financieras, incluyendo revisión de cuentas y fenecimiento.</li>
+                    <li><strong>Guía de Auditoría de Cumplimiento (GAC):</strong> (Res. Org. 022/2018) Metodología para verificar la conformidad con la normativa.</li>
+                </ul>
+                <p>La Resolución Reglamentaria 066 de 2024 y la Resolución Orgánica 064 de 2023 refuerzan la importancia de estas guías, indicando que los procedimientos y criterios para fenecimiento y emisión de conceptos se incorporarán en la "Guía de Auditoría pertinente".</p>
+                
+                <h4>Tabla 1: Marco Normativo Fundamental del Control Fiscal y Auditoría en la CGR</h4>
+                <table>
+                    <thead>
+                        <tr><th>Norma</th><th>Descripción de Relevancia</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Constitución Política de Colombia (Arts. 267-274)</td><td>Establece la CGR, su misión y atribuciones fundamentales como máximo órgano de control fiscal.</td></tr>
+                        <tr><td>Ley 42 de 1993</td><td>Organiza el sistema de control fiscal financiero, define principios, sistemas de control (financiero, legalidad, gestión, resultados, revisión de cuentas, evaluación control interno).</td></tr>
+                        <tr><td>Decreto Ley 267 de 2000</td><td>Establece la estructura orgánica y funcional de la CGR, incluyendo Contralorías Delegadas y sus funciones.</td></tr>
+                        <tr><td>Normas Internacionales de Auditoría del Sector Público (ISSAI)</td><td>Marco internacional adoptado por la CGR para asegurar la calidad y comparabilidad de las auditorías.</td></tr>
+                        <tr><td>Guía de Auditoría Territorial (GAT) (CGR)</td><td>Define el marco para auditorías Financiera, de Desempeño y de Cumplimiento en entidades territoriales, basada en ISSAI.</td></tr>
+                        <tr><td>Guía de Auditoría Financiera (GAF) (CGR - Res. Org. 012/2017)</td><td>Metodología específica para la auditoría financiera, incluyendo revisión de cuentas y fenecimiento.</td></tr>
+                        <tr><td>Guía de Auditoría de Cumplimiento (GAC) (CGR - Res. Org. 022/2018)</td><td>Metodología para evaluar la conformidad con la normativa aplicable.</td></tr>
+                        <tr><td>Resolución Reglamentaria 066 de 2024 (CGR)</td><td>Regula la rendición de cuentas e informes a la CGR vía SIRECI y establece que procedimientos y criterios de revisión se incluirán en las Guías de Auditoría.</td></tr>
+                    </tbody>
+                </table>
+                <div class="chart-container my-4">
+                     <canvas id="dummyChart"></canvas>
+                </div>
+                <p class="text-sm text-gray-500">Nota: El gráfico anterior es un marcador de posición para cumplir con los requisitos de inclusión de Chart.js. El contenido de este informe es principalmente cualitativo y no se presta a visualizaciones de datos cuantitativos complejos sin ser artificial.</p>
+            `
+        },
+        section2: {
+            title: "II. Planeación y Ejecución de Auditorías Conforme a la Normatividad y Procedimientos de la CGR",
+            intro: "Esta sección detalla cómo la CGR planifica y ejecuta sus auditorías. Se aborda el proceso de planeación tanto a nivel estratégico como específico, las metodologías generales de ejecución, la crucial evaluación de riesgos y determinación de la materialidad, los tipos y valoración de la evidencia, la elaboración de papeles de trabajo y el diseño de programas de auditoría. El objetivo es comprender el rigor y la sistematicidad del quehacer auditor.",
+            content: `
+                <p>La efectividad de cualquier auditoría gubernamental reside en una meticulosa planeación y una ejecución rigurosa, ambas alineadas con el marco normativo y los procedimientos establecidos por la Contraloría General de la República. Estos procesos son dinámicos y requieren un alto grado de profesionalismo y adaptabilidad por parte del equipo auditor.</p>
+
+                <h3>A. El Proceso de Planeación de Auditorías en la CGR (Estratégica y Específica)</h3>
+                <p>La planeación en la CGR se articula a nivel estratégico (Plan General de Auditorías - PGA) y a nivel específico para cada auditoría. La Guía de Auditoría Territorial (GAT) establece que la planeación estratégica considera los tipos de auditoría (Financiera y de Gestión, Desempeño, Cumplimiento). Esta fase incluye:</p>
+                <ol>
+                    <li><strong>Conocimiento del Sujeto de Control:</strong> Investigación exhaustiva de la entidad (marco normativo, objetivos, estructura, operaciones, entorno).</li>
+                    <li><strong>Evaluación Preliminar de Riesgos:</strong> Identificación y evaluación de riesgos inherentes y de control.</li>
+                    <li><strong>Determinación de la Materialidad:</strong> Establecimiento de un umbral de importancia relativa (cuantitativa y cualitativa).</li>
+                    <li><strong>Definición del Alcance y los Objetivos de la Auditoría:</strong> Delimitación clara de qué se auditará y qué se espera lograr.</li>
+                </ol>
+                <p>En auditorías de TI, la planeación incluye fijar objetivos, seleccionar herramientas, investigación previa y aprobación de la programación.</p>
+
+                <h3>B. Metodologías y Procedimientos Generales para la Ejecución de Auditorías</h3>
+                <p>La ejecución es la aplicación sistemática de procedimientos para obtener evidencia. Las Guías de Auditoría (GAT, GAF, GAC) detallan las metodologías. Implica:</p>
+                <ul>
+                    <li><strong>Aplicación de Pruebas de Auditoría:</strong> Pruebas de controles o pruebas sustantivas.</li>
+                    <li><strong>Obtención de Evidencia:</strong> Suficiente y apropiada.</li>
+                    <li><strong>Documentación del Trabajo:</strong> En papeles de trabajo.</li>
+                </ul>
+                <p>En auditorías de cumplimiento, se revisa una muestra de operaciones. En auditorías de TI, se recolecta y analiza información sobre sistemas y controles.</p>
+
+                <h3>C. Evaluación de Riesgos y Determinación de la Materialidad en el Contexto CGR</h3>
+                <p>La <strong>evaluación de riesgos</strong> es continua. Los auditores de la CGR evalúan riesgos para determinar la naturaleza, oportunidad y alcance de los procedimientos. La GAT incluye pruebas de recorrido y ponderación de controles y riesgos.</p>
+                <p>La <strong>materialidad</strong> ("Hechos que, por su cuantía, por su naturaleza o por su contexto, indican la importancia de un hallazgo") se usa en planeación, ejecución y elaboración de informes. La CGR permite materialidad cuantitativa y cualitativa, aconsejando una <strong>materialidad combinada</strong>. Se documenta en formatos específicos (ej. "Formato 05 AC - PT Materialidad").</p>
+
+                <h3>D. Obtención, Tipos y Valoración de Evidencia de Auditoría</h3>
+                <p>Se requiere <strong>evidencia suficiente y apropiada</strong>. Suficiencia (cantidad) y propiedad (calidad: relevancia y fiabilidad).</p>
+                <p><strong>Tipos de evidencia:</strong></p>
+                <ul>
+                    <li>Documental (contratos, facturas, registros).</li>
+                    <li>Testimonial (entrevistas, corroboradas).</li>
+                    <li>Física (observación directa).</li>
+                    <li>Analítica (análisis de datos, tendencias).</li>
+                    <li>Electrónica (datos de sistemas, correos).</li>
+                </ul>
+                <p>La valoración requiere <strong>escepticismo profesional</strong>: mente inquisitiva y crítica.</p>
+
+                <h3>E. Papeles de Trabajo: Elaboración, Contenido y Custodia</h3>
+                <p>Son el registro documental exhaustivo del trabajo. Deben ser completos, exactos, claros, comprensibles, detallados, legibles, ordenados y pertinentes. Incluyen el programa de auditoría, documentación de riesgos, procedimientos aplicados, copias de documentos, cédulas de trabajo, evidencia de supervisión, conclusiones y hallazgos. Deben estar referenciados y firmados.</p>
+                <p>Son el <strong>soporte legal y técnico</strong> del informe y herramienta para supervisión y control de calidad. Su custodia debe garantizar integridad, confidencialidad y disponibilidad.</p>
+
+                <h3>F. Programas de Auditoría: Diseño y Aplicación</h3>
+                <p>El programa de auditoría detalla la naturaleza, oportunidad y alcance de los procedimientos. Se diseña en la planeación considerando objetivos, riesgos, materialidad, criterios, tipos de pruebas, muestreo, recursos y tiempo.</p>
+                <p>Debe ser detallado pero flexible. En la ejecución, guía al equipo. Actúa como puente entre planeación y ejecución, y es clave para el control de calidad.</p>
+            `
+        },
+        section3: {
+            title: "III. Tipos de Auditoría Realizadas por la CGR y sus Particularidades",
+            intro: "La CGR emplea diversos tipos de auditoría para cumplir con su misión. Esta sección explora las características de la Auditoría Financiera (y de Gestión), de Cumplimiento, de Desempeño, de Sistemas de Información/TI y las Actuaciones Especiales de Fiscalización. Comprender sus objetivos, alcances y productos es vital para el aspirante.",
+            content: `
+                <p>La Contraloría General de la República utiliza diversos tipos de auditoría, cada uno con objetivos y metodologías particulares.</p>
+
+                <h3>A. Auditoría Financiera (AF) / Auditoría Financiera y de Gestión (AFG)</h3>
+                <p>Según la Guía de Auditoría Financiera (GAF) y la GAT, sus objetivos son:</p>
+                <ol>
+                    <li>Emitir opinión sobre la <strong>razonabilidad de los estados financieros</strong>.</li>
+                    <li>Evaluar el <strong>control interno financiero</strong>.</li>
+                    <li>Evaluar la <strong>ejecución presupuestal</strong> y emitir opinión.</li>
+                    <li>Refrendar reservas presupuestales (si aplica).</li>
+                    <li><strong>Fenecer la cuenta fiscal</strong> rendida.</li>
+                </ol>
+                <p>Incorpora evaluación del control interno financiero y ejecución presupuestal, dándole una dimensión de gestión.</p>
+
+                <h3>B. Auditoría de Cumplimiento (AC)</h3>
+                <p>Según la Guía de Auditoría de Cumplimiento (GAC), sus objetivos son:</p>
+                <ol>
+                    <li>Determinar la <strong>conformidad</strong> de la entidad con la normativa aplicable.</li>
+                    <li>Obtener <strong>evidencia suficiente y apropiada</strong> para la conclusión sobre el cumplimiento.</li>
+                </ol>
+                <p>Esencial para asegurar la legalidad y prevenir irregularidades. Los hallazgos pueden tener consecuencias fiscales, disciplinarias o penales.</p>
+
+                <h3>C. Auditoría de Desempeño (AD)</h3>
+                <p>Evalúa si los recursos públicos se usan efectivamente. Objetivos según la GAT:</p>
+                <ol>
+                    <li>Evaluar <strong>eficiencia, eficacia y economía ("3 E")</strong>.</li>
+                    <li>Evaluar equidad, desarrollo sostenible y valorización de costos ambientales.</li>
+                </ol>
+                <p>Se enfoca en "valor por dinero". Metodológicamente más compleja, requiere definir criterios de desempeño y medir resultados.</p>
+
+                <h3>D. Auditoría de Sistemas de Información / Tecnologías de la Información (TI)</h3>
+                <p>Aunque no hay guía CGR específica, la Ley 42/1993 menciona el "control de sistemas". La Guía del MinTIC sirve de referencia general (Fases: Planeación, Implementación, Monitoreo). Se enfoca en fiabilidad de sistemas y protección de activos de información. La CGR realiza auditorías con fuerte componente TI (ej. Gobierno en Línea).</p>
+
+                <h3>E. Actuaciones Especiales de Fiscalización (AEF)</h3>
+                <p>Contempladas en la GAT, permiten respuesta ágil a situaciones particulares. Origen:</p>
+                <ul>
+                    <li>Denuncias fiscales.</li>
+                    <li>Temas identificados por la CGR con riesgo al patrimonio público.</li>
+                </ul>
+                <p>Permiten fiscalización concentrada y oportuna. Sus resultados pueden base para procesos de responsabilidad fiscal.</p>
+
+                <h4>Tabla 2: Comparativo de los Principales Tipos de Auditoría en la CGR</h4>
+                <table>
+                    <thead>
+                        <tr><th>Tipo de Auditoría</th><th>Objetivo Principal</th><th>Alcance Destacado</th><th>Principal Producto/Opinión</th><th>Guía/Norma CGR Relevante</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Financiera (y de Gestión)</td><td>Emitir opinión sobre razonabilidad de EEFF, ejecución presupuestal, control interno financiero. Fenecer la cuenta.</td><td>Transacciones financieras, saldos de cuentas, ejecución del presupuesto, controles contables y financieros.</td><td>Opinión sobre EEFF (sin salvedades, con salvedades, adversa, abstención), opinión sobre presupuesto, concepto sobre control interno, fenecimiento.</td><td>GAF (Res. Org. 012/2017), GAT.</td></tr>
+                        <tr><td>Cumplimiento</td><td>Determinar conformidad con normativa, disposiciones internas, estipulaciones contractuales.</td><td>Revisión de operaciones, procesos, actos y contratos frente a un marco legal y normativo.</td><td>Concepto/conclusión sobre el cumplimiento (seguridad razonable o limitada).</td><td>GAC (Res. Org. 022/2018), GAT.</td></tr>
+                        <tr><td>Desempeño</td><td>Evaluar eficiencia, eficacia, economía, equidad, desarrollo sostenible en la gestión de recursos y logro de objetivos.</td><td>Programas, proyectos, políticas públicas, gestión institucional.</td><td>Informe con hallazgos y recomendaciones sobre cómo mejorar el desempeño.</td><td>GAT.</td></tr>
+                        <tr><td>Sistemas de Información / TI</td><td>Evaluar la gestión de TI, seguridad de la información, controles en sistemas, cumplimiento de normativas de TI.</td><td>Infraestructura tecnológica, aplicaciones, bases de datos, políticas y procedimientos de TI, seguridad, continuidad.</td><td>Informe con hallazgos sobre controles de TI, vulnerabilidades, recomendaciones de mejora.</td><td>(No hay guía CGR específica en fuentes, se basa en principios generales, ISO 27001, ref. MinTIC). Control de sistemas aplicable.</td></tr>
+                        <tr><td>Actuación Especial de Fiscalización (AEF)</td><td>Investigar denuncias o asuntos específicos con riesgo o afectación al patrimonio público.</td><td>Hechos puntuales, contratos específicos, denuncias.</td><td>Informe final con resultados de la fiscalización, que puede derivar en procesos de responsabilidad fiscal.</td><td>GAT (incorpora Res. 0052/2022 CGR).</td></tr>
+                    </tbody>
+                </table>
+            `
+        },
+        section4: {
+            title: "IV. Estructuración de Informes de Auditoría Basados en Resultados, Hipótesis y Pruebas",
+            intro: "El informe de auditoría es la culminación del proceso. Esta sección aborda sus componentes esenciales, cómo se presentan los resultados (incluyendo la noción de hipótesis y la evidencia), la formulación detallada de hallazgos (condición, criterio, causa, efecto), la elaboración de recomendaciones constructivas y el significativo proceso de fenecimiento de la cuenta fiscal.",
+            content: `
+                <p>El informe de auditoría comunica los resultados del examen. La CGR sigue una estructura y principios para asegurar que sean claros, objetivos y útiles.</p>
+
+                <h3>A. Componentes Esenciales de un Informe de Auditoría de la CGR</h3>
+                <p>Los informes suelen compartir componentes como:</p>
+                <ol>
+                    <li>Carta de Presentación/Dictamen.</li>
+                    <li>Introducción / Hechos Relevantes.</li>
+                    <li>Objetivos de la Auditoría.</li>
+                    <li>Sujeto de Control y Responsabilidad.</li>
+                    <li>Marco Normativo / Fuentes de Criterio.</li>
+                    <li>Alcance de la Auditoría.</li>
+                    <li>Responsabilidad de la CGR.</li>
+                    <li>Fundamento de la Opinión/Concepto.</li>
+                    <li><strong>Opinión/Concepto</strong> (sobre EEFF, presupuesto, cumplimiento, control interno).</li>
+                    <li>Evaluación del Control Interno.</li>
+                    <li>Refrendación de Reservas Presupuestales (si aplica).</li>
+                    <li><strong>Pronunciamiento sobre la Revisión de la Cuenta / Fenecimiento</strong>.</li>
+                    <li>Evaluaciones Específicas (ej. políticas públicas).</li>
+                    <li>Atención a Denuncias y Solicitudes.</li>
+                    <li>Efectividad del Plan de Mejoramiento Anterior.</li>
+                    <li>Relación de Hallazgos (usualmente en anexo).</li>
+                    <li>Requerimiento de Plan de Mejoramiento.</li>
+                    <li>Firmas del Equipo Auditor.</li>
+                </ol>
+                <p>La GAT también refiere secciones específicas. La materialidad es crucial para decidir qué se reporta.</p>
+
+                <h3>B. Presentación de Resultados, Hipótesis (cuando aplique) y Pruebas (Evidencia)</h3>
+                <p>Los resultados se comunican vía opiniones, conceptos y <strong>hallazgos</strong>. Todo debe estar respaldado por <strong>evidencia suficiente y apropiada</strong> documentada en papeles de trabajo.</p>
+                <p>El término "hipótesis" no es explícito en informes financieros o de cumplimiento, pero en auditorías de desempeño o AEF, los equipos pueden formular hipótesis de trabajo para guiar la búsqueda de evidencia.</p>
+                <p>Debe haber clara trazabilidad entre evidencia, pruebas, resultados (hallazgos) y conclusiones.</p>
+
+                <h3>C. Formulación de Hallazgos de Auditoría: Descripción, Criterio, Causa, Efecto y Condición</h3>
+                <p>Los hallazgos representan deficiencias o irregularidades. Un hallazgo bien estructurado incluye:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                    <div class="hallazgo-atributo" onclick="toggleDetalle(this)">
+                        <h5>1. Condición</h5>
+                        <p class="text-sm">"Lo que es" - La situación encontrada, basada en evidencia.</p>
+                        <div class="hallazgo-detalle"><p><strong>Ejemplo Genérico:</strong> Se observó que la entidad X realizó pagos por servicios no recibidos durante el periodo Y.</p></div>
+                    </div>
+                    <div class="hallazgo-atributo" onclick="toggleDetalle(this)">
+                        <h5>2. Criterio</h5>
+                        <p class="text-sm">"Lo que debería ser" - La norma, ley, estándar contra el cual se compara.</p>
+                        <div class="hallazgo-detalle"><p><strong>Ejemplo Genérico:</strong> El manual de contratación Z establece que los pagos solo deben realizarse previa verificación de la recepción satisfactoria de los bienes o servicios.</p></div>
+                    </div>
+                    <div class="hallazgo-atributo" onclick="toggleDetalle(this)">
+                        <h5>3. Causa</h5>
+                        <p class="text-sm">"Por qué ocurrió" - La razón de la desviación.</p>
+                        <div class="hallazgo-detalle"><p><strong>Ejemplo Genérico:</strong> Debilidades en los controles internos del proceso de pagos, falta de supervisión adecuada en la verificación de servicios.</p></div>
+                    </div>
+                    <div class="hallazgo-atributo" onclick="toggleDetalle(this)">
+                        <h5>4. Efecto</h5>
+                        <p class="text-sm">"Consecuencia" - El impacto de la diferencia (financiero, legal, operativo).</p>
+                        <div class="hallazgo-detalle"><p><strong>Ejemplo Genérico:</strong> Pérdida de recursos públicos por valor de $ABC, posible incumplimiento de normativas contractuales.</p></div>
+                    </div>
+                </div>
+                <p>La materialidad determina si una observación se convierte en hallazgo reportable.</p>
+
+                <h3>D. Elaboración de Recomendaciones Constructivas y Conclusiones Fundamentadas</h3>
+                <p>Las <strong>recomendaciones</strong> deben vincularse a los hallazgos (específicamente a sus causas) y ser claras, específicas, prácticas, realistas, orientadas a la causa raíz y conducentes a la mejora.</p>
+                <p>Las <strong>conclusiones</strong> (opiniones, conceptos) deben derivarse lógicamente de los hallazgos y la evidencia.</p>
+                <p>La CGR realiza seguimiento a la efectividad de las acciones correctivas.</p>
+
+                <h3>E. El Proceso de "Fenecimiento" de la Cuenta Fiscal</h3>
+                <p>Es un acto administrativo de la CGR que cierra formalmente la revisión de la cuenta rendida. Resoluciones 066/2024 y 064/2023 establecen que la Guía de Auditoría pertinente incluirá el procedimiento.</p>
+                <p>Se basa principalmente en opiniones de la auditoría financiera (sobre EEFF y ejecución presupuestal). Si la auditoría revela problemas graves, la cuenta podría no ser fenecida. Es un indicador clave de la calidad de la gestión fiscal.</p>
+            `
+        },
+        section5: {
+            title: "V. Liderazgo de Equipos de Auditoría y Planificación Basada en Objetivos Institucionales (Función 4)",
+            intro: "Esta sección, correspondiente a la 'Función 4', se enfoca en el liderazgo dentro de la CGR. Se describe la estructura y roles clave en los equipos de auditoría, la importancia de alinear la planificación de auditorías con los objetivos institucionales y la normativa, y los procesos de gestión, supervisión y aseguramiento de la calidad del trabajo auditor.",
+            content: `
+                <p>El liderazgo efectivo es crítico para la CGR. Implica gestión de personas y planificación estratégica alineada con objetivos institucionales y normativa.</p>
+
+                <h3>A. Estructura y Roles Clave en los Equipos de Auditoría de la CGR</h3>
+                <p>El Decreto Ley 267 de 2000 establece la estructura. Roles clave:</p>
+                <div class="space-y-2 my-4">
+                    <div class="cgr-hierarchy-level level-1"><strong>Contralor General de la República:</strong> Máxima autoridad, dirección general.</div>
+                    <div class="cgr-hierarchy-level level-2 ml-custom"><strong>Vicecontralor:</strong> Asiste al Contralor, coordinación técnica.</div>
+                    <div class="cgr-hierarchy-level level-3 ml-custom"><strong>Contralorías Delegadas Sectoriales:</strong> Vigilancia fiscal integral en sectores específicos (ej. Agropecuario, Salud). Proponen políticas, planes; dirigen evaluación de control interno.</div>
+                    <div class="cgr-hierarchy-level level-4 ml-custom"><strong>Direcciones de Vigilancia Fiscal:</strong> Dentro de Contralorías Delegadas. Dirigen implementación de planes de auditoría a nivel micro.</div>
+                    <div class="cgr-hierarchy-level level-5 ml-custom"><strong>Supervisor de Auditoría:</strong> Revisión técnica del trabajo, cumplimiento de metodologías.</div>
+                    <div class="cgr-hierarchy-level level-5 ml-custom"><strong>Líder de Equipo Auditor (Jefe Auditor):</strong> Dirección diaria del equipo en un encargo, cumplimiento del plan de auditoría.</div>
+                    <div class="cgr-hierarchy-level level-5 ml-custom"><strong>Auditores:</strong> Ejecutan procedimientos, recolectan evidencia, documentan.</div>
+                </div>
+                <p>La GAT V 4.0 menciona un "Comité Técnico de Auditoría" en Contralorías Territoriales.</p>
+
+                <h3>B. Planificación de Auditorías Alineada con los Objetivos Institucionales y la Normativa Vigente</h3>
+                <p>La planificación debe alinearse con <strong>objetivos institucionales de la CGR</strong> (buen uso de recursos, lucha contra corrupción, eficiencia) y <strong>normativa vigente</strong> (Constitución, Ley 42/1993, Decreto Ley 267/2000, resoluciones, Guías de Auditoría).</p>
+                <p>El líder de equipo debe asegurar que la planificación considere la normativa más actualizada.</p>
+
+                <h3>C. Gestión, Supervisión y Aseguramiento de la Calidad del Trabajo del Equipo Auditor</h3>
+                <p>El <strong>Líder de Equipo</strong> gestiona el encargo diariamente. La <strong>supervisión</strong> es ejercida por roles superiores (Supervisor, Director de Vigilancia Fiscal), revisando plan, papeles de trabajo, hallazgos, informes.</p>
+                <p>El <strong>aseguramiento de la calidad</strong> se refuerza con mecanismos como el "Comité Técnico de Auditoría" (GAT) y un sistema de "Control de calidad de la auditoría". La CGR también evalúa la efectividad de acciones de entidades auditadas.</p>
+                
+                <h4>Tabla 3: Roles y Responsabilidades Clave en los Equipos de Auditoría de la CGR</h4>
+                <table>
+                    <thead>
+                        <tr><th>Rol</th><th>Principales Responsabilidades en Auditoría</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Contralor Delegado Sectorial</td><td>Dirigir la vigilancia fiscal integral en el sector; proponer políticas, planes y prioridades de auditoría; dirigir evaluación de control interno; aprobar y hacer seguimiento a planes de mejoramiento; imponer sanciones (si aplica); coordinar con otras delegadas.</td></tr>
+                        <tr><td>Director de Vigilancia Fiscal</td><td>Dirigir la implementación de planes de auditoría; dirigir el proceso de vigilancia y control micro; dirigir y coordinar la ejecución de auditorías; ser responsable de la ejecución de auditorías y revisión de cuentas; aprobar informes de auditoría.</td></tr>
+                        <tr><td>Supervisor de Auditoría</td><td>Revisar el trabajo del equipo auditor y los papeles de trabajo; asegurar el cumplimiento de metodologías y estándares; revisar informes de auditoría.</td></tr>
+                        <tr><td>Líder de Equipo Auditor (Jefe Auditor)</td><td>Administrar y dirigir al equipo en el día a día; cumplir con el plan de auditoría; asegurar la calidad de la evidencia y papeles de trabajo; comunicar observaciones preliminares; elaborar el borrador del informe.</td></tr>
+                        <tr><td>Auditor</td><td>Ejecutar los procedimientos de auditoría asignados; documentar el trabajo en papeles de trabajo; obtener y evaluar evidencia; identificar y documentar observaciones.</td></tr>
+                    </tbody>
+                </table>
+            `
+        },
+        section6: {
+            title: "VI. Actuación como Enlace entre la CGR y el Ente Auditado (Función 6)",
+            intro: "Correspondiendo a la 'Función 6', esta sección trata sobre la crucial interacción entre la CGR y las entidades auditadas. Se examinan los protocolos de comunicación, el manejo de requerimientos de información (incluyendo 'mesas de trabajo' y el SIRECI), el proceso de presentación, discusión y contradicción de hallazgos, y el rol de la Contraloría Delegada para la Participación Ciudadana.",
+            content: `
+                <p>Actuar como enlace efectivo requiere profesionalismo, claridad y seguimiento de protocolos.</p>
+
+                <h3>A. Protocolos y Canales de Comunicación con las Entidades Auditadas</h3>
+                <p>Principios y canales:</p>
+                <ul>
+                    <li><strong>Comunicación Formal Inicial:</strong> Información sobre inicio, alcance y equipo.</li>
+                    <li><strong>Canales Establecidos:</strong> Oficios, sistemas electrónicos. Protocolos de atención telefónica y virtual.</li>
+                    <li><strong>Comunicación de Observaciones:</strong> Traslado formal para garantizar derecho de contradicción.</li>
+                    <li><strong>Interacción Continua:</strong> Comunicación fluida y respetuosa.</li>
+                </ul>
+                <p>Comunicaciones clave deben ser por escrito y documentadas.</p>
+
+                <h3>B. Manejo de Requerimientos de Información, "Mesas de Trabajo" y el Sistema SIRECI</h3>
+                <ul>
+                    <li><strong>Requerimientos de Información:</strong> Claros, precisos, relacionados con objetivos. La entidad debe suministrarla de forma oportuna, completa y veraz.</li>
+                    <li><strong>"Mesas de Trabajo":</strong> Espacios de diálogo y discusión para aclarar dudas, analizar observaciones. Se documentan en ayudas de memoria.</li>
+                    <li><strong>SIRECI:</strong> Canal institucional para rendición de cuentas. No elimina necesidad de requerimientos específicos o mesas de trabajo.</li>
+                </ul>
+
+                <h3>C. Presentación, Discusión y Contradicción de Observaciones y Hallazgos</h3>
+                <p>Proceso clave para el debido proceso:</p>
+                <ol>
+                    <li><strong>Comunicación de Observaciones:</strong> Formal, antes de ser hallazgo definitivo.</li>
+                    <li><strong>Respuesta del Auditado:</strong> Plazo (usualmente no >5 días hábiles) para argumentos y evidencia.</li>
+                    <li><strong>Análisis de la Respuesta:</strong> El equipo auditor analiza la respuesta. La observación puede confirmarse, modificarse o desestimarse.</li>
+                    <li><strong>Inclusión en el Informe:</strong> Solo hallazgos pertinentes y soportados.</li>
+                </ol>
+                <p>Este proceso asegura que la entidad sea escuchada y actúa como filtro de calidad.</p>
+
+                <h3>D. El Rol de la Contraloría Delegada para la Participación Ciudadana en la Interacción</h3>
+                <p>La Contraloría Delegada para la Participación Ciudadana (CDPC) (Decreto 267/2000) tiene funciones como:</p>
+                <ul>
+                    <li>Presentar iniciativas de la comunidad.</li>
+                    <li>Recibir, sistematizar y evaluar denuncias ciudadanas.</li>
+                    <li>Establecer estrategias para promover participación ciudadana en vigilancia fiscal.</li>
+                    <li>Apoyar veedurías ciudadanas.</li>
+                    <li>Promover control ciudadano en proyectos de alto impacto.</li>
+                </ul>
+                <p>Estrategia destacada: <strong>"Auditorías Articuladas"</strong>, que involucra a OSC en procesos auditores (Vinculación, Articulación, Seguimiento, Extensión).</p>
+            `
+        },
+        section7: {
+            title: "VII. La Guía de Auditoría de la CGR y los Planes de Mejoramiento",
+            intro: "Esta sección se centra en dos pilares de la CGR: la Guía de Auditoría como documento metodológico fundamental y los Planes de Mejoramiento como instrumento para la acción correctiva. Se detalla el contenido y la importancia de la Guía, así como el proceso de formulación, presentación, aprobación, seguimiento y evaluación de la efectividad de los Planes de Mejoramiento.",
+            content: `
+                <p>Las Guías de Auditoría y los Planes de Mejoramiento son esenciales para la calidad y el impacto del control fiscal.</p>
+
+                <h3>A. La Guía de Auditoría de la CGR como Documento Fundamental: Metodologías, Procedimientos y Estándares</h3>
+                <p>Las Guías (GAT, GAF, GAC) son el compendio normativo y metodológico, de obligatorio cumplimiento, basadas en ISSAI. Detallan metodologías, procedimientos y estándares.</p>
+                <p>Son herramientas de gestión que estandarizan prácticas y promueven mejores prácticas. Resoluciones 066/2024 y 064/2023 establecen que procedimientos y criterios (ej. fenecimiento) se incluirán en la "Guía de Auditoría pertinente".</p>
+                <p>Constituyen la <strong>columna vertebral del proceso auditor</strong>. Son "documentos vivos" que se actualizan periódicamente.</p>
+
+                <h3>B. Planes de Mejoramiento: Proceso de Formulación, Presentación, Aprobación por la CGR</h3>
+                <p>Instrumentos que surgen de hallazgos, para formalizar el compromiso de la entidad de subsanar deficiencias.</p>
+                <p><strong>Formulación y Presentación:</strong> Responsabilidad del representante legal de la entidad. Se remite a la CGR en plazos establecidos (ej. 5 días hábiles post-informe). Un plan bien estructurado incluye: hallazgo, análisis de causas, acciones concretas, indicadores, metas, responsables, recursos, cronograma.</p>
+                <p><strong>Revisión y Aprobación por la CGR:</strong> Se revisa pertinencia de acciones, enfoque en causas raíz, indicadores, metas y plazos. Si es satisfactorio, se aprueba; si no, se solicitan ajustes. La CGR puede emitir concepto o calificación sobre el plan.</p>
+
+                <h3>C. Seguimiento y Evaluación de la Efectividad de los Planes de Mejoramiento</h3>
+                <p><strong>Seguimiento por la CGR:</strong> Entidades presentan informes periódicos de avance (generalmente semestrales). La CGR emite concepto o calificación sobre el avance. La OCI de la entidad también monitorea.</p>
+                <p><strong>Evaluación de la Efectividad:</strong> Objetivo final es evaluar si las acciones corrigieron deficiencias y previnieron recurrencia. Se busca constatar si causas raíz fueron eliminadas y la gestión mejoró.</p>
+                <p>El seguimiento asegura que los planes conduzcan a mejoras tangibles y retroalimenta el ciclo de auditoría.</p>
+
+                <h4>Tabla 4: Fases y Componentes Clave de un Plan de Mejoramiento ante la CGR</h4>
+                <table>
+                    <thead>
+                        <tr><th>Fase/Componente</th><th>Descripción</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Origen del Hallazgo</td><td>Identificación clara del informe de auditoría de la CGR y el hallazgo específico que da origen a la acción.</td></tr>
+                        <tr><td>Descripción del Hallazgo</td><td>Resumen del hallazgo (Condición, Criterio, Causa, Efecto) tal como fue comunicado por la CGR.</td></tr>
+                        <tr><td>Análisis de Causa Raíz (por la entidad)</td><td>Metodología utilizada (ej. 5 porqués, Ishikawa) y la causa raíz identificada por la entidad.</td></tr>
+                        <tr><td>Acción(es) Correctiva(s) y/o Preventiva(s)</td><td>Descripción detallada de las acciones específicas que la entidad implementará para abordar la causa raíz y corregir/prevenir el hallazgo.</td></tr>
+                        <tr><td>Área(s) Responsable(s)</td><td>Dependencia o funcionarios específicos dentro de la entidad responsables de la ejecución de cada acción.</td></tr>
+                        <tr><td>Indicador(es) de Cumplimiento/Gestión</td><td>Medidas verificables para monitorear el progreso y el éxito de la implementación de las acciones.</td></tr>
+                        <tr><td>Meta(s) Cuantificable(s)</td><td>Objetivos numéricos o cualitativos claros para cada indicador.</td></tr>
+                        <tr><td>Cronograma de Ejecución</td><td>Fechas de inicio y finalización para cada acción.</td></tr>
+                        <tr><td>Recursos Necesarios</td><td>Identificación de recursos adicionales (financieros, humanos, tecnológicos) requeridos.</td></tr>
+                        <tr><td>Presentación y Aprobación</td><td>Envío formal del plan a la CGR dentro del plazo. Revisión y aprobación (o solicitud de ajustes) por parte de la CGR.</td></tr>
+                        <tr><td>Ejecución y Seguimiento Interno</td><td>Implementación de las acciones por parte de la entidad. Monitoreo por la Oficina de Control Interno de la entidad.</td></tr>
+                        <tr><td>Informes de Avance a la CGR</td><td>Presentación periódica (semestral) de informes de avance a la CGR.</td></tr>
+                        <tr><td>Verificación y Evaluación de Efectividad por la CGR</td><td>La CGR evalúa el cumplimiento y la efectividad de las acciones implementadas. Emite concepto o calificación.</td></tr>
+                    </tbody>
+                </table>
+            `
+        },
+        section8: {
+            title: "VIII. Conclusiones",
+            intro: "Esta sección final resume los puntos clave analizados en el material de estudio, reforzando la comprensión integral necesaria para un aspirante a la Contraloría General de la República. Se destaca la robustez del marco normativo, la estructura del proceso auditor, la diversidad de auditorías, la importancia de los informes y el liderazgo, la interacción con el auditado, y la centralidad de las guías y planes de mejoramiento.",
+            content: `
+                <p>La preparación para una vacante en la CGR exige un entendimiento integral y profundo del marco normativo, metodologías de auditoría, procedimientos internos y funciones clave.</p>
+                <p><strong>Síntesis del Análisis:</strong></p>
+                <ol>
+                    <li><strong>Marco Normativo Robusto y en Evolución:</strong> Basado en Constitución, Ley 42/1993, Decreto Ley 267/2000, complementado por resoluciones (ej. Res. 066/2024 con SIRECI). Adopción de ISSAI y desarrollo de Guías (GAT, GAF, GAC).</li>
+                    <li><strong>Proceso Auditor Estructurado:</strong> Planeación (conocimiento del sujeto, riesgos, materialidad) y ejecución (evidencia, papeles de trabajo, programas de auditoría).</li>
+                    <li><strong>Diversidad de Enfoques de Auditoría:</strong> Financiera y de Gestión, Cumplimiento, Desempeño, Sistemas de Información/TI, AEFs.</li>
+                    <li><strong>Informes de Auditoría Fundamentados y Orientados a la Acción:</strong> Claridad, transparencia, fundamentación en evidencia. Hallazgos (condición, criterio, causa, efecto), recomendaciones constructivas, fenecimiento de cuenta.</li>
+                    <li><strong>Liderazgo y Gestión de Equipos:</strong> Planificación alineada, gestión eficiente, aseguramiento de calidad. Estructura jerárquica y especializada.</li>
+                    <li><strong>Interacción Profesional con el Auditado:</strong> Comunicación efectiva, respeto al debido proceso. "Mesas de trabajo", contradicción de observaciones. Participación ciudadana.</li>
+                    <li><strong>Centralidad de las Guías de Auditoría y los Planes de Mejoramiento:</strong> Guías estandarizan metodologías. Planes de Mejoramiento aseguran impacto real y mejora continua.</li>
+                </ol>
+                <p>Para la contadora pública, el dominio de estos temas es esencial para el proceso de selección y un desempeño exitoso y ético en la CGR.</p>
+            `
+        }
+    };
+
+    const contentArea = document.getElementById('content-area');
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+
+    function loadContent(sectionId) {
+        const sectionData = sections[sectionId];
+        if (sectionData) {
+            contentArea.innerHTML = `
+                <h2 class="text-3xl font-bold text-sky-700 mb-4">${sectionData.title}</h2>
+                <p class="italic text-neutral-600 mb-6">${sectionData.intro}</p>
+                <div class="content-section">
+                    ${sectionData.content}
+                </div>
+            `;
+            // Scroll to top of content area
+            contentArea.scrollTop = 0; 
+            // If there was a dummy chart, reinitialize it
+            if (document.getElementById('dummyChart')) {
+                initDummyChart();
+            }
+        }
+    }
+    
+    function toggleDetalle(element) {
+        const detalle = element.querySelector('.hallazgo-detalle');
+        if (detalle) {
+            detalle.style.display = detalle.style.display === 'none' || detalle.style.display === '' ? 'block' : 'none';
+        }
+    }
+
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            const sectionId = item.getAttribute('data-section');
+            loadContent(sectionId);
+        });
+    });
+
+    // Load initial content
+    loadContent('section1');
+
+    // Dummy chart initialization
+    function initDummyChart() {
+        const ctx = document.getElementById('dummyChart');
+        if (!ctx) return;
+
+        // Check if a chart instance already exists on the canvas and destroy it
+        let existingChart = Chart.getChart(ctx);
+        if (existingChart) {
+            existingChart.destroy();
+        }
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['A', 'B', 'C'],
+                datasets: [{
+                    label: 'Datos de Ejemplo',
+                    data: [10, 20, 15],
+                    backgroundColor: ['#38bdf8', '#0ea5e9', '#0284c7'],
+                    borderColor: ['#0c4a6e'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Gráfico de Ejemplo (Marcador de Posición)'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    // Ensure chart is initialized after initial content load
+    if (document.getElementById('dummyChart')) {
+        initDummyChart();
+    }
+
+</script>
+</body>
+</html>

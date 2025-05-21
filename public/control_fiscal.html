@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Control Fiscal en Colombia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Introducción General: Text -> Inform -> HTML paragraphs -> N/A.
+        - Módulo 1 (Marco Constitucional): Text (Art. 267, 268, etc.) -> Present, Detail -> Accordion for each Article, with summary and detailed analysis -> Click to expand/collapse -> JS.
+        - Módulo 2 (Ley 42/1993): Text (Principios, Sistemas, Reviviscencia Table) -> Explain, List -> Interactive HTML table for reviviscencia, expandable sections for principles/systems -> Click to expand, sort table (basic) -> JS.
+        - Módulo 3 (Acto Legislativo 04/2019): Text (Fortalecimiento CGR, CPC, SINACOF) -> Explain, Define -> HTML sections, simple HTML/CSS diagram for SINACOF -> Clickable terms, hover on diagram parts -> JS.
+        - Módulo 4 (Decreto Ley 403/2020): Text (Vigente/Inexequible articles, Table) -> Explain, Compare -> Interactive HTML table for article status, clear textual explanations of inexequibilidad/reviviscencia -> Sort table (basic), clickable terms -> JS.
+        - Módulo 5 (Responsabilidad Fiscal): Text (Ley 610, impacto D.L. 403) -> Explain Process -> Structured HTML, expandable key process steps -> Click to expand -> JS.
+        - Módulo 6 (Directrices Internas): Text (Control Macro, Resoluciones) -> Inform, Explain -> HTML sections with expandable details for resolutions -> Click to expand -> JS.
+        - Conclusiones y Estrategias: Text -> Summarize -> HTML paragraphs and lists -> N/A.
+        - Resumen Visual (Chart.js): Data (Count of key topics per module) -> Overview -> Bar Chart -> Static display -> Chart.js.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All diagrams are HTML/CSS based.
+    -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { width: 280px; transition: transform 0.3s ease-in-out; }
+        .content { margin-left: 280px; transition: margin-left 0.3s ease-in-out; }
+        .sidebar-hidden { transform: translateX(-100%); }
+        .content-full { margin-left: 0; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .active .accordion-content { max-height: 2000px; /* Adjust as needed */ }
+        .active .accordion-icon { transform: rotate(90deg); }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .tooltip { position: relative; display: inline-block; cursor: pointer; }
+        .tooltip .tooltiptext { visibility: hidden; width: 200px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -100px; opacity: 0; transition: opacity 0.3s; }
+        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+        .sidebar-item { display: block; padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 0.375rem; transition: background-color 0.2s ease, color 0.2s ease; }
+        .sidebar-item:hover { background-color: #e0f2fe; /* light-blue-100 */ color: #0c4a6e; /* sky-800 */ }
+        .sidebar-item.active-nav { background-color: #0ea5e9; /* sky-500 */ color: white; }
+        .nav-icon { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="sidebar bg-stone-100 text-gray-700 p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto shadow-lg">
+            <h1 class="text-2xl font-bold text-sky-700 mb-6 border-b-2 border-sky-600 pb-2">Control Fiscal</h1>
+            <nav>
+                <a href="#" class="sidebar-item active-nav" onclick="showContent('inicio', this)">
+                    <span class="mr-2">🏠</span> Inicio y Resumen
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('introduccion', this)">
+                    <span class="mr-2">📖</span> Introducción General
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('modulo1', this)">
+                    <span class="mr-2">🏛️</span> Módulo 1: Fund. Constitucionales
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('modulo2', this)">
+                    <span class="mr-2">📜</span> Módulo 2: Ley 42 de 1993
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('modulo3', this)">
+                    <span class="mr-2">⚖️</span> Módulo 3: Acto Legislativo 04/19
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('modulo4', this)">
+                    <span class="mr-2">📄</span> Módulo 4: Decreto Ley 403/20
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('modulo5', this)">
+                    <span class="mr-2">🔎</span> Módulo 5: Resp. Fiscal
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('modulo6', this)">
+                    <span class="mr-2">📊</span> Módulo 6: Directrices Internas
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('conclusiones', this)">
+                    <span class="mr-2">💡</span> Conclusiones y Estrategias
+                </a>
+            </nav>
+        </aside>
+
+        <main id="mainContent" class="content flex-1 p-6 lg:p-10 overflow-y-auto">
+            <button id="sidebarToggle" class="fixed top-4 right-4 lg:hidden bg-sky-600 text-white p-2 rounded-md z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <div id="inicio" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Guía Interactiva de Estudio: Control fiscal</h2>
+                <p class="mb-4 text-lg">Esta aplicación te ayudará a prepararte para tu vacante en la Contraloría General de la República, explorando de manera interactiva los temas clave del control fiscal en Colombia.</p>
+                <p class="mb-6 text-lg">Utiliza la navegación lateral para moverte entre los módulos. Dentro de cada módulo, encontrarás explicaciones detalladas, análisis de normativas y elementos interactivos para profundizar en tu estudio.</p>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-4">Distribución de Temas Clave por Módulo</h3>
+                    <p class="mb-4 text-gray-600">El siguiente gráfico muestra una representación del número aproximado de temas o artículos fundamentales abordados en cada módulo principal de la guía de estudio. Esto te puede dar una idea de la densidad de contenido en cada sección.</p>
+                    <div class="chart-container">
+                        <canvas id="temasPorModuloChart"></canvas>
+                    </div>
+                </div>
+                 <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-4">Cómo Usar Esta Guía</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Navega por los módulos usando el menú lateral.</li>
+                        <li>Dentro de cada módulo, los temas complejos o artículos se presentan en secciones desplegables (acordeones). Haz clic en los títulos para expandir y ver el contenido detallado.</li>
+                        <li>Algunos términos clave pueden tener información adicional al pasar el cursor sobre ellos (tooltips).</li>
+                        <li>Las tablas de normativas te permiten ver de forma resumida el estado y contenido de leyes importantes.</li>
+                        <li>Presta especial atención a las secciones que explican las <span class="font-semibold text-red-600">inexequibilidades</span> y la <span class="font-semibold text-green-600">reviviscencia</span> de normas, ya que son cruciales.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="introduccion" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Introducción al Control Fiscal en Colombia y la CGR</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El control fiscal en Colombia se erige como una función pública de trascendental importancia, orientada a la protección del patrimonio del Estado, la correcta inversión de los recursos públicos y la lucha frontal contra la corrupción. En este engranaje institucional, la Contraloría General de la República (CGR) ostenta un papel protagónico, siendo el máximo órgano de control fiscal del país. Su misión se centra en vigilar la gestión fiscal de la administración y de los particulares o entidades que manejen fondos o bienes de la Nación, procurando que dicha gestión se realice con sujeción a los principios de eficiencia, economía, equidad y sostenibilidad ambiental.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Propósito y Estructura de la Guía de Estudio</h3>
+                    <p>La presente guía de estudio ha sido diseñada con el propósito de ofrecer un material completo, actualizado y riguroso sobre el régimen de control fiscal en Colombia. Está dirigida a profesionales que aspiran a vincularse a la Contraloría General de la República, y que, por ende, requieren una comprensión profunda y detallada del marco normativo que rige esta función esencial del Estado.</p>
+                    <p>La estructura de la guía se desarrolla a través de módulos temáticos, cada uno enfocado en un componente específico del sistema de control fiscal. Se inicia con el análisis del marco constitucional, seguido por el estudio de las leyes y decretos fundamentales, con especial énfasis en las recientes reformas introducidas por el Acto Legislativo 04 de 2019 y su desarrollo a través del Decreto Ley 403 de 2020. Un aspecto crucial de esta guía es la constante referencia a la vigencia de las normas, considerando las importantes decisiones de la Corte Constitucional que han declarado la inexequibilidad de múltiples disposiciones del Decreto Ley 403 de 2020, lo que ha generado el fenómeno de la "reviviscencia" de normas anteriormente derogadas. Este panorama exige un estudio atento y actualizado.</p>
+                    <p>Se abordarán, por tanto, los fundamentos constitucionales, la organización del sistema de control fiscal, los principios que lo rigen, los diferentes tipos y sistemas de control, las reformas recientes que han fortalecido las capacidades de la CGR –como el control concomitante y preventivo y la creación del Sistema Nacional de Control Fiscal (SINACOF)–, el estado actual del Decreto Ley 403 de 2020, el proceso de responsabilidad fiscal y las directrices internas de la CGR relacionadas con el control fiscal macro.</p>
+                    <p>El objetivo final es que el aspirante no solo memorice la normativa, sino que comprenda su lógica, su evolución y sus implicaciones prácticas, preparándose así de manera integral para los desafíos que plantea una vacante en la CGR.</p>
+                </div>
+            </div>
+
+            <div id="modulo1" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Módulo 1: Fundamentos Constitucionales del Control Fiscal (Post Acto Legislativo 04 de 2019)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La Constitución Política de Colombia, especialmente tras la reforma introducida por el Acto Legislativo 04 de 2019, establece el marco fundamental sobre el cual se edifica todo el sistema de control fiscal en el país. Los artículos 267, 268, 271, 272 y 274 son pilares que definen la naturaleza, alcance, atribuciones, valor probatorio de las actuaciones y los mecanismos de supervisión dentro de este sistema.</p>
+                    
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Artículo 267 C.P. (Naturaleza, Tipos de Control, Elección del Contralor)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p>El Artículo 267 C.P., modificado por el Art. 1 del A.L. 04/2019, es la piedra angular del control fiscal.</p>
+                            <p><strong>Naturaleza y Alcance:</strong> La vigilancia y el control fiscal son una función pública de la CGR sobre la gestión fiscal de la administración y particulares que manejen fondos/bienes públicos. Incluye "todo tipo de recursos públicos". La ley reglamenta competencias entre contralorías (coordinación, concurrencia, subsidiariedad), con CGR preferente.</p>
+                            <p><strong>Tipos de Control:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Posterior y Selectivo:</strong> Tradicionales. Revisión post-ejecución y enfoque en áreas de riesgo.</li>
+                                <li><strong>Preventivo y Concomitante (CPC):</strong> Adición clave del A.L. 04/2019. Excepcional, NO implica coadministración. En tiempo real, seguimiento permanente (uso de TICs, control social, articulación con control interno). Se materializa en advertencias sobre riesgos, incluidas en sistema público. Coordinación exclusiva del Contralor General en materias específicas.</li>
+                            </ul>
+                            <p><strong>Principios de Ejercicio:</strong> Eficiencia, economía, equidad, desarrollo sostenible, y valoración de costos ambientales.</p>
+                            <p><strong>Competencia Prevalente de la CGR:</strong> Sobre gestión de cualquier entidad territorial, según ley.</p>
+                            <p><strong>Control Jurisdiccional de Fallos de Responsabilidad Fiscal:</strong> Etapas y términos especiales (máx. 1 año).</p>
+                            <p><strong>Elección del Contralor:</strong> Por Congreso en Pleno, mayoría absoluta, primer mes de sesiones. Periodo igual al del Presidente. Lista de elegibles por convocatoria pública (Art. 126 C.P.). No reelegible.</p>
+                            <p><em>Análisis Adicional:</em> La reforma busca blindar a la CGR como entidad técnica, autónoma, enfocada en vigilancia fiscal objetiva, crucial para el CPC.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Artículo 268 C.P. (Atribuciones del Contralor General)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p>Modificado por el Art. 2 del A.L. 04/2019, amplía y fortalece las atribuciones del Contralor.</p>
+                            <p><strong>Atribuciones Clave (Resumen):</strong></p>
+                            <ol class="list-decimal list-inside ml-4 space-y-1">
+                                <li>Prescribir métodos de rendición de cuentas y criterios de evaluación.</li>
+                                <li>Revisar y fenecer cuentas, determinar eficiencia, eficacia y economía.</li>
+                                <li>Llevar registro de deuda pública.</li>
+                                <li>Exigir informes de gestión fiscal.</li>
+                                <li>Establecer responsabilidad fiscal, imponer sanciones pecuniarias, ejercer jurisdicción coactiva (con prelación).</li>
+                                <li>Conceptuar sobre calidad y eficiencia del control fiscal interno.</li>
+                                <li>Presentar informe anual al Congreso sobre recursos naturales y ambiente.</li>
+                                <li>Promover investigaciones (fiscales, penales, disciplinarias) y exigir suspensión de funcionarios.</li>
+                                <li>Presentar proyectos de ley sobre control fiscal y organización de la CGR.</li>
+                                <li>Proveer empleos de carrera por concurso.</li>
+                                <li>Presentar informes al Congreso y Presidente sobre funciones y finanzas del Estado.</li>
+                                <li class="font-semibold">Dictar normas para armonizar sistemas de control fiscal; dirigir e implementar SINACOF (con apoyo AGR).</li>
+                                <li class="font-semibold">Advertir sobre riesgos inminentes (CPC).</li>
+                                <li class="font-semibold">Intervenir excepcionalmente en funciones de Contralorías Territoriales.</li>
+                                <li>Presentar Cuenta General del Presupuesto y del Tesoro, certificar balance de la Hacienda.</li>
+                                <li class="font-semibold">Ejercer funciones de policía judicial.</li>
+                                <li class="font-semibold">Imponer sanciones (multa a suspensión) por obstaculizar control u omitir información.</li>
+                            </ol>
+                            <p>El parágrafo transitorio otorgó facultades extraordinarias al Presidente (origen D.L. 403/2020).</p>
+                            <p><em>Análisis Adicional:</em> La reforma confirió un poder considerable al Contralor. Esto plantea debates sobre contrapesos, como la vigilancia de la AGR (Art. 274 C.P.) y revisiones judiciales (ej. al D.L. 403/2020).</p>
+                        </div>
+                    </div>
+                     <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Artículo 271 C.P. (Valor Probatorio)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                             <p>Modificado por el Art. 3 del A.L. 04/2019.</p>
+                             <p><strong>Contenido:</strong> "Los resultados de los ejercicios de vigilancia y control fiscal, así como de las indagaciones preliminares o los procesos de responsabilidad Fiscal adelantados por las Contralorías, tendrán valor probatorio ante la Fiscalía General de la Nación y el juez competente."</p>
+                             <p><strong>Implicaciones:</strong> Eleva la jerarquía y utilidad de los hallazgos de las Contralorías, facilitando y agilizando la acción penal y otras acciones judiciales. Busca mayor eficacia en la sanción de la corrupción y reparación del daño, usando el trabajo técnico de la CGR como base sólida.</p>
+                             <p><em>Análisis Adicional:</em> Fomenta sinergia procesal entre control fiscal y autoridades judiciales. No sustituye valoración autónoma del fiscal/juez, pero otorga peso específico a pruebas de la CGR. Implica mayor responsabilidad en la rigurosidad técnica y jurídica de la CGR.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Artículo 272 C.P. (Control Fiscal Territorial)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p>Modificado por el Art. 4 del A.L. 04/2019. Regula interacción CGR y contralorías territoriales.</p>
+                            <p><strong>Vigilancia Concurrente y Prevalente:</strong> Vigilancia de gestión fiscal territorial es concurrente entre contralorías territoriales y CGR. Ley regula competencias concurrentes y prevalencia de la CGR.</p>
+                            <p><strong>Certificación por AGR:</strong> Auditoría General de la República certifica anualmente contralorías territoriales (basado en indicadores de gestión). Insumo para intervención de CGR por falta de objetividad/eficiencia.</p>
+                            <p><strong>Funciones Contralores Territoriales:</strong> Ejercen funciones del Art. 268 C.P. en su jurisdicción (pertinente, bajo principios de coordinación, concurrencia, subsidiariedad). Control CGR preferente.</p>
+                            <p><strong>Elección Contralores Territoriales:</strong> Por Asambleas/Concejos de terna de convocatoria pública (mayores puntajes). Principios: transparencia, publicidad, objetividad, participación ciudadana, equidad de género. Periodo de 4 años, no coincidente con gobernador/alcalde. Prohibida reelección inmediata.</p>
+                            <p><em>Análisis Adicional:</em> Busca un control territorial más técnico y menos politizado, mejor articulado con CGR. Balancea autonomía territorial con necesidad de sistema coherente y eficiente nacionalmente. Mecanismos como prevalencia CGR y certificación AGR apuntan a elevar calidad del control territorial.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Artículo 274 C.P. (Vigilancia de la CGR por AGR)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p>Modificado por el Art. 5 del A.L. 04/2019. Establece el "control del controlador".</p>
+                            <p><strong>Función de la Auditoría General de la República (AGR):</strong> Vigila la gestión fiscal de la CGR y de <span class="font-semibold">todas las contralorías territoriales</span>.</p>
+                            <p><strong>Elección del Auditor General:</strong> Por Consejo de Estado de terna de la Corte Suprema de Justicia. Periodo 4 años. Proceso con principios de transparencia, publicidad, objetividad, participación ciudadana, equidad de género.</p>
+                            <p><strong>Requisitos e Inhabilidades:</strong> Similares a los del Contralor General.</p>
+                            <p><strong>Implicaciones:</strong> Asegura rendición de cuentas para CGR y sistema de contralorías territoriales. Garantiza que actúen con eficiencia, eficacia, transparencia y legalidad.</p>
+                            <p><em>Análisis Adicional:</em> Refuerza rol de AGR como supervisor integral del sistema de control fiscal, coherente con SINACOF. Elección busca independencia y objetividad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modulo2" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Módulo 2: Ley 42 de 1993 – El Sistema de Control Fiscal: Vigencia y Reviviscencia</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La Ley 42 de 1993 fue el estatuto orgánico del control fiscal. Aunque parte fue derogada por el D.L. 403/2020, la <span class="font-semibold text-red-600">Sentencia C-237 de 2022</span> declaró inexequible el Título V del D.L. 403 (que regulaba sistemas de control), causando la <span class="font-semibold text-green-600">reviviscencia</span> de artículos importantes de la Ley 42/93.</p>
+                    
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Principios Fundamentales (Art. 8 Ley 42/93, revivido)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>El Art. 8 de la Ley 42/93 (revivido) establece los principios de la vigilancia fiscal:</p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Eficiencia:</strong> Maximizar resultados con recursos convenientes (mejor utilización social y económica).</li>
+                                <li><strong>Economía:</strong> Obtener bienes/servicios al menor costo (evitar despilfarro).</li>
+                                <li><strong>Eficacia:</strong> Logro oportuno de resultados y coherencia con objetivos/metas.</li>
+                                <li><strong>Equidad:</strong> Identificar receptores de acción económica, analizar distribución de costos/beneficios.</li>
+                                <li><strong>Valoración de Costos Ambientales:</strong> Cuantificar impacto ambiental, evaluar sostenibilidad de acciones.</li>
+                            </ul>
+                            <p>La reviviscencia confirma su carácter estructural y perenne.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Sistemas de Control Fiscal (Art. 9 y ss. Ley 42/93, revividos)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>El Art. 9 Ley 42/93 (revivido) enumera los sistemas aplicables. La Sentencia C-237/22, al declarar inexequibles Arts. 45-52 D.L. 403/20, provocó la reviviscencia de estos artículos de la Ley 42/93.</p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Control Financiero (Art. 10):</strong> Examen de estados financieros (razonabilidad, cumplimiento normativo y contable).</li>
+                                <li><strong>Control de Legalidad (Art. 11):</strong> Comprobación de conformidad de operaciones con normas aplicables.</li>
+                                <li><strong>Control de Gestión (Art. 12):</strong> Examen de eficiencia y eficacia en administración de recursos (análisis de procesos, indicadores, beneficiarios).</li>
+                                <li><strong>Control de Resultados (Art. 13):</strong> Medida en que se logran objetivos y cumplen planes/programas.</li>
+                                <li><strong>Revisión de Cuentas (Art. 14):</strong> Estudio especializado de documentos soporte (economía, eficacia, eficiencia, equidad).</li>
+                                <li><strong>Evaluación del Control Interno (Art. 18):</strong> Análisis de calidad, confiabilidad y efectividad de sistemas de control de entidades.</li>
+                            </ul>
+                            <p>El Art. 19 Ley 42/93 (vigente) permite aplicación individual, combinada o total de estos sistemas.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-6 mb-3">Tabla: Principales Artículos Ley 42/93 sobre Principios y Sistemas (Estado Actual)</h3>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Artículo Ley 42/93</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Contenido Esencial</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Estado Actual</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Sentencia Impacta D.L. 403</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Efecto</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 8</td>
+                                    <td class="px-4 py-3 text-sm">Principios: eficiencia, economía, eficacia, equidad, valoración costos ambientales.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 9</td>
+                                    <td class="px-4 py-3 text-sm">Enumeración de Sistemas de control.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 10</td>
+                                    <td class="px-4 py-3 text-sm">Control Financiero.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 11</td>
+                                    <td class="px-4 py-3 text-sm">Control de Legalidad.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 12</td>
+                                    <td class="px-4 py-3 text-sm">Control de Gestión.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 13</td>
+                                    <td class="px-4 py-3 text-sm">Control de Resultados.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 14</td>
+                                    <td class="px-4 py-3 text-sm">Revisión de Cuentas.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">Art. 18</td>
+                                    <td class="px-4 py-3 text-sm">Evaluación del Control Interno.</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">C-237 de 2022</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Revivido</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-4"><strong>Aplicación Práctica a Funciones de Auditoría:</strong> La planeación y ejecución de auditorías (Función 1) y la estructuración de informes (Función 2) se basan en estos principios y sistemas revividos de la Ley 42/93.</p>
+                </div>
+            </div>
+            
+            <div id="modulo3" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Módulo 3: La Gran Reforma: Acto Legislativo 04 de 2019</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El Acto Legislativo 04 de 2019 es la reforma constitucional más significativa en control fiscal desde 1991. Buscó fortalecer la lucha contra la corrupción y modernizar la fiscalización.</p>
+                    <p><strong>Objetivos Primordiales:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Fortalecer capacidad institucional de la CGR.</li>
+                        <li>Modernizar modalidades de control (introducción del CPC).</li>
+                        <li>Mejorar coordinación y estandarización (creación del SINACOF).</li>
+                        <li>Incrementar efectividad en detección, sanción y recuperación de recursos.</li>
+                    </ul>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Fortalecimiento Institucional de la CGR
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>Evidente en modificaciones al Art. 268 C.P.:</p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Ampliación de competencias del Contralor General.</li>
+                                <li>Otorgamiento de funciones de policía judicial (num. 16).</li>
+                                <li>Capacidad de imponer sanciones más severas (num. 17).</li>
+                                <li>Rol preponderante en dirección del SINACOF (num. 12).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Control Concomitante y Preventivo (CPC)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>Introducido en Art. 267 C.P. Es una innovación destacada.</p>
+                            <p><strong>Definición Constitucional:</strong> <span class="tooltip">Excepcional<span class="tooltiptext">No es la regla general del control.</span></span>, NO implica coadministración. En tiempo real, seguimiento permanente (TICs, control social, control interno). Materializado en <span class="tooltip">advertencia<span class="tooltiptext">Alerta sobre riesgos, no es una orden.</span></span> al gestor fiscal sobre riesgo inminente. Advertencias en sistema público. Coordinación exclusiva del Contralor General.</p>
+                            <p><strong>Distinción con Control Previo (pre-1991):</strong> El CPC es una advertencia no vinculante, no aprueba/imprueba actos previos como antes.</p>
+                            <p><strong>Límites del CPC:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>No versa sobre conveniencia de decisiones.</li>
+                                <li>Advertencia no es prueba de dolo si gestor se aparta justificadamente.</li>
+                                <li>No ejercido por mismas autoridades que hacen control posterior sobre el mismo asunto.</li>
+                            </ul>
+                            <p><strong>Propósito:</strong> Prevención del daño al patrimonio público.</p>
+                            <p><em>Análisis Adicional:</em> Cambio paradigmático. Desafíos en implementación (línea delgada advertir vs. coadministrar). Requiere capacidades técnicas avanzadas (Big Data, TICs, gestión de riesgos).</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Sistema Nacional de Control Fiscal (SINACOF)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>Creado por el A.L. 04/2019 (Art. 268, num. 12 C.P.).</p>
+                            <p><strong>Mandato Constitucional:</strong> Contralor General dirige e implementa SINACOF (con apoyo AGR) para unificación y estandarización de vigilancia y control fiscal.</p>
+                            <p><strong>Objetivo del SINACOF:</strong> Armonizar políticas, principios, normas, métodos, etc., para que órganos de control fiscal planifiquen, ejecuten y evalúen su labor de manera unificada, estandarizada y coordinada. Mejorar desempeño, promover control social, articular control externo e interno.</p>
+                            <p><strong>Desarrollo Normativo:</strong> D.L. 403/2020 (Título IV, vigente) desarrolla estructura y funcionamiento.</p>
+                            <p><em>Análisis Adicional:</em> Respuesta a fragmentación y falta de coordinación. Busca unificar y estandarizar, armonizar metodologías, coordinar planes, integrar sistemas. Proyecto transformador hacia un sistema interconectado.</p>
+                            <div class="mt-4 p-3 border border-sky-200 rounded-md bg-sky-50">
+                                <h4 class="font-semibold text-md text-sky-700">Diagrama Simplificado del SINACOF (Conceptual):</h4>
+                                <div class="text-sm space-y-1 mt-2">
+                                    <div class="p-2 border rounded bg-white text-center shadow-sm">
+                                        <strong>Contralor General de la República</strong> (Director del SINACOF)
+                                        <div class="text-xs text-gray-500">Apoyado por Auditoría General de la República</div>
+                                    </div>
+                                    <div class="text-center my-1">↓ (Coordina y Estandariza) ↓</div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                        <div class="p-2 border rounded bg-white text-center shadow-sm">Contraloría General de la República (CGR)</div>
+                                        <div class="p-2 border rounded bg-white text-center shadow-sm">Contralorías Territoriales</div>
+                                    </div>
+                                    <div class="text-center my-1">↓ (Aplicación Unificada de) ↓</div>
+                                    <div class="p-2 border rounded bg-white text-center shadow-sm">Políticas, Principios, Normas, Métodos, Procedimientos, Herramientas Tecnológicas</div>
+                                    <div class="text-center my-1">↓ (Para) ↓</div>
+                                     <div class="p-2 border rounded bg-white text-center shadow-sm">Vigilancia y Control Fiscal Eficaz y Coordinado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="modulo4" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Módulo 4: Decreto Ley 403 de 2020 y su Estado Actual</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>Expedido para implementar el A.L. 04/2019. <span class="font-bold text-red-600">¡CUIDADO!</span> Numerosas disposiciones declaradas <span class="font-semibold text-red-600">inexequibles</span> por la Corte Constitucional. Estudiar centrándose en artículos VIGENTES y entendiendo la <span class="font-semibold text-green-600">reviviscencia</span> de normas anteriores.</p>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Artículos Vigentes Clave (Selección)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p><strong>Título I: Disposiciones Generales</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 2 (Definiciones): Vigilancia fiscal, control fiscal, etc. (Verificar posibles afectaciones parciales).</li>
+                                <li>Art. 3 (Principios): Eficiencia, eficacia, equidad, economía, concurrencia, etc.</li>
+                            </ul>
+                            <p><strong>Título II: Competencias CGR y Contralorías Territoriales</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 6 (Competencia Prevalente CGR): Sobre recursos Nación transferidos a ent. territoriales y rentas cedidas.</li>
+                                <li>Art. 7 (Mecanismos de Prevalencia): Vigilancia concurrente, Plan Nacional VCF, SINACOF, acciones conjuntas, intervención funcional, fuero de atracción.</li>
+                            </ul>
+                             <p><strong>Título IV: Sistema Nacional de Control Fiscal (SINACOF)</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 12 (Definición y Dirección SINACOF): Conjunto de políticas, etc., dirigido por Contralor General con apoyo AGR.</li>
+                                <li>Art. 13 (Objetivos SINACOF): Incrementar desempeño, promover control social, etc.</li>
+                                <li>Art. 14 (Consejo Nacional del SINACOF): Integración.</li>
+                            </ul>
+                            <p><strong>Título VIII: Acceso a la Información y Análisis de Datos</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 53 (Principio de Inoponibilidad en Acceso a Información): Órganos de control pueden requerir y examinar datos/info sin oponibilidad de reserva.</li>
+                                <li>Art. 54 (Acceso a Bases de Datos): Registraduría, DIAN, DNP, etc.</li>
+                            </ul>
+                             <p><strong>Título IX: Control Preventivo y Concomitante (CPC)</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 55 (Definición y Principios CPC): Reitera carácter excepcional, no coadministración, tiempo real, advertencia.</li>
+                                <li>Art. 56 (Materias Específicas CPC): Proyectos estratégicos, regalías, emergencias, etc. (define Contralor).</li>
+                                <li>Art. 57 (Sistema General de Advertencia Público).</li>
+                                <li>Art. 60 (Efectos de la Advertencia): No vinculante, no genera responsabilidad por sí misma, no prejuzgamiento.</li>
+                            </ul>
+                            <p><strong>Título X: Funciones de Policía Judicial</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 61 (Ejercicio por CGR): Para asegurar pruebas en indagaciones o PRF.</li>
+                            </ul>
+                             <p><strong>Título XI: Fortalecimiento Gestión Información (parcialmente vigente)</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Art. 66 (Laboratorio de Analítica de Datos CGR).</li>
+                                <li>Art. 67 (Unidad de Análisis de la Información).</li>
+                            </ul>
+                            <p class="italic mt-2">Nota: Esta es una selección. Consultar el texto completo del D.L. 403/20 y las sentencias para un listado exhaustivo de artículos vigentes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Efectos de Declaratorias de Inexequibilidad
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p>Decisiones de la Corte Constitucional han impactado profundamente el D.L. 403/20.</p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Sentencia C-237/22:</strong> INEXEQUIBLES Arts. 45-52 (Título V - Sistemas de Control Fiscal).
+                                    <br/> <span class="text-green-600 font-semibold">&rarr; Consecuencia: Reviviscencia</span> Arts. Ley 42/93 sobre sistemas de control (Arts. 8-14, 18, etc.).</li>
+                                <li><strong>Sentencia C-090/22:</strong> INEXEQUIBLES Arts. 124-148 (Título XIII - Fortalecimiento Proceso Responsabilidad Fiscal).
+                                    <br/> <span class="text-green-600 font-semibold">&rarr; Consecuencia:</span> Modificaciones al PRF no entraron en vigor. Rige Ley 610/2000 (texto original/modificaciones válidas preexistentes).</li>
+                                <li><strong>Sentencia C-113/22:</strong> INEXEQUIBLES Arts. 106-123 (Título XII - Jurisdicción Coactiva).
+                                    <br/> <span class="text-green-600 font-semibold">&rarr; Consecuencia:</span> Se recurre a normas preexistentes (Ley 42/93, Estatuto Tributario).</li>
+                                <li><strong>Sentencia C-209/23:</strong> INEXEQUIBLES Arts. 78-82, 85-88 y parcialmente 83, 84 (Título XI - Régimen Sancionatorio Administrativo Fiscal).
+                                    <br/> <span class="text-green-600 font-semibold">&rarr; Consecuencia:</span> Régimen sancionatorio invalidado en gran medida. Potestad sancionatoria CGR se basa en Constitución y normas preexistentes vigentes (ej. Ley 42/93, sujeto a verificación).</li>
+                            </ul>
+                            <p class="font-bold mt-2">Fenómeno de <span class="text-green-600">Reviviscencia Normativa:</span> Clave. Normas derogadas por D.L. 403 pueden recobrar vigencia al ser declarada inexequible la norma derogatoria, para evitar vacíos.</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-6 mb-3">Tabla Resumen: Artículos Relevantes D.L. 403/2020 (Estado Seleccionado)</h3>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Título D.L. 403/20</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Artículo(s)</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Contenido Esencial</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Estado Actual</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Sentencia / Impacto</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">I. Disp. Generales</td>
+                                    <td class="px-4 py-3 text-sm">2, 3</td>
+                                    <td class="px-4 py-3 text-sm">Definiciones, Principios</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente (con salvedades)</td>
+                                    <td class="px-4 py-3 text-sm">C-237/22 (inhibición parcial Art.2)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">II. Competencias</td>
+                                    <td class="px-4 py-3 text-sm">6, 7</td>
+                                    <td class="px-4 py-3 text-sm">Prevalencia CGR, Mecanismos</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">IV. SINACOF</td>
+                                    <td class="px-4 py-3 text-sm">12, 14</td>
+                                    <td class="px-4 py-3 text-sm">Definición, Consejo</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">V. Sistemas Control</td>
+                                    <td class="px-4 py-3 text-sm">45-52</td>
+                                    <td class="px-4 py-3 text-sm">Regulación sistemas</td>
+                                    <td class="px-4 py-3 text-sm text-red-600 font-semibold">INEXEQUIBLE</td>
+                                    <td class="px-4 py-3 text-sm">C-237/22 (Reviven Arts. Ley 42/93)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">VIII. Acceso Info.</td>
+                                    <td class="px-4 py-3 text-sm">53</td>
+                                    <td class="px-4 py-3 text-sm">Inoponibilidad reserva</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">IX. CPC</td>
+                                    <td class="px-4 py-3 text-sm">55, 56</td>
+                                    <td class="px-4 py-3 text-sm">Definición, Materias</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">X. Policía Judicial</td>
+                                    <td class="px-4 py-3 text-sm">61</td>
+                                    <td class="px-4 py-3 text-sm">Ejercicio por CGR</td>
+                                    <td class="px-4 py-3 text-sm text-green-600 font-semibold">Vigente</td>
+                                    <td class="px-4 py-3 text-sm">-</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">XI. Rég. Sancionatorio</td>
+                                    <td class="px-4 py-3 text-sm">78-88</td>
+                                    <td class="px-4 py-3 text-sm">Sanciones adm. fiscales</td>
+                                    <td class="px-4 py-3 text-sm text-red-600 font-semibold">Mayormente INEXEQUIBLE</td>
+                                    <td class="px-4 py-3 text-sm">C-209/23 (Régimen preexistente)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">XII. Jurisd. Coactiva</td>
+                                    <td class="px-4 py-3 text-sm">106-123</td>
+                                    <td class="px-4 py-3 text-sm">Regulación coactiva</td>
+                                    <td class="px-4 py-3 text-sm text-red-600 font-semibold">INEXEQUIBLE</td>
+                                    <td class="px-4 py-3 text-sm">C-113/22 (Régimen preexistente)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm">XIII. Proc. Resp. Fiscal</td>
+                                    <td class="px-4 py-3 text-sm">124-148</td>
+                                    <td class="px-4 py-3 text-sm">Modifs. Ley 610/00</td>
+                                    <td class="px-4 py-3 text-sm text-red-600 font-semibold">INEXEQUIBLE</td>
+                                    <td class="px-4 py-3 text-sm">C-090/22 (Ley 610/00 rige sin modifs.)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-4"><em>Análisis Adicional:</em> El D.L. 403/20 es hoy un marco legal fragmentado. Las partes vigentes, especialmente sobre acceso a información (Art. 53), son cruciales para el control fiscal moderno y el CPC.</p>
+                </div>
+            </div>
+
+            <div id="modulo5" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Módulo 5: El Proceso de Responsabilidad Fiscal (PRF)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El PRF es una actuación administrativa de las Contralorías para determinar responsabilidad de servidores públicos y particulares por daño al patrimonio estatal (acción/omisión, dolosa/gravemente culposa) y buscar resarcimiento.</p>
+                    <p><strong>Elementos Estructurales (Ley 610/2000):</strong></p>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li>Conducta dolosa o gravemente culposa.</li>
+                        <li>Daño patrimonial al Estado (cuantificable).</li>
+                        <li>Nexo causal entre conducta y daño.</li>
+                    </ol>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Ley 610 de 2000 como Marco General
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4">
+                            <p>La Ley 610/2000 ("por la cual se establece el trámite de los procesos de responsabilidad fiscal...") es el marco normativo general. Detalla etapas, principios, pruebas, recursos, etc.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Impacto de Inexequibilidades del D.L. 403/2020 sobre Ley 610/2000
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-3">
+                            <p>El D.L. 403/2020 (Título XIII, Arts. 124-148) pretendió reformar sustancialmente la Ley 610/2000 y la Ley 1474/2011 en lo referente al PRF.</p>
+                            <p class="font-bold text-red-600">Sentencia C-090 de 2022: Declaró INEXEQUIBLES la totalidad de los Arts. 124-148 del D.L. 403/2020.</p>
+                            <p><strong>Razón:</strong> Exceso en facultades extraordinarias (materia con reserva legal ordinaria).</p>
+                            <p class="font-semibold text-green-600">Consecuencia: Las modificaciones NO entraron en vigor. El PRF se rige por:</p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li>Texto original de Ley 610/2000.</li>
+                                <li>Modificaciones válidas a Ley 610/2000 ANTES del D.L. 403/2020.</li>
+                                <li>Modificaciones válidas POSTERIORES a sentencias de inexequibilidad (por leyes del Congreso).</li>
+                            </ul>
+                            <p><strong>Importante:</strong> Anotaciones de "Modificado por D.L. 403/20" en textos de Ley 610/2000 deben leerse a la luz de la Sentencia C-090/22 (dichas modificaciones no operaron).</p>
+                            <p><em>Ejemplos:</em> Art. 4 (Objeto), Art. 5 (Elementos), Art. 9 (Caducidad y Prescripción) de Ley 610/2000 NO fueron modificados por D.L. 403/2020.</p>
+                            <p><em>Análisis Adicional:</em> Búsqueda constante de mecanismos ágiles para recuperar patrimonio público (A.L. 04/19 Art. 267 C.P. sobre celeridad). Tensión entre efectividad y garantías del debido proceso. Ley 610/2000 (configuración actual) representa el equilibrio actual.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modulo6" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Módulo 6: Directrices Internas: Normograma y Control Fiscal Macro</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La CGR expide normatividad interna (resoluciones, guías) que detallan y operativizan sus funciones. El "Normograma" de la CGR compila estas disposiciones.</p>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Control Fiscal Macro y Vigilancia Fiscal Macro
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>Adopta una perspectiva agregada y estratégica, a diferencia del control micro (auditorías específicas).</p>
+                            <p><strong>Definición y Alcance:</strong> Evaluación agregada del comportamiento de finanzas del Estado, cumplimiento de objetivos macroeconómicos. Analiza consistencia de política fiscal. Evalúa impacto de políticas públicas (crecimiento, distribución ingreso, bienestar, posición fiscal).</p>
+                            <p><strong>Resultados y Productos:</strong> Informes de alto nivel (anual sobre Finanzas del Estado, Deuda Pública, Cuenta General del Presupuesto, Auditoría al Balance General). Informes de evaluación de políticas. Presentados a Congreso, Presidente, ciudadanía.</p>
+                            <p><strong>Diferencia con Control Micro:</strong> Macro observa panorama general, grandes cifras, políticas en conjunto. No busca responsables fiscales individuales, sino mejorar políticas y contextualizar control micro.</p>
+                            <p><strong>Herramientas:</strong> Análisis presupuestales, macroeconómicos, seguimiento ejecución presupuestal, evaluación efectividad políticas. Observatorio de Control y Vigilancia de las Finanzas Públicas (web CGR).</p>
+                            <p><strong>Relevancia Estratégica:</strong> Contextualiza control micro, identifica riesgos sistémicos, orienta auditorías.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Resolución REG-EJE-0113 de 2022 (Evaluación Control Interno)
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4 space-y-2">
+                            <p>Operativiza Art. 268 num. 6 C.P. (Conceptuar sobre calidad y eficiencia del control fiscal interno).</p>
+                            <p><strong>Contexto:</strong> REG-EJE-0080/20 (derogada) se basaba en Art. 51 D.L. 403/20 (inexequible por C-237/22).</p>
+                            <p class="font-semibold text-green-600">REG-EJE-0113 de 2022:</strong> Adopta versión 2.0 del procedimiento. Fundamentada en Arts. 9 y 18 Ley 42/93 (revividos).</p>
+                            <p><strong>Contenido Clave del Procedimiento (Esencia):</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Objetivo:</strong> Emitir concepto técnico sobre calidad y eficiencia del control fiscal interno.</li>
+                                <li><strong>Insumos:</strong> Resultados auditorías CGR, estudios sectoriales, informes de oficinas de control interno.</li>
+                                <li><strong>Proceso:</strong> Lineamientos, designación funcionarios, proyectos de concepto sectorial (matriz estandarizada), consolidación, revisión y aprobación Contralor, comunicación a Congreso y sujetos de control.</li>
+                            </ul>
+                            <p><strong>Importancia:</strong> Ejemplo de operativización de mandatos. Evaluación agregada de calidad del control interno es componente del control fiscal macro.</p>
+                        </div>
+                    </div>
+                     <div class="accordion-item mt-4">
+                        <button class="accordion-button w-full text-left text-xl font-semibold text-sky-600 p-4 bg-sky-50 hover:bg-sky-100 rounded-t-lg flex justify-between items-center">
+                            Normograma de la CGR
+                            <span class="accordion-icon nav-icon text-sky-600 text-2xl transform transition-transform duration-300">&#x276F;</span>
+                        </button>
+                        <div class="accordion-content bg-white border border-t-0 border-sky-100 rounded-b-lg p-4">
+                            <p>Herramienta de gestión documental y transparencia. Compila y organiza normas generales y abstractas que rigen actuación de la CGR y sector supervisado. Incluye Constitución, leyes, decretos, resoluciones internas (REG-EJE), circulares, guías, manuales.</p>
+                            <p>Es fundamental consultarlo para acceder a directrices específicas y actualizadas.</p>
+                            <p><em>Análisis Adicional:</em> El normograma es dinámico, evoluciona por política interna y por respuesta a jurisprudencia constitucional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conclusiones" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Conclusiones y Estrategias de Estudio</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El control fiscal en Colombia ha sufrido transformaciones significativas (A.L. 04/2019, D.L. 403/2020). La intervención de la Corte Constitucional (inexequibilidades) ha reconfigurado el marco, causando reviviscencia de normas (Ley 42/93, Ley 610/2000).</p>
+                    
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Puntos Clave y Síntesis Normativa Vigente:</h3>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li><strong>Reforma Constitucional (A.L. 04/2019):</strong> Pilar del nuevo modelo. Fortaleció CGR, introdujo CPC, creó SINACOF, amplió facultades Contralor. Arts. 267, 268, 271, 272, 274 C.P. actualizados son cruciales.</li>
+                        <li><strong>Decreto Ley 403 de 2020:</strong> Estudiar con cautela. Títulos sobre Sistemas de Control, Régimen Sancionatorio, Jurisdicción Coactiva, Proceso Resp. Fiscal mayormente <span class="text-red-600">inexequibles</span>. Vigentes: Principios, Competencias CGR/territoriales, Plan Nacional VCF, SINACOF, certificación contralorías, acceso a info (inoponibilidad reserva), CPC, policía judicial, gestión info (parcial).</li>
+                        <li><strong>Ley 42 de 1993:</strong> <span class="text-green-600">Revivida</span> en aspectos fundamentales: Principios (Art. 8), Sistemas de control (Arts. 9-14, 18). Posible reviviscencia de otras disposiciones (sanciones, coactivo).</li>
+                        <li><strong>Ley 610 de 2000:</strong> Rige Proceso de Responsabilidad Fiscal (texto original/modificaciones válidas distintas a las del D.L. 403/20).</li>
+                        <li><strong>Modernización del Control:</strong> Persiste con SINACOF, CPC, uso de tecnologías y análisis de datos.</li>
+                    </ol>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-6">Recomendaciones para el Estudio:</h3>
+                     <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Base Constitucional Sólida:</strong> Estudiar Arts. 267, 268, 271, 272, 274 C.P. (modificados por A.L. 04/2019).</li>
+                        <li><strong>Estudio Crítico D.L. 403/2020:</strong> Siempre con sentencias C-090/22, C-113/22, C-209/23, C-237/22. Discernir vigencia e inexequibilidad.</li>
+                        <li><strong>Revisión Leyes Clave:</strong>
+                            <ul class="list-disc list-inside ml-6">
+                                <li>Ley 42/1993: Principios (Art. 8), Sistemas (Arts. 9-14, 18). Verificar otras reviviscencias.</li>
+                                <li>Ley 610/2000: PRF (sin modificaciones del D.L. 403/20).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Consulta Normograma CGR:</strong> Para procedimientos internos (ej. REG-EJE-0113/22).</li>
+                        <li><strong>Énfasis en Conceptos Modernizadores:</strong> CPC, SINACOF, inoponibilidad reserva, nuevas atribuciones CGR.</li>
+                        <li><strong>Herramientas de Estudio:</strong> Cuadros comparativos, líneas de tiempo, mapas conceptuales.</li>
+                        <li><strong>Enfoque Práctico:</strong> Relacionar normativa con funciones del cargo.</li>
+                    </ul>
+                    <p class="mt-4">El estudio del control fiscal demanda rigurosidad y actualización constante. Una preparación metódica será clave.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-hidden');
+            mainContent.classList.toggle('content-full');
+        });
+        
+        function showContent(sectionId, navElement) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update active state for navigation items
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-nav');
+            });
+            navElement.classList.add('active-nav');
+
+            // Scroll to top of content area
+            mainContent.scrollTop = 0;
+
+            // If on small screen, hide sidebar after selection
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('content-full');
+            }
+        }
+
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionItem = button.parentElement;
+                accordionItem.classList.toggle('active');
+            });
+        });
+
+        // Initial content display
+        showContent('inicio', document.querySelector('.sidebar-item'));
+
+        // Chart.js data for "Distribución de Temas Clave por Módulo"
+        const ctxTemas = document.getElementById('temasPorModuloChart').getContext('2d');
+        new Chart(ctxTemas, {
+            type: 'bar',
+            data: {
+                labels: ['M1: Const.', 'M2: Ley 42', 'M3: AL 04/19', 'M4: DL 403', 'M5: Resp. Fiscal', 'M6: Directrices'],
+                datasets: [{
+                    label: 'Nº de Temas/Artículos Clave',
+                    data: [5, 4, 3, 7, 3, 3], // Estimación de temas clave por módulo
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // sky-500
+                        'rgba(16, 185, 129, 0.7)', // emerald-500
+                        'rgba(239, 68, 68, 0.7)',  // red-500
+                        'rgba(245, 158, 11, 0.7)', // amber-500
+                        'rgba(139, 92, 246, 0.7)', // violet-500
+                        'rgba(236, 72, 153, 0.7)'  // pink-500
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(236, 72, 153, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

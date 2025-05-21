@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Estudio CGR: Procesos Administrativos y Responsabilidad Fiscal</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+         /* Estilo para el scrollbar (opcional, para mejor estética) */
+         ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+         }
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+         }
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+         }
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+         }
+         /* Clase para mostrar/ocultar contenido */
+         .content-section {
+            display: none;
+         }
+         .content-section.active {
+            display: block;
+         }
+         /* Mejorar contraste para links activos en el sidebar */
+         .nav-link.active {
+            background-color: #0284c7; /* sky-600 */
+            color: white;
+         }
+      </style>
+   </head>
+   <body class="bg-gray-100 font-sans">
+      <div class="flex min-h-screen">
+         <nav
+            id="sidebar"
+            class="w-72 bg-gray-800 text-white p-5 space-y-2 fixed top-0 left-0 h-full overflow-y-auto transition-transform duration-300 ease-in-out"
+         >
+            <h1 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-3">Procesos Sancionatorios</h1>
+            <ul>
+               <li>
+                  <a
+                     href="#module0"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="module0"
+                     >Inicio</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#module1"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="module1"
+                     >Módulo 1: Intro Control y Resp. Fiscal</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#module2"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="module2"
+                     >Módulo 2: Ley 610 de 2000</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#module3"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="module3"
+                     >Módulo 3: Decreto 403 de 2020</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#module4"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="module4"
+                     >Módulo 4: Guía Aplicación PASF CGR</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#module5"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="module5"
+                     >Módulo 5: Resumen de PASF CGR</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#estrategia"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="estrategia"
+                     >Estrategia de Estudio</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#recursos"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="recursos"
+                     >Recursos Adicionales</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="#puntosclave"
+                     class="nav-link block py-2.5 px-4 rounded hover:bg-gray-700 transition-colors duration-150"
+                     data-target="puntosclave"
+                     >Puntos Clave Sustanciación</a
+                  >
+               </li>
+            </ul>
+         </nav>
+
+         <main id="main-content" class="flex-1 ml-72 p-6 md:p-8 lg:p-10 overflow-y-auto">
+            <section id="module0" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-3xl font-bold text-sky-700 mb-6">
+                  Procesos Administrativos Sancionatorios y Responsabilidad Fiscal (CGR - Colombia)
+               </h2>
+               <p class="text-lg text-gray-700 mb-4">
+                  Bienvenido al material de estudio sobre los procesos administrativos sancionatorios y de
+                  responsabilidad fiscal en Colombia, con énfasis en la Contraloría General de la República (CGR).
+               </p>
+               <p class="text-gray-600">
+                  Utiliza el menú de la izquierda para navegar por los diferentes módulos y secciones de este material.
+               </p>
+               <div class="mt-6 p-4 bg-sky-50 border-l-4 border-sky-500 text-sky-700">
+                  <p class="font-semibold">Objetivo General:</p>
+                  <p>
+                     Comprender a profundidad el marco normativo y procedimental de los procesos administrativos
+                     sancionatorios y de responsabilidad fiscal en Colombia, con énfasis en la aplicación práctica
+                     dentro de la CGR.
+                  </p>
+               </div>
+            </section>
+
+            <section id="module1" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">
+                  Módulo 1: Introducción al Control Fiscal y la Responsabilidad Fiscal
+               </h2>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Conceptos Clave:</h3>
+               <div class="pl-4">
+                  <p class="text-gray-700 mb-1">
+                     <strong class="text-gray-900">Control Fiscal:</strong> Definición, principios (eficiencia,
+                     eficacia, economía, equidad, valoración de costos ambientales), tipos (posterior y selectivo,
+                     financiero, de gestión, de resultados, revisión de cuentas).
+                  </p>
+                  <p class="text-gray-700 mb-1">
+                     <strong class="text-gray-900">Función Pública y Gestión Fiscal:</strong> Noción de servidor
+                     público, gestión fiscal (conjunto de actividades económicas, jurídicas y tecnológicas...).
+                  </p>
+                  <p class="text-gray-700 mb-1">
+                     <strong class="text-gray-900">Daño Patrimonial al Estado:</strong> Definición (lesión del
+                     patrimonio público... producida por una gestión fiscal antieconómica, ineficaz, ineficiente,
+                     inequitativa e inoportuna...).
+                  </p>
+                  <p class="text-gray-700 mb-1">
+                     <strong class="text-gray-900">Responsabilidad Fiscal:</strong> Definición (conjunto de actuaciones
+                     administrativas... para determinar y establecer la responsabilidad... por acción u omisión y en
+                     forma dolosa o culposa un daño al patrimonio del Estado).
+                  </p>
+                  <div class="mt-2 p-3 bg-amber-50 border-l-4 border-amber-400 text-amber-700">
+                     <p class="font-semibold">Importancia para un Contador Público:</p>
+                     <p>Tu rol en la prevención, detección y cuantificación del daño patrimonial es fundamental.</p>
+                  </div>
+               </div>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">Marco Constitucional y Legal General:</h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>Constitución Política de Colombia (Artículos relevantes: 267, 268, 272).</li>
+                  <li>Ley 42 de 1993 (Sobre la organización del sistema de control fiscal financiero...).</li>
+               </ul>
+            </section>
+
+            <section id="module2" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">
+                  Módulo 2: Ley 610 de 2000 - El Proceso de Responsabilidad Fiscal
+               </h2>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Objeto y Ámbito de Aplicación:</h3>
+               <p class="text-gray-700">A quiénes aplica y qué situaciones cubre.</p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Principios Rectores:</h3>
+               <p class="text-gray-700">
+                  Debido proceso, legalidad, favorabilidad, presunción de inocencia, celeridad, publicidad,
+                  contradicción, etc.
+               </p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">
+                  Elementos de la Responsabilidad Fiscal (Art. 5 y 6):
+               </h3>
+               <ul class="list-disc list-inside ml-4 space-y-2 text-gray-700">
+                  <li>
+                     <strong>Conducta Dolosa o Culposa:</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>Dolo: Intención de causar el daño.</li>
+                        <li>Culpa Grave: Negligencia grave, imprudencia o impericia...</li>
+                        <li class="p-2 bg-sky-50 rounded">
+                           <em>Nexo con tu Profesión (Contador):</em> ¿Cómo se manifestaría la culpa grave en la gestión
+                           fiscal desde la perspectiva contable? (Ej. Omisión de registros, aplicación incorrecta de
+                           normas contables que ocultan un daño, falta de controles internos).
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Daño Patrimonial al Estado (Art. 6):</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>Profundizar en su cuantificación.</li>
+                        <li class="p-2 bg-sky-50 rounded">
+                           <em>Nexo con tu Profesión (Contador):</em> Aquí tu experticia es clave. Métodos de valoración
+                           del daño, pruebas contables, análisis de estados financieros, peritajes contables.
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Nexo Causal (Art. 5):</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>Relación directa y determinante entre la conducta y el daño.</li>
+                        <li class="p-2 bg-sky-50 rounded">
+                           <em>Nexo con tu Profesión (Contador):</em> Identificar cómo una acción u omisión
+                           contable/financiera condujo al daño.
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">
+                  Etapas del Proceso de Responsabilidad Fiscal:
+               </h3>
+               <div class="space-y-3">
+                  <div>
+                     <h4 class="text-lg font-medium text-gray-700">Indagación Preliminar (Art. 39 y ss):</h4>
+                     <ul class="list-disc list-inside ml-4 text-gray-600">
+                        <li>
+                           Objetivo: Verificar ocurrencia, identificar presuntos responsables, determinar si hay daño.
+                        </li>
+                        <li>Duración: Plazos legales.</li>
+                        <li>Actuaciones Típicas: Recopilación de pruebas, visitas, testimonios, peritajes.</li>
+                     </ul>
+                  </div>
+                  <div>
+                     <h4 class="text-lg font-medium text-gray-700">
+                        Proceso de Responsabilidad Fiscal (Art. 40 y ss):
+                     </h4>
+                     <ul class="list-disc list-inside ml-4 text-gray-600">
+                        <li>Apertura (Auto de Apertura): Contenido, notificación.</li>
+                        <li>Notificaciones y Comunicaciones.</li>
+                        <li>Versión Libre y Espontánea.</li>
+                        <li>Pruebas: Decreto, práctica, contradicción y valoración.</li>
+                        <li>Medidas Cautelares.</li>
+                        <li>Vinculación de Terceros y Aseguradoras.</li>
+                        <li>Alegatos de Conclusión.</li>
+                        <li>
+                           Fallo (con o sin responsabilidad): Contenido, recursos.
+                           <p class="ml-6 p-1 bg-sky-50 text-sm">
+                              <em>Nexo con tu Profesión:</em> Determinación del monto a resarcir, implicaciones
+                              contables del fallo.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Caducidad y Prescripción (Art. 9 y 31):</h3>
+               <ul class="list-disc list-inside ml-4 text-gray-700">
+                  <li>Caducidad de la Acción Fiscal.</li>
+                  <li>Prescripción de la Responsabilidad Fiscal.</li>
+                  <li class="font-semibold">Importancia: Vital para la validez del proceso.</li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">
+                  Consecuencias de la Declaratoria de Responsabilidad Fiscal:
+               </h3>
+               <ul class="list-disc list-inside ml-4 text-gray-700">
+                  <li>Obligación de resarcir.</li>
+                  <li>Inclusión en Boletín de Responsables Fiscales.</li>
+                  <li>Inhabilidades.</li>
+                  <li>Cobro coactivo.</li>
+               </ul>
+               <p class="text-gray-700 mt-2">
+                  <strong>Grado de Consulta (Art. 56)</strong> y <strong>Control de Legalidad Automático</strong>.
+               </p>
+            </section>
+
+            <section id="module3" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">
+                  Módulo 3: Decreto 403 de 2020 - Fortalecimiento del Control Fiscal
+               </h2>
+               <p class="text-gray-700 mb-3">
+                  Contexto: Desarrolla el Acto Legislativo 04 de 2019 para modernizar y fortalecer el control fiscal.
+               </p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">
+                  Disposiciones Vigentes sobre el Régimen Sancionatorio Fiscal:
+               </h3>
+               <div class="p-4 my-3 bg-red-50 border-l-4 border-red-500 text-red-700">
+                  <p class="font-bold">Tarea Clave:</p>
+                  <p>
+                     Investigar qué artículos o apartes del Decreto 403 de 2020 han sido declarados inexequibles por la
+                     Corte Constitucional. Esto es crucial. (Fuentes: Corte Constitucional, bases de datos jurídicas).
+                  </p>
+               </div>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Nuevas Herramientas y Enfoques:</h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>Control preventivo y concomitante (con límites definidos por la Corte).</li>
+                  <li>Uso de tecnologías de la información.</li>
+                  <li>Fortalecimiento de la participación ciudadana.</li>
+                  <li>Énfasis en la recuperación del daño patrimonial.</li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">
+                  Régimen Sancionatorio Específico del Decreto 403:
+               </h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>Identificar sanciones específicas (multas, inhabilidades, etc.) y procedimientos.</li>
+                  <li>Diferencias o complementos con la Ley 610 de 2000.</li>
+                  <li class="p-2 bg-sky-50 rounded">
+                     <em>Nexo con tu Profesión:</em> ¿Cómo estas sanciones impactan la gestión financiera y contable?
+                  </li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">
+                  Artículos Clave a Revisar (y verificar su exequibilidad):
+               </h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>Relacionados con el proceso de responsabilidad fiscal y sus modificaciones/complementos.</li>
+                  <li>Sobre facultades de la CGR en vigilancia y control fiscal.</li>
+                  <li>Sobre el régimen sancionatorio (tipos, criterios, procedimiento).</li>
+               </ul>
+            </section>
+
+            <section id="module4" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">
+                  Módulo 4: Guía para la Aplicación del Procedimiento Administrativo Sancionatorio Fiscal de la CGR
+                  (CMI-03-GU-001)
+               </h2>
+               <p class="text-gray-700 mb-3">
+                  <strong class="text-gray-900">Naturaleza:</strong> Documento interno de la Contraloría General de la
+                  República (CGR) que orienta la aplicación práctica del Procedimiento Administrativo Sancionatorio
+                  Fiscal. [cite: 11] Esta guía busca unificar criterios y ofrecer una herramienta metodológica para los
+                  operadores jurídicos de la entidad. [cite: 10, 19]
+               </p>
+               <p class="mb-3">
+                  <strong class="text-gray-900">Versión:</strong> 2.0 |
+                  <strong class="text-gray-900">Fecha de Publicación en SIGECI:</strong> 05/05/2021. [cite: 1]
+               </p>
+               <p>
+                  <a
+                     href="https://www.cerlatam.com/wp-content/uploads/2021/05/CMI-03-GU-001-Guia-Procedim-A-Fiscal..pdf"
+                     class="text-blue-600 hover:text-blue-800 hover:underline"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     >Ver PDF Guía para la aplicación del Procedimiento Administrativo Sancionatorio Fiscal</a
+                  >
+               </p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">
+                  Contenido Detallado de la Guía (Según Tabla de Contenido y Desarrollo):
+               </h3>
+               <ul class="list-disc list-inside ml-4 space-y-2 text-gray-700">
+                  <li>
+                     <strong>Justificación, Objetivo y Campo de Aplicación:</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>Fundamento y propósito de la guía. [cite: 6, 10]</li>
+                        <li>Objetivo de orientar a los operadores jurídico-fiscales. [cite: 25]</li>
+                        <li>Aplicabilidad en niveles central y desconcentrado de la CGR. [cite: 27]</li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Glosario y Siglas:</strong> Definiciones de términos clave utilizados en el procedimiento.
+                     [cite: 28, 29]
+                  </li>
+                  <li>
+                     <strong>Aspectos Generales del Procedimiento:</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>
+                           Naturaleza administrativa del Procedimiento Administrativo Sancionatorio Fiscal. [cite: 66,
+                           73]
+                        </li>
+                        <li>
+                           Normatividad aplicable (Constitución, Leyes 1437/2011, 2080/2021, Decreto Ley 403/2020,
+                           resoluciones internas). [cite: 87, 95, 98]
+                        </li>
+                        <li>
+                           Principios generales de la actuación administrativa (Ley 1437/2011) y del derecho
+                           administrativo sancionatorio fiscal (legalidad, tipicidad, culpabilidad, etc.). [cite: 99,
+                           124]
+                        </li>
+                        <li>
+                           Sujetos del procedimiento: servidores públicos y particulares que manejen fondos públicos o
+                           deban suministrar información. [cite: 165]
+                        </li>
+                        <li>Distribución de competencias dentro de la CGR. [cite: 167, 169]</li>
+                        <li>Régimen de impedimentos y recusaciones. [cite: 178, 183]</li>
+                        <li>Detalle de multas y sanciones aplicables. [cite: 186, 204, 211]</li>
+                        <li>
+                           Términos de caducidad de la facultad sancionatoria y prescripción de la sanción. [cite: 220,
+                           223]
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Elementos Estructurales de la Conducta Reprochable:</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>Análisis de la Legalidad. [cite: 228]</li>
+                        <li>Desarrollo de la Tipicidad. [cite: 247]</li>
+                        <li>Concepto de Antijuridicidad en el contexto fiscal. [cite: 280]</li>
+                        <li>Determinación de la Culpabilidad (dolo o culpa). [cite: 292]</li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Aspectos Procesales Detallados:</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>
+                           Etapas del Procedimiento:
+                           <ul class="list-square list-inside ml-8 mt-1 space-y-1">
+                              <li>Averiguación Preliminar (opcional). [cite: 317]</li>
+                              <li>
+                                 Auto de apertura y formulación de cargos (requisitos, notificación). [cite: 325, 416]
+                              </li>
+                              <li>Descargos y término para presentarlos. [cite: 424]</li>
+                              <li>
+                                 Decreto de pruebas y período probatorio (medios de prueba, carga de la prueba). [cite:
+                                 426, 449]
+                              </li>
+                              <li>Traslado para alegatos de conclusión. [cite: 496]</li>
+                              <li>Resolución que decide de fondo (contenido, sanción o archivo). [cite: 508]</li>
+                              <li>Régimen de recursos (reposición, apelación, queja). [cite: 622]</li>
+                           </ul>
+                        </li>
+                        <li>Registro de Sanciones. [cite: 668]</li>
+                        <li>
+                           Otros aspectos: saneamiento de irregularidades, solicitud de revocatoria directa, multas a
+                           quienes no reciben salario, términos procesales y caducidad, suspensión provisional del
+                           servidor público, y designación de defensor de oficio. [cite: 671]
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Normatividad y Documentos de Referencia:</strong>
+                     <ul class="list-circle list-inside ml-6 mt-1 space-y-1">
+                        <li>Leyes, decretos y resoluciones aplicables. [cite: 774]</li>
+                        <li>Listado de Sentencias relevantes de la Corte Constitucional. [cite: 779]</li>
+                        <li>Conceptos emitidos por la Oficina Jurídica de la CGR. [cite: 781]</li>
+                     </ul>
+                  </li>
+                  <li>
+                     <strong>Anexos, Plantillas y Formatos:</strong> La guía menciona la existencia de estos, aunque no
+                     los detalla en la tabla de contenido principal. [cite: 5]
+                  </li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Cómo Estudiarla:</h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>
+                     <strong class="text-gray-900">Lectura Completa y Detallada:</strong> Al tener acceso al PDF, es
+                     crucial leerlo íntegramente para comprender el flujo y los detalles de cada etapa.
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Análisis Comparativo:</strong> Contrastar las directrices de la guía
+                     con la normativa base como la Ley 1437 de 2011 (CPACA), el Decreto Ley 403 de 2020 y otras
+                     resoluciones orgánicas de la CGR.
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Enfoque en la Operatividad:</strong> Prestar especial atención a cómo
+                     la guía traduce los mandatos legales en procedimientos concretos, términos, requisitos para los
+                     actos administrativos, y criterios para la toma de decisiones (ej. graduación de sanciones[cite:
+                     604], valoración de la culpabilidad [cite: 300]).
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Identificación de Puntos Críticos:</strong> Reconocer las secciones
+                     que abordan la correcta imputación de cargos[cite: 325], la práctica y valoración de pruebas[cite:
+                     426], y la fundamentación de las decisiones finales. [cite: 509]
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Glosario y Principios:</strong> Internalizar las definiciones del
+                     glosario [cite: 29] y la aplicación de los principios rectores[cite: 99, 124], ya que son la base
+                     interpretativa de todo el procedimiento.
+                  </li>
+               </ul>
+
+               <div class="mt-6 p-4 bg-sky-50 border-l-4 border-sky-400 text-sky-700">
+                  <p class="font-semibold">Nexo con tu Profesión (Contador):</p>
+                  <p>
+                     Para un contador que interactúa con entidades públicas o maneja recursos públicos, esta guía es
+                     fundamental. Muestra cómo la CGR:
+                  </p>
+                  <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                     <li>Espera que se documenten los hechos y se soporte la gestión fiscal.</li>
+                     <li>
+                        Define las conductas que pueden llevar a sanciones por omisiones, errores o impedimentos en el
+                        suministro de información o en el ejercicio del control fiscal. [cite: 67]
+                     </li>
+                     <li>
+                        Establece los criterios para evaluar la responsabilidad de quienes manejan fondos o bienes
+                        públicos, incluyendo la debida diligencia y la culpabilidad. [cite: 293, 610]
+                     </li>
+                     <li>
+                        Detalla las posibles consecuencias (multas, suspensión) ante incumplimientos. [cite: 204, 211]
+                     </li>
+                  </ul>
+                  <p class="mt-2">
+                     Comprender este procedimiento permite anticipar requerimientos, asegurar la correcta preparación de
+                     la información fiscal, y entender la perspectiva del ente de control al evaluar la gestión y la
+                     rendición de cuentas.
+                  </p>
+               </div>
+            </section>
+
+            <section id="module5" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">
+                  Módulo 5: Resumen del Procedimiento Administrativo Sancionatorio Fiscal de la CGR
+               </h2>
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Introducción y Propósito
+                  </h2>
+                  <p class="mb-3">
+                     Esta guía (versión 2.0) orienta la correcta aplicación del Procedimiento Administrativo
+                     Sancionatorio Fiscal por la Contraloría General de la República[cite: 10, 11]. Busca asegurar una
+                     actuación eficaz y garantista, actualizada conforme a la Ley 1437 de 2011 (modificada por Ley 2080
+                     de 2021), el Decreto Ley 403 de 2020, y la Resolución Reglamentaria Orgánica No. 0039 de 2020[cite:
+                     11, 13, 25].
+                  </p>
+                  <p>
+                     El objetivo principal es dotar a los operadores jurídico-fiscales de un marco teórico-conceptual y
+                     un esquema metodológico para el desarrollo de estos procedimientos[cite: 19, 25].
+                  </p>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Alcance y Naturaleza
+                  </h2>
+                  <p class="mb-3">
+                     <strong>Alcance:</strong> La guía es aplicable en todos los niveles de la Contraloría General de la
+                     República (central y desconcentrado) para todos los Procedimientos Administrativos Sancionatorios
+                     Fiscales[cite: 26, 28].
+                  </p>
+                  <p>
+                     <strong>Naturaleza del Procedimiento:</strong> Es un procedimiento de naturaleza administrativa
+                     especial[cite: 73]. Su finalidad es facilitar el ejercicio del control fiscal y asegurar el
+                     cumplimiento de las obligaciones fiscales[cite: 72]. No tiene carácter disciplinario ni
+                     indemnizatorio[cite: 74]. La Corte Constitucional ha resaltado su naturaleza administrativa,
+                     inherente a las funciones de las autoridades públicas[cite: 76, 77]. Es un procedimiento
+                     inquisitivo, donde la autoridad impulsa de oficio la actuación y tiene la carga de la prueba[cite:
+                     79].
+                  </p>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Principios Rectores
+                  </h2>
+                  <p class="mb-3">
+                     El procedimiento se rige por los principios generales de la actuación administrativa consagrados en
+                     la Ley 1437 de 2011 y principios específicos del derecho administrativo sancionatorio fiscal[cite:
+                     103, 125].
+                  </p>
+                  <ul class="list-disc list-inside space-y-2 mb-3 pl-4">
+                     <li>
+                        <strong>Principios Generales (Ley 1437 de 2011):</strong> Debido proceso (incluye legalidad de
+                        faltas y sanciones, presunción de inocencia, no reformatio in pejus, non bis in idem)[cite:
+                        105], igualdad[cite: 110], imparcialidad[cite: 112], buena fe[cite: 113], moralidad[cite: 114],
+                        participación[cite: 115], responsabilidad, transparencia[cite: 117], publicidad[cite: 118],
+                        coordinación[cite: 120], eficacia[cite: 121], economía[cite: 122], y celeridad.
+                     </li>
+                     <li>
+                        <strong>Principios del Derecho Administrativo Sancionatorio Fiscal:</strong>
+                        <ul class="list-disc list-inside space-y-1 pl-6 mt-1">
+                           <li>
+                              <strong>Legalidad:</strong> Las conductas sancionables y las sanciones deben estar
+                              previamente establecidas en la ley[cite: 127, 129].
+                           </li>
+                           <li>
+                              <strong>Tipicidad:</strong> Descripción clara y precisa de la conducta infractora y la
+                              sanción aplicable[cite: 130]. Es más flexible que en el derecho penal[cite: 134, 256].
+                           </li>
+                           <li>
+                              <strong>Proporcionalidad:</strong> La sanción debe ser acorde a la gravedad de la conducta
+                              y el grado de culpabilidad[cite: 56, 135].
+                           </li>
+                           <li>
+                              <strong>Razonabilidad:</strong> Impide sanciones arbitrarias; la sanción busca facilitar
+                              el control fiscal[cite: 57, 137].
+                           </li>
+                           <li>
+                              <strong>Debido Proceso:</strong> Respeto a las formas propias del juicio, derecho de
+                              defensa y contradicción[cite: 107, 138].
+                           </li>
+                           <li>
+                              <strong>Presunción de Inocencia:</strong> La carga de la prueba recae en el Estado
+                              (Contraloría)[cite: 148].
+                           </li>
+                           <li>
+                              <strong>Cosa Juzgada (Non bis in idem):</strong> No se puede sancionar dos veces por los
+                              mismos hechos[cite: 153].
+                           </li>
+                           <li>
+                              <strong>Prohibición de Reformatio in Pejus:</strong> El superior no puede agravar la
+                              sanción si el apelante es único y la impugnación es del procesado[cite: 160, 163].
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Sujetos y Elementos de la Conducta Reprochable
+                  </h2>
+                  <p class="mb-3">
+                     <strong>Sujetos del Procedimiento:</strong> Servidores públicos y las entidades o personas
+                     naturales o jurídicas de derecho público o privado que a cualquier título recauden, administren,
+                     manejen, dispongan o inviertan fondos, bienes o recursos públicos, o que sin ser gestores fiscales
+                     deban suministrar información que se requiera para el ejercicio de las funciones de vigilancia o
+                     control fiscal[cite: 165, 88].
+                  </p>
+                  <p class="mb-1">
+                     <strong>Elementos Estructurales de la Conducta Reprochable</strong>[cite: 225, 226]:
+                  </p>
+                  <ul class="list-disc list-inside space-y-1 pl-4">
+                     <li>
+                        <strong>Legalidad:</strong> Conocimiento previo de conductas reprochables y sus
+                        consecuencias[cite: 47, 229].
+                     </li>
+                     <li>
+                        <strong>Tipicidad:</strong> Descripción clara, expresa y precisa de la conducta en la
+                        norma[cite: 62, 248].
+                     </li>
+                     <li>
+                        <strong>Antijuridicidad:</strong> Lesión o puesta en peligro de un interés jurídicamente
+                        tutelado (el ejercicio del control fiscal y cumplimiento de obligaciones fiscales)[cite: 34,
+                        281].
+                     </li>
+                     <li>
+                        <strong>Culpabilidad:</strong> Valoración de la actuación del agente (dolo o culpa)[cite: 39,
+                        293]. Se prohíbe la responsabilidad objetiva[cite: 298].
+                     </li>
+                  </ul>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Etapas del Procedimiento Administrativo Sancionatorio Fiscal
+                  </h2>
+                  <p class="mb-3">
+                     El procedimiento sigue las etapas de los artículos 47 a 52 de la Ley 1437 de 2011 (modificada por
+                     Ley 2080 de 2021)[cite: 315].
+                  </p>
+                  <ol class="list-decimal list-inside space-y-2 pl-4">
+                     <li>
+                        <strong>Averiguación Preliminar (Opcional):</strong> Para establecer si hay mérito para iniciar
+                        el procedimiento sancionatorio[cite: 38, 318].
+                     </li>
+                     <li>
+                        <strong>Auto de Apertura y Formulación de Cargos:</strong> Acto administrativo que inicia
+                        formalmente el proceso[cite: 37, 326]. Detalla hechos, investigados, normas vulneradas y
+                        posibles sanciones[cite: 328]. No admite recurso[cite: 417]. Se notifica personalmente[cite:
+                        417].
+                     </li>
+                     <li>
+                        <strong>Descargos:</strong> El investigado tiene cinco (5) días hábiles tras la notificación
+                        para presentar descargos y solicitar/aportar pruebas[cite: 46, 425].
+                     </li>
+                     <li>
+                        <strong>Periodo Probatorio:</strong> Práctica de pruebas decretadas de oficio o a
+                        solicitud[cite: 408, 448]. No mayor a diez (10) días hábiles[cite: 51, 411]; salvo cuando se
+                        trate de tres (3) o más investigados o se deban practicar en el exterior, el cual podrá ser
+                        hasta por treinta (30) días[cite: 52, 411].
+                     </li>
+                     <li>
+                        <strong>Traslado para Alegatos de Conclusión:</strong> Por cinco (5) días[cite: 53, 496, 498].
+                     </li>
+                     <li>
+                        <strong>Resolución que Decide de Fondo:</strong> Se expide dentro de los quince (15) días
+                        hábiles siguientes a la presentación de alegatos[cite: 510]. Decide si se archiva o se impone
+                        sanción[cite: 509]. Debe estar motivada e individualizar al sancionado, analizar hechos y
+                        pruebas, normas infringidas y la decisión final[cite: 521].
+                     </li>
+                     <li>
+                        <strong>Recursos:</strong> Contra la resolución sancionatoria proceden los recursos de
+                        reposición, apelación y queja[cite: 622].
+                        <ul class="list-disc list-inside space-y-1 pl-6 mt-1">
+                           <li>
+                              <strong>Reposición y Apelación:</strong> Interposición y sustentación en los cinco (5)
+                              días siguientes a la notificación[cite: 623].
+                           </li>
+                           <li>
+                              Recurso de reposición se resuelve dentro de los quince (15) días siguientes a su
+                              interposición[cite: 632].
+                           </li>
+                           <li>
+                              Recurso de apelación se debe decidir en un término de tres (3) meses contados a partir de
+                              su interposición; si no se decide en este término, se entenderá fallado a favor del
+                              recurrente[cite: 632].
+                           </li>
+                        </ul>
+                     </li>
+                  </ol>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Sanciones Aplicables
+                  </h2>
+                  <p class="mb-3">
+                     Las sanciones se imponen con base en el Decreto Ley 403 de 2020 y Ley 1955 de 2019[cite: 204, 775].
+                  </p>
+                  <ul class="list-disc list-inside space-y-2 pl-4">
+                     <li>
+                        <strong>Multa:</strong>
+                        <ul class="list-disc list-inside space-y-1 pl-6 mt-1">
+                           <li>
+                              Para servidores públicos: de uno (1) a ciento cincuenta (150) salarios diarios devengados
+                              por el sancionado para la época de los hechos[cite: 204].
+                           </li>
+                           <li>
+                              Para particulares: la sanción se tasará entre cinco (5) y diez (10) salarios mínimos
+                              mensuales legales vigentes[cite: 205].
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <strong>Suspensión del Cargo:</strong> Para servidores públicos, hasta por ciento ochenta (180)
+                        días[cite: 212]. Procede si la conducta es por culpa grave o dolo y concurren circunstancias
+                        específicas (ej. negación reiterada de información[cite: 213], destrucción de información[cite:
+                        214], suministro de información falsa[cite: 215], reincidencia [cite: 216]).
+                     </li>
+                  </ul>
+                  <p class="mt-3">
+                     <strong>Graduación de la Sanción:</strong> Se considera la necesidad, razonabilidad, y
+                     proporcionalidad[cite: 566], daño o peligro generado[cite: 607], beneficio económico obtenido[cite:
+                     607], reincidencia[cite: 608], obstrucción a la investigación[cite: 609], uso de medios
+                     fraudulentos[cite: 609], grado de prudencia y diligencia[cite: 610], renuencia a cumplir
+                     órdenes[cite: 611], y reconocimiento de la infracción[cite: 611].
+                  </p>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Caducidad y Prescripción
+                  </h2>
+                  <ul class="list-disc list-inside space-y-2 pl-4">
+                     <li>
+                        <strong>Caducidad de la Facultad Sancionatoria:</strong> Salvo leyes especiales, caduca a los
+                        tres (3) años de ocurrido el hecho, la conducta u omisión, término dentro del cual el acto
+                        administrativo que impone la sanción debe haber sido expedido y notificado[cite: 222]. Los
+                        recursos deben decidirse en un término de un (1) año contado a partir de su interposición; si no
+                        se deciden en este término, se entenderán fallados a favor del recurrente[cite: 222].
+                     </li>
+                     <li>
+                        <strong>Prescripción de la Sanción:</strong> La sanción decretada por acto administrativo
+                        prescribirá al cabo de cinco (5) años contados a partir de la fecha de la ejecutoria[cite: 224].
+                     </li>
+                  </ul>
+               </div>
+
+               <hr class="my-6 border-gray-300" />
+
+               <div class="p-6 bg-white shadow-lg rounded-lg">
+                  <h2 class="text-xl font-semibold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">
+                     Otros Aspectos Procesales Relevantes
+                  </h2>
+                  <ul class="list-disc list-inside space-y-2 pl-4">
+                     <li>
+                        <strong>Saneamiento de Irregularidades:</strong> La autoridad, en cualquier momento anterior a
+                        la expedición del acto, de oficio o a petición de parte, corregirá las irregularidades que se
+                        hayan presentado en la actuación administrativa para ajustarla a derecho[cite: 674, 675]. No
+                        procede la declaratoria de nulidades como tal en esta vía administrativa[cite: 673].
+                     </li>
+                     <li>
+                        <strong>Solicitud de Revocatoria Directa:</strong> Excepcional[cite: 689]. Procede si los actos
+                        administrativos son manifiestamente opuestos a la Constitución Política o a la ley, cuando no
+                        estén conformes con el interés público o social, o atenten contra él, o cuando con ellos se
+                        cause agravio injustificado a una persona[cite: 690].
+                     </li>
+                     <li>
+                        <strong>Multa a Quien No Recibe Salario:</strong> Para particulares (personas naturales o
+                        jurídicas de derecho privado) que no devengan salario, la multa se tasará entre cinco (5) y diez
+                        (10) salarios mínimos mensuales legales vigentes[cite: 705, 706].
+                     </li>
+                     <li>
+                        <strong>Registro Público de Sanciones:</strong> Las sanciones impuestas y en firme se incluirán
+                        en el Registro Público de las Sanciones Administrativas Fiscales[cite: 668].
+                     </li>
+                     <li>
+                        <strong>Suspensión Provisional del Servidor Público:</strong> Puede ordenarse motivadamente (un
+                        (1) mes, prorrogable hasta en otro tanto [cite: 750]) si se evidencian serios elementos de
+                        juicio que permitan establecer que la permanencia en el cargo posibilita la interferencia del
+                        autor de la conducta en el trámite del proceso o permite que continúe cometiéndola o que la
+                        reitere[cite: 749].
+                     </li>
+                     <li>
+                        <strong>Garantía al Debido Proceso y Defensor de Oficio:</strong> No es obligatorio el
+                        acompañamiento de abogado en actuaciones administrativas[cite: 763]. Sin embargo, si el
+                        implicado lo desea y manifiesta no contar con abogado de confianza y la Defensoría del Pueblo no
+                        lo asigna, la Contraloría podrá acudir a los consultorios jurídicos para que sus estudiantes
+                        actúen como defensores de oficio[cite: 771].
+                     </li>
+                  </ul>
+               </div>
+
+               <div class="text-center mt-12 py-4 border-t border-gray-300">
+                  <p class="text-sm text-gray-600">
+                     &copy; Resumen generado con base en el documento CMI-03-GU-001 de la Contraloría General de la
+                     República.
+                  </p>
+               </div>
+            </section>
+
+            <section id="estrategia" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">Estrategia de Estudio y Preparación</h2>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Estudio Normativo Profundo:</h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>
+                     Leer Ley 610 y Decreto 403 (con inexequibilidades actualizadas) exhaustivamente. Subrayar, tomar
+                     notas, hacer esquemas.
+                  </li>
+                  <li>Identificar palabras clave y definiciones exactas.</li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Conexión con tu Rol de Contador:</h3>
+               <p class="text-gray-700 mb-2">Para cada norma y etapa procesal, pregúntate:</p>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>¿Relación con información contable y financiera?</li>
+                  <li>¿Qué pruebas contables serían relevantes?</li>
+                  <li>¿Cómo un error contable podría derivar en responsabilidad fiscal?</li>
+                  <li>¿Cómo se cuantifica el daño contablemente?</li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Jurisprudencia Clave:</h3>
+               <p class="text-gray-700">
+                  Buscar sentencias de Corte Constitucional y Consejo de Estado (elementos de resp. fiscal, caducidad,
+                  prescripción, debido proceso, inexequibilidades D.403).
+               </p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Casos Prácticos:</h3>
+               <p class="text-gray-700">Aplicar teoría a situaciones concretas (hipotéticos o reales anonimizados).</p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Cuadros Comparativos y Mapas Conceptuales:</h3>
+               <ul class="list-disc list-inside ml-4 space-y-1 text-gray-700">
+                  <li>Comparativo indagación preliminar vs. proceso de responsabilidad fiscal.</li>
+                  <li>Mapa conceptual de elementos de la responsabilidad fiscal.</li>
+                  <li>Línea de tiempo de caducidad y prescripción.</li>
+               </ul>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Simulacros de Preguntas:</h3>
+               <p class="text-gray-700">
+                  Formular preguntas tipo examen. Buscar bancos de preguntas (con precaución por cambios normativos).
+               </p>
+
+               <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Actualización Constante:</h3>
+               <p class="text-gray-700">Verificar nuevas leyes, decretos, jurisprudencia. (Fuentes: CGR, DAFP).</p>
+            </section>
+
+            <section id="recursos" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">Recursos Adicionales</h2>
+               <ul class="list-disc list-inside ml-4 space-y-2 text-gray-700">
+                  <li>
+                     Página web de la
+                     <strong class="text-gray-900">Contraloría General de la República</strong> (normativa,
+                     publicaciones, guías).
+                  </li>
+                  <li>
+                     Página web de la <strong class="text-gray-900">Corte Constitucional</strong> (sentencias de
+                     exequibilidad).
+                  </li>
+                  <li>
+                     Página web del <strong class="text-gray-900">Consejo de Estado</strong> (jurisprudencia sobre
+                     responsabilidad fiscal).
+                  </li>
+                  <li>Bases de datos jurídicas (Legis, Vlex, etc., si tienes acceso).</li>
+                  <li>Doctrina especializada en derecho administrativo sancionatorio y responsabilidad fiscal.</li>
+               </ul>
+            </section>
+
+            <section id="puntosclave" class="content-section bg-white p-6 rounded-lg shadow-lg">
+               <h2 class="text-2xl font-bold text-sky-700 mb-4">
+                  Puntos Clave a Enfocar para la "Sustanciación de procesos para determinar responsabilidad fiscal
+                  (Función 3)"
+               </h2>
+               <ul class="list-disc list-inside ml-4 space-y-2 text-gray-700">
+                  <li>
+                     <strong class="text-gray-900">Dominio de las Etapas:</strong> Desde la noticia del presunto hecho
+                     irregular hasta el fallo definitivo y su ejecución.
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Habilidad para Identificar y Valorar Pruebas:</strong> Especialmente
+                     aquellas de naturaleza contable y financiera.
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Correcta Tipificación de la Conducta:</strong> ¿Es dolosa o culposa?
+                     ¿Se ajusta a los verbos rectores de la gestión fiscal?
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Precisión en la Determinación del Daño y su Cuantificación.</strong>
+                  </li>
+                  <li><strong class="text-gray-900">Establecimiento Claro del Nexo Causal.</strong></li>
+                  <li>
+                     <strong class="text-gray-900">Aplicación Rigurosa del Debido Proceso:</strong> Notificaciones,
+                     términos, derecho de defensa, contradicción de pruebas.
+                  </li>
+                  <li>
+                     <strong class="text-gray-900">Conocimiento de las Causales de Archivo</strong> y de las que dan
+                     lugar a fallo con responsabilidad.
+                  </li>
+               </ul>
+            </section>
+         </main>
+      </div>
+
+      <script>
+         document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll("#sidebar .nav-link");
+            const contentSections = document.querySelectorAll("#main-content .content-section");
+            const mainContent = document.getElementById("main-content"); // Para scroll al inicio
+
+            function showSection(targetId) {
+               contentSections.forEach((section) => {
+                  section.classList.remove("active");
+               });
+               const activeSection = document.getElementById(targetId);
+               if (activeSection) {
+                  activeSection.classList.add("active");
+               }
+            }
+
+            function setActiveLink(activeLink) {
+               navLinks.forEach((link) => {
+                  link.classList.remove("active"); // Quita la clase 'active' de todos
+               });
+               activeLink.classList.add("active"); // Añade 'active' solo al link clickeado
+            }
+
+            navLinks.forEach((link) => {
+               link.addEventListener("click", (event) => {
+                  event.preventDefault();
+                  const targetId = link.getAttribute("data-target");
+                  showSection(targetId);
+                  setActiveLink(link);
+                  mainContent.scrollTop = 0; // Scroll al inicio del contenido principal
+               });
+            });
+
+            // Mostrar la primera sección (Inicio) por defecto o la que esté en el hash
+            let initialTarget = "module0"; // Sección por defecto
+            if (window.location.hash) {
+               const hashTarget = window.location.hash.substring(1);
+               const targetElement = document.getElementById(hashTarget);
+               if (targetElement && targetElement.classList.contains("content-section")) {
+                  initialTarget = hashTarget;
+               }
+            }
+
+            showSection(initialTarget);
+            const initialLink = document.querySelector(`.nav-link[data-target="${initialTarget}"]`);
+            if (initialLink) {
+               setActiveLink(initialLink);
+            }
+         });
+      </script>
+   </body>
+</html>

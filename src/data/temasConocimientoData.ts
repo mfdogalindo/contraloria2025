@@ -4,6 +4,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
 {
                 titulo: "1. Control Fiscal en Colombia",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/control_fiscal.html">Ver Recurso para estudiar</a>
                     <ul class="list-disc list-inside space-y-1">
                         <li><strong>Marco Constitucional:</strong> Arts. 267, 268, 271, 272, 274.</li>
                         <li><strong>Ley 42 de 1993:</strong> Organización, principios, sistemas de control. Clave para Funciones 1 y 2.</li>
@@ -16,6 +17,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "2. Procesos y Normas de Auditoría",
                 contenido: `
+                   <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/procesos_auditoria.html">Ver Recurso para estudiar</a>
                     <p>Aplicable a Funciones 1, 2, 4, 6.</p>
                     <ul class="list-disc list-inside space-y-1">
                         <li>Planeación y ejecución de auditorías.</li>
@@ -30,6 +32,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "3. Procesos Administrativos Sancionatorios",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/procesos_sancionatorios.html">Ver Recurso para estudiar</a>
                     <p>Aplicable a Función 3.</p>
                     <ul class="list-disc list-inside space-y-1">
                         <li>Sustanciación de procesos para determinar responsabilidad fiscal.</li>
