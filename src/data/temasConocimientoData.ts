@@ -45,6 +45,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "4. Contabilidad Pública Sectorial (Normas CGN)",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/04_contabilidad_publica.html">Ver Recurso para estudiar</a>
                     <ul class="list-disc list-inside space-y-1">
                         <li><strong>Ley 298 de 1996:</strong> Creación y funciones de la Contaduría General de la Nación (CGN).</li>
                         <li><strong>Régimen de Contabilidad Pública (RCP):</strong> Res. 354/2007 y mods. (ej. Res. 156/2018). Marco Conceptual, Catálogo General de Cuentas. Vital para Funciones 1 y 5.</li>
@@ -55,6 +56,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "5. Presupuesto Público (Estatuto Orgánico)",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/05_presupuesto_publico.html">Ver Recurso para estudiar</a>
                     <ul class="list-disc list-inside space-y-1">
                         <li><strong>Decreto 111 de 1996:</strong> Principios presupuestales, ciclo presupuestal, clasificación ingresos/gastos, POAI. Relevante para Función 9.</li>
                     </ul>
@@ -63,6 +65,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "6. Contratación Estatal",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/06_contratacion_estatal.html">Ver Recurso para estudiar</a>
                     <ul class="list-disc list-inside space-y-1">
                         <li><strong>Ley 80 de 1993:</strong> Objeto, principios, inhabilidades, tipos de contratos.</li>
                         <li><strong>Ley 1150 de 2007:</strong> Modificaciones, modalidades de selección, RUP, SECOP.</li>
@@ -74,6 +77,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "7. Administración Pública y Servicio Público",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/07_administracion_publica.html">Ver Recurso para estudiar</a>
                     <ul class="list-disc list-inside space-y-1">
                         <li>Estructura del Estado Colombiano.</li>
                         <li>Derechos y deberes de servidores públicos.</li>
@@ -85,6 +89,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "8. Control Interno (MECI)",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/08_control_interno.html">Ver Recurso para estudiar</a>
                     <ul class="list-disc list-inside space-y-1">
                         <li>Propósito, estructura, principios (Autocontrol, Autorregulación, Autogestión).</li>
                         <li><strong>Ley 87 de 1993:</strong> Normas para el ejercicio del control interno.</li>
@@ -95,6 +100,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "9. Gestión Documental y Actos Administrativos",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/09_gestion_documental.html">Ver Recurso para estudiar</a>
                     <p>Aplicable a Funciones 7, 8.</p>
                     <ul class="list-disc list-inside space-y-1">
                         <li>Trámite de derechos de petición, denuncias.</li>
@@ -108,6 +114,7 @@ export const temasConocimientoData: TemaConocimiento[] = [
             {
                 titulo: "10. Proyectos de Inversión y Gestión de Contratos/Convenios",
                 contenido: `
+                    <a class="text-blue-500 font-bold" href="https://contraloria-polar.netlify.app/10_proyectos_inversion.html">Ver Recurso para estudiar</a>
                     <p>Aplicable a Función 9.</p>
                     <ul class="list-disc list-inside space-y-1">
                         <li>Formulación, seguimiento y ejecución de proyectos de inversión.</li>

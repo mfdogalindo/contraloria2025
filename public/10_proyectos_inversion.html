@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Proyectos de Inversión y Contratos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { width: 280px; transition: transform 0.3s ease-in-out; }
+        .content { margin-left: 280px; transition: margin-left 0.3s ease-in-out; }
+        .sidebar-hidden { transform: translateX(-100%); }
+        .content-full { margin-left: 0; }
+        .sidebar-item { display: block; padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 0.375rem; transition: background-color 0.2s ease, color 0.2s ease; }
+        .sidebar-item:hover { background-color: #e0f2fe; color: #0c4a6e; }
+        .sidebar-item.active-nav { background-color: #0ea5e9; color: white; }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="sidebar bg-stone-100 text-gray-700 p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto shadow-lg">
+            <h1 class="text-2xl font-bold text-sky-700 mb-6 border-b-2 border-sky-600 pb-2">Proyectos y Contratos</h1>
+            <nav>
+                <a href="#" class="sidebar-item active-nav" onclick="showContent('inicio', this)">
+                    <span class="mr-2">🏠</span> Inicio
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion1', this)">
+                    <span class="mr-2">🌳</span> 1. Ecosistema de Inversión
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion2', this)">
+                    <span class="mr-2">🔄</span> 2. Ciclo de Vida del Proyecto
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion3', this)">
+                    <span class="mr-2">✍️</span> 3. Gestión de Contratos
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion4', this)">
+                    <span class="mr-2">🔎</span> 4. Perspectiva CGR
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion5', this)">
+                    <span class="mr-2">💡</span> 5. Preparación Práctica
+                </a>
+            </nav>
+        </aside>
+
+        <main id="mainContent" class="content flex-1 p-6 lg:p-10 overflow-y-auto">
+            <button id="sidebarToggle" class="fixed top-4 right-4 lg:hidden bg-sky-600 text-white p-2 rounded-md z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <div id="inicio" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Guía de Estudio: Proyectos de Inversión y Gestión de Contratos</h2>
+                <p class="mb-4 text-lg">Esta guía está diseñada para proporcionar un conocimiento integral sobre el ciclo de vida de los proyectos de inversión pública en Colombia y su materialización a través de la gestión de contratos y convenios, desde la perspectiva del control fiscal.</p>
+            </div>
+
+            <div id="seccion1" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Parte I: El Ecosistema de la Inversión Pública en Colombia</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Marco Estratégico: Del Plan Nacional de Desarrollo (PND) al Proyecto Individual</h3>
+                    <p>La inversión pública responde al Plan Nacional de Desarrollo (PND), "Colombia Potencia Mundial de la Vida" (Ley 2294 de 2023). La viabilidad de un proyecto se mide por su pertinencia y alineación con las cinco transformaciones del PND. La CGR no solo audita la ejecución, sino que evalúa si el gasto fue coherente y contribuyó a los fines del Estado.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Marco Normativo y Arquitectura Institucional</h3>
+                    <p>Liderado por el DNP, el sistema se rige por la Ley 152/1994, el Decreto 1082/2015 y su reciente modificación (Decreto 2104/2023) que fortalece el Sistema Unificado de Inversión Pública (SUIP).</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Sistemas de Información: La Trazabilidad Digital</h3>
+                    <p>El flujo de un proyecto es secuencial a través de herramientas informáticas:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>MGA Web:</strong> Para la formulación y estructuración del proyecto.</li>
+                        <li><strong>PIIP / SUIFP:</strong> Donde el proyecto vive, es viabilizado y se reporta su ejecución.</li>
+                        <li><strong>BPIN:</strong> El repositorio oficial de proyectos viables.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="seccion2" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Parte II: El Ciclo de Vida del Proyecto de Inversión Pública</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El ciclo de vida de un proyecto tiene cuatro etapas: pre-inversión, inversión, operación y evaluación ex-post.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Fase de Pre-inversión: La MGA como ADN del Proyecto</h3>
+                    <p>Es la etapa más crítica, donde se define el "qué" y el "porqué". La MGA, basada en el Marco Lógico, guía la formulación a través de 4 módulos: Identificación (árbol de problemas), Preparación (árbol de objetivos), Evaluación Ex-Ante (financiera, económica, social) y Programación (cadena de valor).</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Viabilidad, Programación y Ejecución</h3>
+                    <p>Un proyecto formulado en la MGA es transferido al SUIFP/PIIP para obtener su <strong>viabilidad</strong> y su código <strong>BPIN</strong>. Luego debe ser priorizado en el <strong>POAI</strong> para recibir financiación. Durante la ejecución, se reportan avances en la PIIP y se gestionan ajustes.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Operación y Evaluación Ex-Post</h3>
+                    <p>La operación es la puesta en marcha del bien o servicio. La evaluación ex-post mide los resultados e impactos a mediano y largo plazo, verificando si se resolvió el problema inicial.</p>
+                </div>
+            </div>
+
+            <div id="seccion3" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Parte III: La Materialización de la Inversión: Gestión de Contratos y Convenios</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La ejecución de proyectos se materializa a través de contratos, regidos por las Leyes 80/1993, 1150/2007 y el Decreto 1082/2015.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">La Vigilancia del Contrato: Supervisión vs. Interventoría</h3>
+                    <p>La entidad debe vigilar la ejecución del contrato a través de dos figuras:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Supervisión:</strong> Seguimiento realizado directamente por un servidor público de la entidad.</li>
+                        <li><strong>Interventoría:</strong> Seguimiento técnico especializado realizado por un contratista externo, obligatorio en ciertos casos como obras públicas de licitación.</li>
+                    </ul>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow mt-4">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Criterio</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Supervisión</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Interventoría</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Vínculo</strong></td>
+                                    <td class="px-4 py-3 text-sm">Servidor público (interno)</td>
+                                    <td class="px-4 py-3 text-sm">Contratista (externo)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Conocimiento</strong></td>
+                                    <td class="px-4 py-3 text-sm">No requiere conocimiento especializado</td>
+                                    <td class="px-4 py-3 text-sm">Obligatoria cuando se requiere conocimiento técnico especializado</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Responsabilidad</strong></td>
+                                    <td class="px-4 py-3 text-sm">Directa (disciplinaria, fiscal, penal)</td>
+                                    <td class="px-4 py-3 text-sm">Contractual y solidaria con el contratista principal</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seccion4" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Parte IV: La Perspectiva del Órgano de Control: La CGR y su Rol Fiscalizador</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La CGR vigila la gestión fiscal de la administración, evaluando los resultados bajo los principios de eficiencia, economía, eficacia, equidad y sostenibilidad ambiental.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">El Control Fiscal sobre el Ciclo de Inversión y la Contratación</h3>
+                    <p>La CGR ejerce su función a través de diferentes tipos de auditoría:</p>
+                     <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Auditoría Financiera:</strong> Examina la razonabilidad de la información financiera y contable.</li>
+                        <li><strong>Auditoría de Cumplimiento:</strong> Verifica si las operaciones se ajustaron a la normativa.</li>
+                        <li><strong>Auditoría de Desempeño:</strong> Evalúa la eficiencia y eficacia en el uso de los recursos.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">El Enfoque de Control Preventivo y Concomitante</h3>
+                    <p>El Acto Legislativo 04 de 2019 introdujo este modelo, que permite a la CGR advertir en tiempo real sobre riesgos de gestión fiscal, para prevenir el daño patrimonial en lugar de solo sancionarlo posteriormente.</p>
+                </div>
+            </div>
+
+            <div id="seccion5" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Parte V: Estrategia de Preparación y Simulación para el Concurso</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Material de Estudio Priorizado</h3>
+                    <p>Se recomienda un estudio por niveles, priorizando los manuales de la CGR, las guías de CCE y los documentos conceptuales del DNP, y usando las leyes y decretos como marco de referencia.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">Banco de Preguntas y Casos Prácticos Comentados</h3>
+                    <p>La prueba se basa en el juicio situacional. Se presentan casos prácticos para evaluar la comprensión integrada de los temas, tales como:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Caso 1: La Formulación Deficiente:</strong> Analiza una falla crítica en la etapa de pre-inversión (MGA) que lleva a la ineficacia de un proyecto.</li>
+                        <li><strong>Caso 2: El Supervisor Negligente:</strong> Evalúa la responsabilidad fiscal de un supervisor que autoriza pagos sin la debida verificación.</li>
+                        <li><strong>Caso 3: El Ajuste al Proyecto:</strong> Examina el procedimiento correcto ante cambios sustanciales en un proyecto que superan los límites normativos.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-hidden');
+            mainContent.classList.toggle('content-full');
+        });
+
+        function showContent(sectionId, navElement) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-nav');
+            });
+            navElement.classList.add('active-nav');
+
+            mainContent.scrollTop = 0;
+
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('content-full');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('inicio', document.querySelector('.sidebar-item'));
+        });
+    </script>
+</body>
+</html>

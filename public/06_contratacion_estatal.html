@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Contratación Estatal en Colombia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { width: 280px; transition: transform 0.3s ease-in-out; }
+        .content { margin-left: 280px; transition: margin-left 0.3s ease-in-out; }
+        .sidebar-hidden { transform: translateX(-100%); }
+        .content-full { margin-left: 0; }
+        .sidebar-item { display: block; padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 0.375rem; transition: background-color 0.2s ease, color 0.2s ease; }
+        .sidebar-item:hover { background-color: #e0f2fe; color: #0c4a6e; }
+        .sidebar-item.active-nav { background-color: #0ea5e9; color: white; }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="sidebar bg-stone-100 text-gray-700 p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto shadow-lg">
+            <h1 class="text-2xl font-bold text-sky-700 mb-6 border-b-2 border-sky-600 pb-2">Contratación Estatal</h1>
+            <nav>
+                <a href="#" class="sidebar-item active-nav" onclick="showContent('inicio', this)">
+                    <span class="mr-2">🏠</span> Introducción
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion1', this)">
+                    <span class="mr-2">🏛️</span> 1. Ley 80 de 1993
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion2', this)">
+                    <span class="mr-2">⚙️</span> 2. Ley 1150 de 2007
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion3', this)">
+                    <span class="mr-2">📜</span> 3. Decreto 1082 de 2015
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion4', this)">
+                    <span class="mr-2">💻</span> 4. SECOP
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion5', this)">
+                    <span class="mr-2">🔎</span> 5. Perspectiva CGR
+                </a>
+            </nav>
+        </aside>
+
+        <main id="mainContent" class="content flex-1 p-6 lg:p-10 overflow-y-auto">
+            <button id="sidebarToggle" class="fixed top-4 right-4 lg:hidden bg-sky-600 text-white p-2 rounded-md z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <div id="inicio" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">El Marco de la Contratación Estatal y su Relevancia para el Control Fiscal</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El ejercicio del control fiscal, cuya máxima autoridad en Colombia es la Contraloría General de la República (CGR), se centra en la vigilancia de la gestión de los recursos públicos para asegurar que su administración y ejecución se realicen con eficiencia, economía, equidad y valoración de los costos ambientales. La contratación estatal es el principal vehículo a través del cual el Estado ejecuta su presupuesto y materializa sus fines. Por consiguiente, para un profesional que aspira a un cargo en la CGR, el dominio del régimen de contratación no es una competencia accesoria, sino el núcleo de su quehacer funcional.</p>
+                    <p>Este conocimiento es directamente aplicable a las funciones descritas para el cargo de Profesional Universitario. La <strong>planeación y liderazgo de auditorías</strong> exige utilizar la normativa de contratación como el "criterio de auditoría" fundamental. La <strong>estructuración de informes de auditoría</strong> requiere que los hallazgos estén sólidamente fundamentados en el incumplimiento de una norma específica de este compendio. Asimismo, la <strong>sustanciación de procesos administrativos sancionatorios</strong> a menudo se origina en hallazgos con incidencia fiscal derivados de irregularidades contractuales. Finalmente, el conocimiento es dual, pues la propia CGR, como entidad estatal, está sujeta a este régimen en sus <strong>proyectos de inversión y actividades contractuales</strong>.</p>
+                </div>
+            </div>
+
+            <div id="seccion1" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 1: La Piedra Angular – El Estatuto General de Contratación (Ley 80 de 1993)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La Ley 80 de 1993, conocida como el Estatuto General de Contratación de la Administración Pública, estableció un marco normativo unificado con el objeto de disponer las reglas y principios que rigen los contratos de todas las entidades estatales. Su propósito es asegurar que la actividad contractual del Estado se oriente al cumplimiento de sus fines, la continua y eficiente prestación de los servicios públicos y la efectividad de los derechos de los ciudadanos.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.1 Objeto y Principios Rectores como Criterio de Auditoría</h3>
+                    <p>Los principios de la Ley 80 no son meras declaraciones filosóficas; constituyen el criterio de auditoría por excelencia.</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Principio de Transparencia (Art. 24):</strong> Exige que la escogencia del contratista se efectúe, por regla general, a través de licitación o concurso público.</li>
+                        <li><strong>Principio de Economía (Art. 25):</strong> Busca la eficiencia, celeridad y austeridad. Exige que los estudios y diseños estén completos antes de iniciar el proceso.</li>
+                        <li><strong>Principio de Responsabilidad (Art. 26):</strong> Establece que los servidores públicos y los contratistas deben responder por sus acciones y omisiones.</li>
+                        <li><strong>Principio de Selección Objetiva (Art. 29):</strong> Ordena que la escogencia se base en la oferta más favorable para la entidad, sin consideraciones subjetivas.</li>
+                    </ul>
+                     <h3 class="text-xl font-semibold text-sky-600 mt-4">1.2 Tipología de Contratos Estatales (Art. 32)</h3>
+                    <p>El Estatuto define una serie de contratos típicos, cada uno con un enfoque de auditoría particular:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Contrato de Obra:</strong> Construcción, mantenimiento o instalación sobre bienes inmuebles.</li>
+                        <li><strong>Contrato de Consultoría:</strong> Estudios, diagnósticos, interventoría o gerencia de proyectos.</li>
+                        <li><strong>Contrato de Prestación de Servicios:</strong> Para desarrollar actividades relacionadas con el funcionamiento de la entidad.</li>
+                        <li><strong>Contrato de Concesión:</strong> Otorgamiento a un particular de la operación o explotación de un servicio o bien público.</li>
+                        <li><strong>Encargos Fiduciarios y Fiducia Pública:</strong> Administración de recursos públicos a través de sociedades fiduciarias.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.3 Régimen de Inhabilidades e Incompatibilidades (Art. 8 y 9)</h3>
+                    <p>Este régimen busca garantizar la moralidad, imparcialidad y transparencia. Es fundamental diferenciar:</p>
+                     <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Inhabilidades:</strong> Restricciones previas que impiden contratar, generalmente por sanciones pasadas (responsabilidad fiscal, caducidad, etc.).</li>
+                        <li><strong>Incompatibilidades:</strong> Prohibiciones que surgen de una posición o cargo actual (ser servidor público de la entidad, parentesco, etc.).</li>
+                    </ul>
+                    <p>Un aspecto crítico es la figura de las <strong>inhabilidades e incompatibilidades sobrevinientes</strong>. Para el auditor de la CGR, la verificación de este régimen es una tarea obligatoria, cruzando información con bases de datos como el Boletín de Responsables Fiscales.</p>
+                </div>
+            </div>
+
+            <div id="seccion2" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 2: Modernización y Eficiencia – La Ley 1150 de 2007 y sus Reformas</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La Ley 1150 de 2007 surgió con el objetivo explícito de introducir "medidas para la eficiencia y la transparencia" en la contratación pública, flexibilizando los procedimientos de selección.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.1 El Cambio de Paradigma: Hacia la Eficiencia y la Transparencia</h3>
+                    <p>Su principal aporte fue romper el paradigma de un único procedimiento y establecer un abanico de modalidades de selección, cada una con reglas y ámbitos de aplicación específicos.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.2 Las Modalidades de Selección del Contratista (Art. 2)</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Licitación Pública:</strong> Se mantiene como la regla general.</li>
+                        <li><strong>Selección Abreviada:</strong> Procedimiento simplificado para casos como bienes de características técnicas uniformes o menor cuantía.</li>
+                        <li><strong>Concurso de Méritos:</strong> Obligatorio para consultores y proyectos de carácter intelectual. El precio no otorga puntaje.</li>
+                        <li><strong>Contratación Directa:</strong> Excepcional y con causales taxativas (urgencia manifiesta, contratos interadministrativos, etc.).</li>
+                        <li><strong>Contratación de Mínima Cuantía:</strong> Procedimiento ultra simplificado para compras de muy bajo valor.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.3 Herramientas Clave Introducidas por la Ley 1150</h3>
+                     <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Registro Único de Proponentes (RUP):</strong> Se consolida como el mecanismo para verificar las condiciones de los proponentes como requisito habilitante (cumple/no cumple), pero no otorga puntaje.</li>
+                        <li><strong>Sistema Electrónico para la Contratación Pública (SECOP):</strong> Se ordena su creación para publicar en línea la información de los procesos.</li>
+                    </ul>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow mt-4">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Modalidad</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Aplicabilidad Principal</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Factor de Selección</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Punto de Auditoría CGR</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Licitación Pública</strong></td>
+                                    <td class="px-4 py-3 text-sm">Grandes cuantías, obras</td>
+                                    <td class="px-4 py-3 text-sm">Oferta más favorable (técnico/económico)</td>
+                                    <td class="px-4 py-3 text-sm">Correcta ponderación de factores.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Selección Abreviada</strong></td>
+                                    <td class="px-4 py-3 text-sm">Menor cuantía, bienes uniformes</td>
+                                    <td class="px-4 py-3 text-sm">Menor precio u oferta favorable</td>
+                                    <td class="px-4 py-3 text-sm">Correcta acreditación de la causal.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Concurso de Méritos</strong></td>
+                                    <td class="px-4 py-3 text-sm">Consultoría, interventoría</td>
+                                    <td class="px-4 py-3 text-sm">Calidad y experiencia (precio no puntúa)</td>
+                                    <td class="px-4 py-3 text-sm">Idoneidad del evaluador; que el precio no haya sido factor.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Contratación Directa</strong></td>
+                                    <td class="px-4 py-3 text-sm">Urgencia manifiesta, interadministrativos</td>
+                                    <td class="px-4 py-3 text-sm">Idoneidad y conveniencia</td>
+                                    <td class="px-4 py-3 text-sm">Existencia y validez de la causal invocada.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Mínima Cuantía</strong></td>
+                                    <td class="px-4 py-3 text-sm">Hasta 10% de menor cuantía</td>
+                                    <td class="px-4 py-3 text-sm">Menor precio</td>
+                                    <td class="px-4 py-3 text-sm">Que no supere el tope y no sea fraccionamiento.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seccion3" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 3: La Reglamentación en Detalle – El Decreto 1082 de 2015</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El Decreto 1082 de 2015, Decreto Único Reglamentario del Sector Administrativo de Planeación Nacional, compila y organiza la reglamentación dispersa, proporcionando los detalles operativos para la aplicación de las Leyes 80 y 1150.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.1 El Sistema de Compras y Contratación Pública</h3>
+                    <p>Define la estructura del sistema, consolidando a <strong>Colombia Compra Eficiente (CCE)</strong> como el ente rector. Una herramienta clave reglamentada es el <strong>Plan Anual de Adquisiciones (PAA)</strong>, donde las entidades listan las compras que planean realizar durante el año.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.2 El Registro Único de Proponentes (RUP) en Detalle</h3>
+                    <p>El decreto detalla el funcionamiento del RUP, verificando cuatro componentes: Experiencia, Capacidad Jurídica, Capacidad Financiera y Capacidad Organizacional.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.3 Mecanismos Operativos de Selección</h3>
+                    <p>Reglamenta en detalle procedimientos como:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Subasta Inversa:</strong> Reglas para la puja y márgenes de mejora.</li>
+                        <li><strong>Acuerdos Marco de Precios (AMP):</strong> Contratos estandarizados por CCE disponibles en la <strong>Tienda Virtual del Estado Colombiano (TVEC)</strong>, de uso obligatorio para las entidades.</li>
+                        <li><strong>Adquisición en Bolsas de Productos:</strong> Para la compra de bienes estandarizados.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="seccion4" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 4: La Contratación en la Era Digital – El Sistema Electrónico (SECOP)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El SECOP es la plataforma digital donde se materializa el principio de publicidad y se gestiona la contratación estatal.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.1 SECOP I vs. SECOP II: De la Publicidad a la Transacción</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>SECOP I:</strong> Es una plataforma <strong>informativa</strong>, una "valla publicitaria" digital. La interacción ocurre por fuera del sistema.</li>
+                        <li><strong>SECOP II:</strong> Es una plataforma <strong>transaccional</strong>. Todo el ciclo de vida del proceso se gestiona dentro del sistema, dejando un registro inmutable de cada acción.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.2 El SECOP como Herramienta de Auditoría</h3>
+                    <p>Para la CGR, el SECOP es la fuente primaria de evidencia. Permite:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Trazabilidad y Control:</strong> SECOP II ofrece un registro cronológico que dificulta la alteración de documentos.</li>
+                        <li><strong>Datos Abiertos:</strong> La información permite análisis masivos para identificar "banderas rojas" o riesgos de corrupción (único oferente recurrente, concentración de contratos, etc.).</li>
+                    </ul>
+                    <p>La transparencia en tiempo real potencia el control preventivo y concomitante de la CGR.</p>
+                </div>
+            </div>
+
+            <div id="seccion5" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 5: La Perspectiva Interna – El Manual de Contratación de la CGR y la Metodología de Auditoría</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>Es tan importante conocer la normativa que se auditará como la metodología y los procedimientos internos que guiarán el trabajo.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.1 El Manual de Contratación como Guía y Criterio</h3>
+                    <p>Estos manuales establecen las directrices y flujos de proceso para cada etapa de la contratación. El manual de la CGR sirve para guiar sus propios procesos de adquisición y como un referente de buenas prácticas para las entidades auditadas.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.2 Enfoque de Auditoría a la Contratación</h3>
+                    <p>La metodología de la CGR se basa en las Normas Internacionales de las Entidades Fiscalizadoras Superiores (ISSAI) y un enfoque basado en riesgos. El proceso auditor incluye:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Planeación:</strong> Identificar el universo de contratos y seleccionar muestras con base en riesgo y materialidad.</li>
+                        <li><strong>Ejecución:</strong> Aplicar procedimientos de auditoría a cada etapa (precontractual, contractual, poscontractual).</li>
+                    </ul>
+                    <p>Este enfoque se complementa con las herramientas de control fiscal concomitante y preventivo.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-hidden');
+            mainContent.classList.toggle('content-full');
+        });
+
+        function showContent(sectionId, navElement) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-nav');
+            });
+            navElement.classList.add('active-nav');
+
+            mainContent.scrollTop = 0;
+
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('content-full');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('inicio', document.querySelector('.sidebar-item'));
+        });
+    </script>
+</body>
+</html>

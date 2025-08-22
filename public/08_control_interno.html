@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Control Interno (MECI)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { width: 280px; transition: transform 0.3s ease-in-out; }
+        .content { margin-left: 280px; transition: margin-left 0.3s ease-in-out; }
+        .sidebar-hidden { transform: translateX(-100%); }
+        .content-full { margin-left: 0; }
+        .sidebar-item { display: block; padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 0.375rem; transition: background-color 0.2s ease, color 0.2s ease; }
+        .sidebar-item:hover { background-color: #e0f2fe; color: #0c4a6e; }
+        .sidebar-item.active-nav { background-color: #0ea5e9; color: white; }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="sidebar bg-stone-100 text-gray-700 p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto shadow-lg">
+            <h1 class="text-2xl font-bold text-sky-700 mb-6 border-b-2 border-sky-600 pb-2">Control Interno</h1>
+            <nav>
+                <a href="#" class="sidebar-item active-nav" onclick="showContent('inicio', this)">
+                    <span class="mr-2">🏠</span> Introducción
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion1', this)">
+                    <span class="mr-2">📜</span> 1. Ley 87 de 1993
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion2', this)">
+                    <span class="mr-2">⚙️</span> 2. Modelo MECI
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion3', this)">
+                    <span class="mr-2">🧩</span> 3. Integración MIPG
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion4', this)">
+                    <span class="mr-2">🔎</span> 4. Perspectiva CGR
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion5', this)">
+                    <span class="mr-2">💡</span> 5. Preparación Práctica
+                </a>
+            </nav>
+        </aside>
+
+        <main id="mainContent" class="content flex-1 p-6 lg:p-10 overflow-y-auto">
+            <button id="sidebarToggle" class="fixed top-4 right-4 lg:hidden bg-sky-600 text-white p-2 rounded-md z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <div id="inicio" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">El Control Interno como Pilar de la Vigilancia Fiscal</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>Para un aspirante a un cargo en la Contraloría General de la República (CGR), comprender el Control Interno va más allá de la simple memorización de normativas; implica internalizar una filosofía de gestión, un marco de responsabilidades y una metodología de evaluación que son la esencia misma de la vigilancia fiscal moderna.</p>
+                    <p>El rol de un funcionario de la CGR no es ejecutar el control interno de las entidades vigiladas, sino evaluarlo con un alto grado de pericia técnica, independencia y objetividad. Este informe ha sido estructurado como una guía de estudio exhaustiva, diseñada para proporcionar al aspirante una comprensión profunda y estratégica del Control Interno en el contexto colombiano.</p>
+                </div>
+            </div>
+
+            <div id="seccion1" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 1: El Fundamento del Control Interno en Colombia: Ley 87 de 1993</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La Ley 87 de 1993, expedida en desarrollo de los artículos 209 y 269 de la Constitución, estableció el marco conceptual y jurídico del Control Interno en el sector público colombiano, sentando principios que continúan vigentes.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.1. Definición, Principios y Objetivos del Sistema de Control Interno (SCI)</h3>
+                    <p>El Artículo 1 define el control interno como "el sistema integrado por el esquema de organización y el conjunto de los planes, métodos, principios, normas, procedimientos y mecanismos de verificación y evaluación adoptados por una entidad". Su ejercicio debe ser intrínseco al desarrollo de las funciones de todos los cargos.</p>
+                    <p>El Artículo 2 detalla sus objetivos, entre ellos: proteger los recursos, garantizar la eficacia y eficiencia, asegurar la oportunidad y confiabilidad de la información, y prevenir riesgos.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.2. La Arquitectura Legal: Características y Elementos Esenciales</h3>
+                    <p>El Artículo 3 establece sus características, destacando que la responsabilidad de establecerlo recae en la máxima autoridad. El Artículo 4 enumera los elementos mínimos que toda entidad debe implementar, como establecer objetivos claros, definir políticas, delimitar autoridad y responsabilidad, y tener sistemas de información modernos.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.3. Mapa de Responsabilidades</h3>
+                    <p>El Artículo 6 reitera que el establecimiento del SCI es responsabilidad del representante legal, pero su aplicación y eficacia es también responsabilidad de los jefes de cada dependencia.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.4. La Unidad de Control Interno</h3>
+                    <p>El Artículo 9 la define como un componente de nivel gerencial encargado de "medir y evaluar la eficiencia, eficacia y economía de los demás controles". Su rol es ser el "control de los controles". Para garantizar su independencia, el jefe de esta unidad no puede participar en procedimientos administrativos a través de autorizaciones o refrendaciones.</p>
+                </div>
+            </div>
+
+            <div id="seccion2" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 2: La Estandarización del Control: El Modelo Estándar de Control Interno (MECI)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El MECI proporcionó la herramienta estandarizada para que las entidades del Estado pudieran implementar sus Sistemas de Control Interno de manera unificada.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.1. Los Pilares Filosóficos del MECI: Autocontrol, Autorregulación y Autogestión</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Autocontrol:</strong> Capacidad de cada servidor público para controlar su propio trabajo, detectar desviaciones y efectuar correctivos.</li>
+                        <li><strong>Autorregulación:</strong> Capacidad institucional para desarrollar y aplicar métodos y normas que permitan fortalecer el SCI.</li>
+                        <li><strong>Autogestión:</strong> Capacidad de la organización para interpretar, coordinar, aplicar y evaluar de manera efectiva su función administrativa.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.2. La Anatomía del MECI (Alineación con COSO)</h3>
+                    <p>La estructura del MECI se actualizó para reflejar los cinco componentes del marco internacional COSO:</p>
+                    <ol class="list-decimal list-inside ml-4 space-y-2">
+                        <li><strong>Ambiente de Control:</strong> Es el fundamento. Incluye la integridad, valores éticos, estructura y políticas de talento humano.</li>
+                        <li><strong>Evaluación de Riesgos:</strong> Proceso para identificar y analizar los riesgos que enfrenta la entidad.</li>
+                        <li><strong>Actividades de Control:</strong> Acciones establecidas para mitigar los riesgos (autorizaciones, verificaciones, etc.).</li>
+                        <li><strong>Información y Comunicación:</strong> Asegura que la información necesaria fluya en toda la organización.</li>
+                        <li><strong>Actividades de Monitoreo:</strong> Evaluaciones continuas o independientes para determinar si los componentes del control interno están funcionando.</li>
+                    </ol>
+                     <h3 class="text-xl font-semibold text-sky-600 mt-4">2.3. El Esquema de Responsabilidades: El Modelo de las Líneas de Defensa</h3>
+                    <p>El MECI adoptó este modelo para operacionalizar la responsabilidad compartida del control:</p>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow mt-4">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Línea</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Actores</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Rol Principal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Estratégica</strong></td>
+                                    <td class="px-4 py-3 text-sm">Alta Dirección</td>
+                                    <td class="px-4 py-3 text-sm">Gobernar y Dirigir</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Primera</strong></td>
+                                    <td class="px-4 py-3 text-sm">Líderes de proceso, operativos</td>
+                                    <td class="px-4 py-3 text-sm">Poseer y Ejecutar</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Segunda</strong></td>
+                                    <td class="px-4 py-3 text-sm">Planeación, Jurídica, Riesgos</td>
+                                    <td class="px-4 py-3 text-sm">Supervisar y Asesorar</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Tercera</strong></td>
+                                    <td class="px-4 py-3 text-sm">Oficina de Control Interno</td>
+                                    <td class="px-4 py-3 text-sm">Asegurar y Validar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seccion3" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 3: La Integración a la Gestión Pública: El Modelo Integrado de Planeación y Gestión (MIPG)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El Decreto 1499 de 2017 integró el control interno en el modelo de gestión del Estado, dando origen al MIPG. Este modelo representa un cambio de paradigma: del control enfocado en la conformidad al control como habilitador de la gestión para generar valor público.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.1. La Evolución Estratégica al MIPG</h3>
+                    <p>El MIPG unificó y simplificó los diversos sistemas de gestión en un único Sistema de Gestión. El MECI deja de ser un modelo independiente y se convierte en una pieza integral del MIPG.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.2. El Control Interno como la Séptima Dimensión del MIPG</h3>
+                    <p>El MIPG opera a través de siete dimensiones. El Control Interno es la séptima, y su rol es transversal: actúa como un mecanismo de aseguramiento que verifica y promueve la eficacia de las otras seis.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.3. Herramientas de Operación y Medición</h3>
+                    <p>El <strong>Manual Operativo del MIPG</strong>, expedido por el DAFP, detalla los lineamientos para cada dimensión. La medición del avance se realiza anualmente a través del <strong>Formulario Único de Reporte de Avances de la Gestión (FURAG)</strong>.</p>
+                </div>
+            </div>
+
+            <div id="seccion4" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 4: La Perspectiva del Órgano de Control: La Evaluación del Control Interno por la CGR</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>Es crucial entender cómo la CGR aborda, evalúa y se relaciona con los sistemas de control interno de las entidades que vigila.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.1. Dualidad del Control: Control Interno vs. Control Fiscal</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Control Interno:</strong> Es endógeno, implementado por la propia entidad, preventivo y una herramienta de gestión.</li>
+                        <li><strong>Control Fiscal:</strong> Es exógeno, ejercido por la CGR, posterior y selectivo, y una herramienta de vigilancia.</li>
+                    </ul>
+                    <p>La CGR, en ejercicio de su control fiscal, evalúa la calidad, eficiencia y efectividad del control interno de las entidades vigiladas.</p>
+                     <h3 class="text-xl font-semibold text-sky-600 mt-4">4.2. La Metodología del Auditor: Cómo la CGR Examina el SCI</h3>
+                    <p>La evaluación del SCI es un componente transversal de las auditorías de la CGR (Financiera, de Cumplimiento, de Desempeño), basadas en las Normas ISSAI.</p>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow mt-4">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Componente MECI</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Pregunta Clave del Auditor CGR</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Evidencia Potencial</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Ambiente de Control</strong></td>
+                                    <td class="px-4 py-3 text-sm">¿Hay compromiso real de la alta dirección con la ética?</td>
+                                    <td class="px-4 py-3 text-sm">Actas, Código de Buen Gobierno, manual de funciones.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Evaluación de Riesgos</strong></td>
+                                    <td class="px-4 py-3 text-sm">¿La entidad tiene un proceso formal para identificar y valorar riesgos?</td>
+                                    <td class="px-4 py-3 text-sm">Mapa de riesgos, política de riesgos, matrices.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Actividades de Control</strong></td>
+                                    <td class="px-4 py-3 text-sm">¿Existen controles para mitigar los riesgos? ¿Hay segregación de funciones?</td>
+                                    <td class="px-4 py-3 text-sm">Manuales de procedimientos, conciliaciones, informes.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Información y Comunicación</strong></td>
+                                    <td class="px-4 py-3 text-sm">¿Los sistemas de información son confiables? ¿Los canales de comunicación son efectivos?</td>
+                                    <td class="px-4 py-3 text-sm">Informes de gestión, estados financieros, actas.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Actividades de Monitoreo</strong></td>
+                                    <td class="px-4 py-3 text-sm">¿La OCI realiza auditorías de calidad? ¿Se hace seguimiento a los hallazgos?</td>
+                                    <td class="px-4 py-3 text-sm">Plan anual de auditorías, informes de OCI, planes de mejoramiento.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.3. Del Hallazgo a la Acción: El Plan de Mejoramiento</h3>
+                    <p>Cuando la CGR identifica una deficiencia significativa (hallazgo administrativo), la entidad vigilada debe formular e implementar un <strong>Plan de Mejoramiento</strong>. La CGR tiene la responsabilidad de hacer un seguimiento riguroso al cumplimiento de estos planes.</p>
+                </div>
+            </div>
+
+            <div id="seccion5" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 5: Preparación Estratégica para las Pruebas de Competencias Funcionales</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.1. Focos de Estudio: Normativa y Temas Clave</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Normativa Indispensable:</strong> Constitución (Art. 209, 269), Ley 87 de 1993, Decreto 1499 de 2017, Manual Operativo del MIPG.</li>
+                        <li><strong>Temas Conceptuales Clave:</strong> Principios MECI, Componentes COSO, Líneas de Defensa, diferencia Control Interno/Fiscal, ciclo del Plan de Mejoramiento.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.2. Dominando la Evaluación: Tipología de Preguntas</h3>
+                    <p>Las pruebas combinan preguntas de <strong>Conocimiento Funcional (Saber)</strong> y de <strong>Juicio Situacional (Saber Hacer)</strong>, que presentan un caso y piden elegir el curso de acción más adecuado.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.3. Casos Prácticos Simulados</h3>
+                    <p>Se presentan dos casos complejos para practicar el análisis: "El Contrato de Urgencia Manifiesta" y "El Software que no Funciona". Estos casos evalúan la capacidad de diagnosticar fallas de control usando el Modelo de las Líneas de Defensa y las dimensiones del MIPG.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-hidden');
+            mainContent.classList.toggle('content-full');
+        });
+
+        function showContent(sectionId, navElement) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-nav');
+            });
+            navElement.classList.add('active-nav');
+
+            mainContent.scrollTop = 0;
+
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('content-full');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('inicio', document.querySelector('.sidebar-item'));
+        });
+    </script>
+</body>
+</html>

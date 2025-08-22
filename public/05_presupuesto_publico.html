@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Presupuesto Público Colombiano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { width: 280px; transition: transform 0.3s ease-in-out; }
+        .content { margin-left: 280px; transition: margin-left 0.3s ease-in-out; }
+        .sidebar-hidden { transform: translateX(-100%); }
+        .content-full { margin-left: 0; }
+        .sidebar-item { display: block; padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 0.375rem; transition: background-color 0.2s ease, color 0.2s ease; }
+        .sidebar-item:hover { background-color: #e0f2fe; color: #0c4a6e; }
+        .sidebar-item.active-nav { background-color: #0ea5e9; color: white; }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="sidebar bg-stone-100 text-gray-700 p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto shadow-lg">
+            <h1 class="text-2xl font-bold text-sky-700 mb-6 border-b-2 border-sky-600 pb-2">Presupuesto Público</h1>
+            <nav>
+                <a href="#" class="sidebar-item active-nav" onclick="showContent('inicio', this)">
+                    <span class="mr-2">🏠</span> Inicio
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion1', this)">
+                    <span class="mr-2">🏛️</span> 1. Fundamentos (EOP)
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion2', this)">
+                    <span class="mr-2">🔄</span> 2. Ciclo Presupuestal
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion3', this)">
+                    <span class="mr-2">🏗️</span> 3. Inversión Pública
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion4', this)">
+                    <span class="mr-2">🔎</span> 4. Control Fiscal
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion5', this)">
+                    <span class="mr-2">💡</span> 5. Guía de Preparación
+                </a>
+            </nav>
+        </aside>
+
+        <main id="mainContent" class="content flex-1 p-6 lg:p-10 overflow-y-auto">
+            <button id="sidebarToggle" class="fixed top-4 right-4 lg:hidden bg-sky-600 text-white p-2 rounded-md z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <div id="inicio" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Guía de Estudio: Estatuto Orgánico del Presupuesto Público Colombiano</h2>
+                <p class="mb-4 text-lg">Esta guía interactiva está diseñada para el estudio del Estatuto Orgánico del Presupuesto (Decreto 111 de 1996) y sus normas complementarias, un conocimiento indispensable para el ejercicio del control fiscal en Colombia.</p>
+                <p class="mb-6 text-lg">Navegue a través de las secciones utilizando el menú lateral para explorar los fundamentos del sistema presupuestal, el ciclo de vida de los recursos públicos, el sistema de inversión y la aplicación práctica de estos conceptos desde la perspectiva de la Contraloría General de la República.</p>
+            </div>
+
+            <div id="seccion1" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 1: Fundamentos del Sistema Presupuestal Colombiano: El Estatuto Orgánico (Decreto 111 de 1996)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.1. Introducción: El EOP como Piedra Angular del Control Fiscal</h3>
+                    <p>El sistema de finanzas públicas en Colombia se encuentra articulado en torno a una norma fundamental que dicta las reglas para la planeación, gestión y control de los recursos del Estado: el Decreto 111 de 1996, conocido como el Estatuto Orgánico del Presupuesto (EOP). Para cualquier profesional que aspire a ejercer funciones de control fiscal en la Contraloría General de la República (CGR), este estatuto no es simplemente un texto legal; es la principal herramienta de trabajo, la vara con la que se mide la legalidad, eficiencia y transparencia de la gestión pública.</p>
+                    <p>El Decreto 111 no surgió de manera aislada. Su génesis radica en la facultad otorgada al Gobierno Nacional por la Ley 225 de 1995 para compilar, sin alterar su contenido, las disposiciones de tres leyes orgánicas predecesoras: la Ley 38 de 1989, la Ley 179 de 1994 y la Ley 225 de 1995. Esta compilación consolidó en un solo cuerpo normativo las reglas de juego del presupuesto en Colombia.</p>
+                    <p>Su carácter de Ley Orgánica, conferido por el artículo 352 de la Constitución Política, le otorga una jerarquía superior a las leyes ordinarias. Esto significa que el EOP, junto con los mandatos constitucionales, constituye el único marco normativo autorizado para regular la programación, elaboración, presentación, aprobación, modificación y ejecución del presupuesto. Cualquier otra ley que intente regular estas materias sin tener el rango de orgánica será inaplicable. Para el auditor de la CGR, esta supremacía es crucial, pues establece un marco de "Criterio" claro e indiscutible contra el cual se debe contrastar la "Condición" o los hechos encontrados en una entidad auditada. El dominio profundo de este estatuto es, por tanto, el primer y más importante requisito para un ejercicio de control fiscal riguroso y fundamentado.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.2. Estructura y Cobertura del Sistema Presupuestal</h3>
+                    <p>El EOP define un ámbito de aplicación que abarca la totalidad del sector público, aunque con diferentes niveles de intensidad y control. El artículo 3 del Decreto 111 establece una estructura de dos niveles que permite una gestión centralizada de las finanzas públicas, respetando al mismo tiempo la autonomía de ciertas entidades.</p>
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Primer Nivel: El Presupuesto General de la Nación (PGN)</h4>
+                    <p>Este es el núcleo del sistema y sobre el cual recae el control más estricto. El PGN está compuesto por dos grandes agregados:</p>
+                    <ol class="list-decimal list-inside ml-4 space-y-2">
+                        <li><strong>El Presupuesto Nacional:</strong> Comprende las asignaciones para el funcionamiento e inversión de las Ramas Legislativa y Judicial, el Ministerio Público (Procuraduría General de la Nación, Defensoría del Pueblo), la Contraloría General de la República, la Organización Electoral (Registraduría Nacional del Estado Civil y Consejo Nacional Electoral) y la Rama Ejecutiva a nivel nacional. Se excluyen de este agregado los establecimientos públicos, que tienen un tratamiento diferenciado.</li>
+                        <li><strong>Los Presupuestos de los Establecimientos Públicos del Orden Nacional:</strong> Son entidades con personería jurídica, autonomía administrativa y patrimonio propio, adscritas a un ministerio o departamento administrativo, que cumplen funciones eminentemente administrativas (ej. institutos de investigación, agencias gubernamentales). Sus presupuestos de rentas y gastos se integran al PGN para su control y consolidación.</li>
+                    </ol>
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Segundo Nivel: Metas Financieras a todo el Sector Público</h4>
+                    <p>El EOP extiende su influencia más allá del PGN, alcanzando a entidades con regímenes especiales, como las Empresas Industriales y Comerciales del Estado (EICE) y las Sociedades de Economía Mixta. Aunque estas entidades gozan de mayor autonomía presupuestal y no se consolidan de la misma forma que los establecimientos públicos, el EOP establece mecanismos de control macrofiscal sobre ellas. Este segundo nivel de cobertura incluye:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Fijación de metas financieras:</strong> El Gobierno, a través del Consejo Superior de Política Fiscal (CONFIS), establece metas de desempeño financiero para estas empresas, buscando alinear su gestión con los objetivos macroeconómicos del país.</li>
+                        <li><strong>Distribución de excedentes financieros:</strong> Los excedentes o utilidades generados por las EICE y las Sociedades de Economía Mixta son propiedad de la Nación y su distribución es regulada por el CONFIS, asegurando que estos recursos contribuyan a las finanzas públicas generales.</li>
+                    </ul>
+                    <p>Esta estructura dual permite al Estado ejercer un control riguroso sobre el presupuesto de sus entidades centrales, mientras mantiene una supervisión estratégica sobre el resto del sector público, garantizando la coherencia de la política fiscal en su conjunto.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.3. Los Principios Presupuestales: El Decálogo del Auditor</h3>
+                    <p>Los principios consagrados en el EOP (artículos 13 al 23) no son meras declaraciones filosóficas, sino reglas operativas de obligatorio cumplimiento que guían cada etapa del ciclo presupuestal. Para el auditor de la CGR, cada principio es una pregunta de control, un criterio de evaluación que permite identificar desviaciones, ineficiencias o ilegalidades en la gestión de los recursos públicos.</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Planificación (Art. 13):</strong> Este principio es el nexo vinculante entre la visión de largo plazo del país y la asignación anual de recursos. Exige que el Presupuesto General de la Nación guarde estricta concordancia con los contenidos del Plan Nacional de Desarrollo (PND), el Plan Nacional de Inversiones, el Plan Financiero y el Plan Operativo Anual de Inversiones (POAI).</li>
+                        <li><strong>Anualidad (Art. 14):</strong> El presupuesto tiene una vigencia temporal estricta: el año fiscal, que comienza el 1 de enero y termina el 31 de diciembre. De aquí surgen dos figuras de suma importancia para el control: las <strong>reservas presupuestales</strong> y las <strong>cuentas por pagar</strong>.</li>
+                        <li><strong>Universalidad (Art. 15):</strong> Este principio exige que el presupuesto contenga la totalidad de los gastos públicos que se esperan realizar. Ninguna autoridad, sin importar su jerarquía, puede efectuar gastos, erogaciones o transferencias con cargo al Tesoro que no figuren explícitamente en la ley de presupuesto.</li>
+                        <li><strong>Unidad de Caja (Art. 16):</strong> Con el recaudo de todas las rentas y recursos de capital se debe formar un fondo común en la Tesorería Nacional. Este principio tiene excepciones importantes como las <strong>rentas de destinación específica</strong> y las <strong>contribuciones parafiscales</strong>.</li>
+                        <li><strong>Programación Integral (Art. 17):</strong> Todo programa presupuestal debe contemplar, de manera simultánea, los gastos de inversión necesarios para su puesta en marcha y los gastos de funcionamiento requeridos para su operación y mantenimiento a lo largo del tiempo.</li>
+                        <li><strong>Especialización (Art. 18):</strong> Las apropiaciones deben referirse en cada entidad a su objeto y funciones, y deben ejecutarse estrictamente para el fin para el cual fueron programadas.</li>
+                        <li><strong>Inembargabilidad (Art. 19):</strong> Como regla general, las rentas incorporadas en el PGN y los bienes de los órganos que lo conforman son inembargables.</li>
+                        <li><strong>Coherencia Macroeconómica (Art. 20) y Homeostasis Presupuestal (Art. 21):</strong> El presupuesto debe ser compatible con las metas macroeconómicas fijadas por el Gobierno.</li>
+                        <li><strong>Sostenibilidad y Estabilidad Fiscal (Art. 21 modificado):</strong> Introducido por la Ley 1473 de 2011, este principio refuerza los anteriores al exigir que todo el ciclo presupuestal se enmarque en un Marco de Sostenibilidad Fiscal.</li>
+                    </ul>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow mt-4">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Principio Presupuestal</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Artículo EOP</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Pregunta Clave para el Auditor</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Posible Hallazgo Asociado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Planificación</strong></td>
+                                    <td class="px-4 py-3 text-sm">13</td>
+                                    <td class="px-4 py-3 text-sm">¿El gasto auditado tiene un vínculo claro y documentado con los objetivos del PND y los proyectos del POAI?</td>
+                                    <td class="px-4 py-3 text-sm">Gasto sin alineación estratégica; proyectos no incluidos en el POAI.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Anualidad</strong></td>
+                                    <td class="px-4 py-3 text-sm">14</td>
+                                    <td class="px-4 py-3 text-sm">¿Los compromisos se adquirieron dentro de la vigencia fiscal? ¿La constitución de reservas presupuestales está debidamente justificada?</td>
+                                    <td class="px-4 py-3 text-sm">Compromisos extemporáneos; constitución indebida de reservas.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Universalidad</strong></td>
+                                    <td class="px-4 py-3 text-sm">15</td>
+                                    <td class="px-4 py-3 text-sm">¿Existen fondos, cuentas o gastos manejados por fuera del presupuesto oficial?</td>
+                                    <td class="px-4 py-3 text-sm">Manejo de recursos extrapresupuestales sin autorización.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Unidad de Caja</strong></td>
+                                    <td class="px-4 py-3 text-sm">16</td>
+                                    <td class="px-4 py-3 text-sm">¿Los recursos de destinación específica se están utilizando para los fines previstos?</td>
+                                    <td class="px-4 py-3 text-sm">Desviación de rentas de destinación específica.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Programación Integral</strong></td>
+                                    <td class="px-4 py-3 text-sm">17</td>
+                                    <td class="px-4 py-3 text-sm">¿El proyecto de inversión cuenta con previsión de los costos de operación futuros?</td>
+                                    <td class="px-4 py-3 text-sm">Aprobación de "elefantes blancos".</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Especialización</strong></td>
+                                    <td class="px-4 py-3 text-sm">18</td>
+                                    <td class="px-4 py-3 text-sm">¿La imputación presupuestal corresponde al objeto del gasto?</td>
+                                    <td class="px-4 py-3 text-sm">Desviación de recursos; pago de funcionamiento con inversión.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Inembargabilidad</strong></td>
+                                    <td class="px-4 py-3 text-sm">19</td>
+                                    <td class="px-4 py-3 text-sm">¿La entidad está cumpliendo con el pago de sentencias judiciales?</td>
+                                    <td class="px-4 py-3 text-sm">Incumplimiento de fallos judiciales.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 text-sm"><strong>Coherencia Macroeconómica</strong></td>
+                                    <td class="px-4 py-3 text-sm">20</td>
+                                    <td class="px-4 py-3 text-sm">¿Las proyecciones de ingresos son realistas?</td>
+                                    <td class="px-4 py-3 text-sm">Presupuestos basados en ingresos sobreestimados.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.4. Composición del PGN: La Anatomía de las Finanzas Públicas</h3>
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Presupuesto de Rentas y Recursos de Capital (Art. 27-35)</h4>
+                    <p>Contiene la estimación de todos los ingresos que el Estado espera recibir. Se clasifica en:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Ingresos Corrientes:</strong> Regulares y periódicos (Tributarios y No Tributarios).</li>
+                        <li><strong>Recursos de Capital:</strong> Extraordinarios o que modifican el patrimonio (crédito, venta de activos).</li>
+                        <li><strong>Contribuciones Parafiscales y Fondos Especiales:</strong> Pagos obligatorios de un sector para su propio beneficio o para un servicio específico.</li>
+                    </ul>
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Presupuesto de Gastos o Ley de Apropiaciones (Art. 36-40)</h4>
+                    <p>Es la autorización máxima de gasto. Se clasifica en:</p>
+                    <ol class="list-decimal list-inside ml-4 space-y-2">
+                        <li><strong>Gastos de Funcionamiento:</strong> Para que el Estado pueda operar (nómina, servicios, transferencias).</li>
+                        <li><strong>Servicio de la Deuda Pública:</strong> Pago de capital, intereses y comisiones de créditos.</li>
+                        <li><strong>Gastos de Inversión:</strong> Para aumentar la capacidad productiva o de servicios del país.</li>
+                    </ol>
+                    <p>Tiene especial relevancia el <strong>Gasto Público Social (Art. 41)</strong>, que tiene prioridad sobre cualquier otra asignación.</p>
+                </div>
+            </div>
+
+            <div id="seccion2" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 2: El Ciclo Presupuestal: De la Planificación a la Ejecución</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>El presupuesto público es un proceso cíclico que se repite cada año. Para el auditor de la CGR, entender este ciclo es fundamental, ya que el control fiscal se ejerce sobre cada una de sus fases.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.1. Fase de Programación y Elaboración</h3>
+                    <p>Fase técnica y de planificación. Inicia con la elaboración del <strong>Plan Financiero</strong> (CONFIS) y debe enmarcarse en el <strong>Marco Fiscal de Mediano Plazo (MFMP)</strong>. El MHCP elabora el anteproyecto y luego el proyecto de ley definitivo.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.2. Fase de Presentación y Aprobación: El Debate Democrático del Gasto</h3>
+                    <p>El Gobierno presenta el proyecto al Congreso antes del 20 de julio. El trámite tiene plazos estrictos, culminando el <strong>20 de octubre</strong>. Si no se aprueba, rige el proyecto original con las modificaciones del primer debate.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.3. Fase de Ejecución: Del Papel a la Realidad</h3>
+                    <p>Inicia el 1 de enero con el <strong>Decreto de Liquidación</strong>, que detalla el gasto aprobado sin modificarlo. La ejecución sigue una cadena secuencial:</p>
+                    <ol class="list-decimal list-inside ml-4 space-y-2">
+                        <li><strong>Programa Anual Mensualizado de Caja (PAC):</strong> Regula el flujo de caja mensual.</li>
+                        <li><strong>Certificado de Disponibilidad Presupuestal (CDP):</strong> Garantiza la existencia de la apropiación.</li>
+                        <li><strong>Compromiso:</strong> Afecta definitivamente la apropiación (ej. firma de un contrato).</li>
+                        <li><strong>Obligación:</strong> Surge cuando se recibe el bien o servicio a satisfacción.</li>
+                        <li><strong>Pago:</strong> Desembolso final para extinguir la obligación.</li>
+                    </ol>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.4. Modificaciones Presupuestales: La Gestión de la Flexibilidad</h3>
+                    <p>Mecanismos para adaptar el presupuesto a imprevistos, son un área de alto riesgo y de máximo interés para el control fiscal.</p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Traslados Presupuestales:</strong> Mover recursos entre rubros.</li>
+                        <li><strong>Adiciones y Reducciones:</strong> Incorporar nuevos ingresos o reducir gastos por menor recaudo.</li>
+                        <li><strong>Vigencias Futuras:</strong> Asumir obligaciones que afectan presupuestos de años posteriores. Pueden ser <strong>Ordinarias</strong> o <strong>Excepcionales</strong> y requieren autorizaciones rigurosas (CONFIS, DNP, CONPES).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="seccion3" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 3: La Inversión Pública: El Vínculo entre la Planificación y el Presupuesto</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La inversión pública es el motor del desarrollo. En Colombia, la gestión de los recursos opera en dos vías que deben estar conectadas: la <strong>vía presupuestal</strong> (MHCP) y la <strong>vía de planificación e inversión</strong> (DNP). El trabajo del auditor es verificar que estas dos vías nunca se separen.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.1. El Ecosistema de la Inversión Pública en Colombia</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>Banco Nacional de Programas y Proyectos de Inversión (BPIN):</strong> Base de datos donde deben registrarse todos los proyectos que aspiren a financiación pública. El Art. 68 del EOP prohíbe ejecutar proyectos no registrados aquí.</li>
+                        <li><strong>Sistemas de Información:</strong> SUIFP (Sistema Unificado de Inversiones y Finanzas Públicas) y SPI (Sistema de Seguimiento a Proyectos de Inversión).</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.2. El Plan Operativo Anual de Inversiones (POAI): El Puente entre Dos Mundos</h3>
+                    <p>El POAI es un instrumento de gestión que traduce los objetivos del Plan de Desarrollo en un listado priorizado de proyectos de inversión para una vigencia, y es el insumo vinculante para elaborar el presupuesto de inversión.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.3. Formulación y Viabilidad de Proyectos: La Metodología General Ajustada (MGA)</h3>
+                    <p>La MGA es una herramienta del DNP que estandariza la formulación de proyectos a través de una lógica que incluye la identificación de un problema (árbol de problemas), la preparación de soluciones (árbol de objetivos), la evaluación de alternativas y la programación de la solución elegida (cadena de valor). Un proyecto formulado con MGA obtiene un <strong>concepto de viabilidad</strong> para ser inscrito en el BPIN.</p>
+                </div>
+            </div>
+
+            <div id="seccion4" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 4: La Perspectiva de la Contraloría: Control Fiscal al Ciclo Presupuestal</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <p>La CGR ejerce la vigilancia de la gestión fiscal del Estado, lo que incluye un control posterior y selectivo sobre todo el ciclo presupuestal, evaluando no solo la legalidad, sino también los principios de economía, eficiencia, eficacia, equidad y sostenibilidad ambiental.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.1. El Rol del Profesional de la CGR en la Vigilancia del Presupuesto</h3>
+                    <p>El profesional de la CGR actúa como un auditor gubernamental que combina tres enfoques: Auditoría Financiera, Auditoría de Cumplimiento y Auditoría de Desempeño.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.2. Metodología de Auditoría Aplicada al Ciclo Presupuestal</h3>
+                    <p>El auditor debe centrar su atención en los puntos críticos de control donde el riesgo es más alto: proyecciones de ingresos, modificaciones en el Congreso, cadena de gasto, modificaciones presupuestales y cruce de información físico-financiera en proyectos de inversión.</p>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.3. Anatomía de un Hallazgo de Auditoría Presupuestal</h3>
+                    <p>El hallazgo es el resultado de comparar "lo que es" con "lo que debe ser" y debe contener cuatro elementos:</p>
+                    <ol class="list-decimal list-inside ml-4 space-y-2">
+                        <li><strong>Condición:</strong> La situación irregular encontrada.</li>
+                        <li><strong>Criterio:</strong> La norma vulnerada (generalmente el EOP).</li>
+                        <li><strong>Causa:</strong> El porqué ocurrió (ej. debilidad de control interno).</li>
+                        <li><strong>Efecto:</strong> La consecuencia real o potencial (ej. detrimento patrimonial).</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div id="seccion5" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 5: Guía de Preparación para el Concurso de Méritos</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.1. Síntesis de Conceptos y Normativa Esencial</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li><strong>Decreto 111 de 1996 (EOP):</strong> Dominar principios, estructura y reglas.</li>
+                        <li><strong>Ciclo Presupuestal:</strong> Comprender etapas, actores y documentos.</li>
+                        <li><strong>Sistema de Inversión Pública:</strong> Entender la relación PND, BPIN, POAI, MGA.</li>
+                        <li><strong>Control Fiscal:</strong> Interiorizar la metodología de auditoría y la estructura de un hallazgo.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.2. Banco de Preguntas de Conocimientos (Tipo Test)</h3>
+                    <ol class="list-decimal list-inside ml-4 space-y-4">
+                        <li>
+                            <p>El principio presupuestal que exige que el PGN guarde concordancia con el PND se denomina:</p>
+                            <p><strong>b) Planificación.</strong></p>
+                        </li>
+                        <li>
+                            <p>Una entidad requiere contratar una obra por tres años. Para comprometer recursos futuros, el primer requisito es:</p>
+                            <p><strong>c) La autorización para comprometer vigencias futuras por parte del CONFIS.</strong></p>
+                        </li>
+                        <li>
+                            <p>Un alcalde utiliza recursos del Programa de Alimentación Escolar para un polideportivo. Esta acción vulnera principalmente el principio de:</p>
+                            <p><strong>c) Especialización.</strong></p>
+                        </li>
+                    </ol>
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.3. Simulación de Casos de Estudio (Prueba de Juicio Situacional)</h3>
+                    <p>Esta prueba evalúa la capacidad de aplicar conocimiento en situaciones reales.</p>
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Caso 1: "El Traslado Sospechoso"</h4>
+                    <p>Un auditor de la CGR observa un traslado de recursos del programa del adulto mayor al embellecimiento de parques. Se le pide analizar los principios vulnerados, los documentos a solicitar y estructurar un hallazgo.</p>
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Caso 2: "El Proyecto Sin Rastro"</h4>
+                    <p>Un auditor encuentra un contrato de obra sin registro en el BPIN. Se le pide identificar la norma incumplida, analizar las implicaciones y describir los pasos para investigar.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-hidden');
+            mainContent.classList.toggle('content-full');
+        });
+
+        function showContent(sectionId, navElement) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-nav');
+            });
+            navElement.classList.add('active-nav');
+
+            mainContent.scrollTop = 0;
+
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('content-full');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('inicio', document.querySelector('.sidebar-item'));
+        });
+    </script>
+</body>
+</html>
