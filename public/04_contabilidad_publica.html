@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Contabilidad Pública Sectorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar { width: 280px; transition: transform 0.3s ease-in-out; }
+        .content { margin-left: 280px; transition: margin-left 0.3s ease-in-out; }
+        .sidebar-hidden { transform: translateX(-100%); }
+        .content-full { margin-left: 0; }
+        .sidebar-item { display: block; padding: 0.75rem 1rem; margin-bottom: 0.25rem; border-radius: 0.375rem; transition: background-color 0.2s ease, color 0.2s ease; }
+        .sidebar-item:hover { background-color: #e0f2fe; color: #0c4a6e; }
+        .sidebar-item.active-nav { background-color: #0ea5e9; color: white; }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="sidebar bg-stone-100 text-gray-700 p-4 space-y-2 fixed top-0 left-0 h-full overflow-y-auto shadow-lg">
+            <h1 class="text-2xl font-bold text-sky-700 mb-6 border-b-2 border-sky-600 pb-2">Contabilidad Pública</h1>
+            <nav>
+                <a href="#" class="sidebar-item active-nav" onclick="showContent('inicio', this)">
+                    <span class="mr-2">🏠</span> Inicio
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion1', this)">
+                    <span class="mr-2">🏛️</span> 1. Fundamento Jurídico
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion2', this)">
+                    <span class="mr-2">📜</span> 2. Marco Normativo
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion3', this)">
+                    <span class="mr-2">⚖️</span> 3. Normas Específicas
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion4', this)">
+                    <span class="mr-2">📄</span> 4. Catálogo de Cuentas
+                </a>
+                <a href="#" class="sidebar-item" onclick="showContent('seccion5', this)">
+                    <span class="mr-2">💡</span> 5. Estrategias Prácticas
+                </a>
+            </nav>
+        </aside>
+
+        <main id="mainContent" class="content flex-1 p-6 lg:p-10 overflow-y-auto">
+            <button id="sidebarToggle" class="fixed top-4 right-4 lg:hidden bg-sky-600 text-white p-2 rounded-md z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <div id="inicio" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Guía de Estudio: Contabilidad Pública Sectorial (Normas CGN)</h2>
+                <p class="mb-4 text-lg">Esta guía te ayudará a prepararte en el área de Contabilidad Pública, explorando los temas clave de la normativa emitida por la Contaduría General de la Nación (CGN), fundamental para el ejercicio del control fiscal.</p>
+                <p class="mb-6 text-lg">Utiliza la navegación lateral para moverte entre las secciones. Cada sección aborda un componente esencial del Régimen de Contabilidad Pública aplicable a las entidades de gobierno en Colombia.</p>
+            </div>
+
+            <div id="seccion1" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 1: El Fundamento Jurídico y Conceptual de la Contabilidad Pública en Colombia</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.1. La Contaduría General de la Nación (CGN): Origen, Misión y Facultades Regulatorias</h3>
+                    <p>El sistema de contabilidad pública en Colombia tiene un pilar institucional y jurídico claramente definido. La <strong>Ley 298 de 1996</strong>, en desarrollo del artículo 354 de la Constitución Política, creó la Contaduría General de la Nación (CGN) como una Unidad Administrativa Especial adscrita al Ministerio de Hacienda y Crédito Público. Esta ley dotó a la CGN de personería jurídica, autonomía presupuestal, técnica y administrativa, confiriéndole la autoridad máxima en materia contable para el sector público colombiano.</p>
+                    <p>Las funciones asignadas a la CGN y al Contador General de la Nación son el fundamento de toda la normativa que se abordará en esta guía. El artículo 4 de la Ley 298 de 1996 es explícito al otorgar a la CGN la facultad de: "Determinar las políticas, principios y normas sobre contabilidad, que deben regir en el país para todo el sector público". Esta atribución se complementa con la de "Establecer las normas técnicas generales y específicas, sustantivas y procedimentales, que permitan unificar, centralizar y consolidar la contabilidad pública". En esencia, la CGN no solo emite las reglas, sino que también diseña la arquitectura completa del sistema para garantizar que la información financiera de todas las entidades públicas sea homogénea, comparable y consolidable.</p>
+                    <p>Además de su rol normativo, la CGN tiene la responsabilidad de definir los estados financieros e informes que deben presentar las entidades públicas, establecer los libros de contabilidad obligatorios y los requisitos de los documentos soporte. Asimismo, la ley le asigna un papel central en la administración del Sistema Integrado de Información Financiera (SIIF), que es la plataforma tecnológica de base contable para la gestión financiera pública. Esta combinación de facultades regulatorias, de estandarización y de administración de sistemas de información consolida a la CGN como el ente rector indiscutible de la contabilidad pública en el país.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.2. El Régimen de Contabilidad Pública (RCP): De la Resolución 354 de 2007 a la Convergencia Internacional</h3>
+                    <p>En ejercicio de sus facultades, la CGN expidió la <strong>Resolución 354 de 2007</strong>, un acto administrativo de gran trascendencia que adoptó formalmente el Régimen de Contabilidad Pública (RCP). Este RCP original se estructuró en tres componentes principales: el Plan General de Contabilidad Pública (PGCP), que contenía el marco conceptual y los principios; el Manual de Procedimientos, que incluía el catálogo de cuentas y las guías instrumentales; y la Doctrina Contable Pública, conformada por los conceptos emitidos por el Contador General. Este modelo proporcionó un marco unificado y coherente para la contabilidad pública durante varios años.</p>
+                    <p>Sin embargo, el entorno normativo colombiano experimentó un cambio fundamental con la promulgación de la <strong>Ley 1314 de 2009</strong>. Esta ley de intervención económica estableció la obligación para Colombia de converger hacia estándares internacionales de información financiera de alta calidad, buscando mejorar la transparencia, comparabilidad y confiabilidad de la información económica. Aunque su enfoque principal fue el sector privado y la adopción de las Normas Internacionales de Información Financiera (NIIF), su mandato de crear un "sistema único y homogéneo" impactó directamente al sector público.</p>
+                    <p>Este mandato legal superior obligó a la CGN a emprender un proceso de modernización y alineación de su propia regulación con las mejores prácticas internacionales, en este caso, las Normas Internacionales de Contabilidad del Sector Público (NICSP, o IPSAS por sus siglas en inglés). La respuesta de la CGN no fue una simple actualización del RCP existente, sino una reestructuración profunda que culminó con la expedición de la <strong>Resolución 156 de 2018</strong>. Esta norma modificó de manera sustancial la Resolución 354 de 2007, derogando la estructura tripartita original y estableciendo un nuevo paradigma basado en marcos normativos diferenciados, adaptados a la naturaleza de las distintas entidades del sector público. Este cambio refleja una evolución desde un modelo de reglas domésticas hacia un sistema basado en principios de aceptación global, lo que tiene implicaciones directas en la forma en que se debe estudiar y aplicar la normativa para el concurso.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">1.3. La Estructura Actual del RCP: Comprendiendo los Diferentes Marcos Normativos y su Ámbito de Aplicación</h3>
+                    <p>La estructura actual del Régimen de Contabilidad Pública, definida en el artículo 1 de la Resolución 354 de 2007 (modificado por la Resolución 156 de 2018), es segmentada y responde a la heterogeneidad del sector público. Este enfoque es crucial, ya que el examen evaluará el marco específico aplicable a las entidades de gobierno. La estructura es la siguiente:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>El Referente Teórico y Metodológico de la Regulación Contable Pública.</li>
+                        <li>El Marco Normativo para Empresas que Cotizan en el Mercado de Valores, o que Captan o Administran Ahorro del Público.</li>
+                        <li>El Marco Normativo para Empresas que no Cotizan en el Mercado de Valores, y que no Captan ni Administran Ahorro del Público.</li>
+                        <li><strong>El Marco Normativo para Entidades de Gobierno (el objeto de estudio de esta guía).</strong></li>
+                        <li>El Marco Normativo para Entidades en Liquidación.</li>
+                        <li>La Regulación del Proceso Contable y del Sistema Documental Contable.</li>
+                        <li>Los Procedimientos Transversales.</li>
+                    </ul>
+                     <p>Esta arquitectura demuestra que la CGN reconoció que no se puede aplicar un único conjunto de normas a una empresa industrial y comercial del Estado que compite en el mercado y a un ministerio cuya función es la prestación de servicios a la comunidad. El <strong>Marco Normativo para Entidades de Gobierno</strong> es, por tanto, el cuerpo normativo diseñado específicamente para las entidades que desarrollan funciones de cometido estatal y que no operan con un fin primordialmente lucrativo.</p>
+                    <p>El ámbito de aplicación del RCP, y por ende de este marco normativo, es amplio y está claramente definido. Debe ser aplicado por todas las entidades u organismos que integran las Ramas del Poder Público (Ejecutiva, Legislativa y Judicial) en sus diferentes niveles (nacional, departamental, municipal), los organismos autónomos e independientes, las sociedades de economía mixta con participación pública igual o superior al 50%, y las empresas de servicios públicos domiciliarios con similar composición de capital, entre otros. Para un aspirante al cargo en la CGR, es fundamental comprender que la contabilidad de la gran mayoría de las entidades que auditará se rige por este marco normativo específico.</p>
+                </div>
+            </div>
+
+            <div id="seccion2" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 2: Análisis Profundo del Marco Normativo para Entidades de Gobierno</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.1. Introducción y Ámbito de Aplicación (Resolución 533 de 2015)</h3>
+                    <p>La norma clave que da vida al Marco Normativo para Entidades de Gobierno es la <strong>Resolución 533 de 2015</strong>. Este acto administrativo lo incorpora formalmente como parte integrante del Régimen de Contabilidad Pública. Su ámbito de aplicación está precisamente delimitado a las "entidades de Gobierno que se encuentran bajo el ámbito del Régimen de Contabilidad Pública". Esta delimitación es fundamental porque las diferencia de las empresas públicas (que se rigen por otros marcos normativos más cercanos a las NIIF) y de las entidades en liquidación. Las entidades de gobierno se caracterizan por desarrollar actividades orientadas a la producción y provisión de bienes o servicios de forma gratuita o a precios económicamente no significativos, con fines de redistribución de la renta y la riqueza.</p>
+                    <p>La Resolución 533 de 2015 también estableció un cronograma de aplicación que marcó la transición obligatoria desde el antiguo RCP hacia este nuevo modelo basado en principios internacionales. Comprender esta resolución es entender el punto de partida del marco específico que se evaluará en el concurso.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.2. El Marco Conceptual: La Piedra Angular de la Información Financiera Pública</h3>
+                    <p>El Marco Conceptual no es un simple capítulo introductorio; es la norma de mayor jerarquía dentro del sistema contable para entidades de gobierno. Actúa como una "constitución contable", estableciendo los conceptos fundamentales que subyacen a la preparación y presentación de los estados financieros. Su propósito es servir de base para el desarrollo de las normas técnicas y, crucialmente, ser la guía para contabilizar transacciones o sucesos para los cuales no existe una norma específica. La capacidad de razonar a partir de los principios del Marco Conceptual es una habilidad de nivel superior que distingue a un profesional experto.</p>
+
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">2.2.1. Propósitos y Objetivos de la Información Contable Pública</h4>
+                    <p>El Sistema Nacional de Contabilidad Pública (SNCP) no existe en el vacío. Persigue propósitos claros que definen la orientación de toda la regulación. Estos propósitos son:</p>
+                     <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Control:</strong> La información contable debe facilitar el control sobre el uso de los recursos públicos, tanto a nivel interno (administradores) como externo (órganos de control como la CGR y la ciudadanía).</li>
+                        <li><strong>Rendición de Cuentas (Accountability):</strong> Permite que los gestores públicos informen y respondan por la administración de los recursos que les fueron confiados.</li>
+                        <li><strong>Gestión Eficiente:</strong> Provee información útil para la toma de decisiones de los administradores públicos, con el fin de optimizar el uso de los recursos en el cumplimiento de los fines del Estado.</li>
+                        <li><strong>Transparencia:</strong> Satisface la demanda social de conocimiento sobre las decisiones públicas y el uso de los fondos estatales, promoviendo la confianza en las instituciones.</li>
+                    </ul>
+                    <p>Estos propósitos se materializan a través de objetivos específicos de la información contable, que buscan apoyar la gestión pública, el control público y la divulgación y cultura ciudadana sobre lo público.</p>
+
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">2.2.2. Hipótesis Fundamentales</h4>
+                    <p>Toda la estructura contable se apoya en dos postulados básicos, conocidos como hipótesis fundamentales, que deben ser comprendidos a cabalidad:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Gestión Continuada (Negocio en Marcha):</strong> Se presume que la entidad pública continuará su operación en el futuro previsible, por tiempo indefinido, conforme a su acto de creación. Esto significa que los estados financieros se preparan sobre la base de que la entidad no tiene la intención ni la necesidad de liquidar o reducir de forma importante la escala de sus operaciones. Por lo tanto, la valoración de activos y pasivos no se realiza a valores de liquidación.</li>
+                        <li><strong>Devengo o Causación:</strong> Este es, quizás, el principio más importante de la contabilidad moderna. Establece que los efectos de las transacciones y otros sucesos se reconocen cuando ocurren (y no cuando se recibe o paga dinero u otro equivalente al efectivo). Los hechos económicos se registran en los periodos con los que se relacionan. Esto proporciona una imagen mucho más fiel de la situación financiera y el desempeño de una entidad que la contabilidad de caja, ya que informa no solo sobre transacciones pasadas que implicaron un pago, sino también sobre obligaciones futuras de pago y sobre recursos que se tiene derecho a recibir.</li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">2.2.3. Características Cualitativas</h4>
+                    <p>Para que la información financiera sea útil, debe poseer ciertos atributos o características cualitativas. El Marco Conceptual las organiza jerárquicamente:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                         <li><strong>Características Fundamentales:</strong> Son aquellas que la información debe poseer para ser considerada útil.
+                            <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Relevancia:</strong> La información es relevante si es capaz de influir en las decisiones de los usuarios. Para ser relevante, debe tener valor predictivo, valor confirmatorio o ambos. La materialidad o importancia relativa es un subcomponente de la relevancia.</li>
+                                <li><strong>Representación Fiel:</strong> La información debe representar fielmente los fenómenos económicos que pretende representar. Para ello, la descripción debe ser completa, neutral (libre de sesgo) y libre de error significativo.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Características de Mejora:</strong> Son aquellas que realzan la utilidad de la información que ya es relevante y fielmente representada.
+                            <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Comparabilidad:</strong> Permite a los usuarios identificar y comprender similitudes y diferencias entre partidas, ya sea de la misma entidad en diferentes periodos o entre distintas entidades.</li>
+                                <li><strong>Verificabilidad:</strong> Ayuda a asegurar a los usuarios que la información representa fielmente los fenómenos económicos. Significa que diferentes observadores independientes y debidamente informados podrían alcanzar un acuerdo sobre la fidelidad de la representación.</li>
+                                <li><strong>Oportunidad:</strong> Significa tener información disponible para los usuarios a tiempo de ser capaz de influir en sus decisiones.</li>
+                                <li><strong>Comprensibilidad:</strong> La información debe ser clara y concisa para que los usuarios con un conocimiento razonable de las actividades económicas y de la contabilidad puedan entenderla.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">2.3. Elementos de los Estados Financieros: Definición, Reconocimiento y Criterios de Medición</h3>
+                    <p>El Marco Conceptual define con precisión los elementos que componen los estados financieros. Estas definiciones son la base para la posterior clasificación de las transacciones en el Catálogo General de Cuentas. Un error en la identificación de un hecho económico con el elemento que le corresponde invalida todo el proceso de registro posterior.</p>
+                     <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Activo:</strong> Es un recurso controlado por la entidad como resultado de sucesos pasados, del que la entidad espera obtener, en el futuro, un potencial de servicios o beneficios económicos. La clave en el sector público es el "potencial de servicios" (ej. una carretera, un hospital), que no necesariamente genera flujos de efectivo.</li>
+                        <li><strong>Pasivo:</strong> Es una obligación presente de la entidad, surgida a raíz de sucesos pasados, al vencimiento de la cual, y para cancelarla, la entidad espera desprenderse de recursos que incorporan un potencial de servicios o beneficios económicos.</li>
+                        <li><strong>Patrimonio:</strong> Es el interés residual en los activos de la entidad, una vez deducidos todos sus pasivos. En el sector público, se le denomina también Hacienda Pública y representa el valor neto de los recursos públicos.</li>
+                        <li><strong>Ingresos:</strong> Son los incrementos en el patrimonio durante el periodo contable, ya sea en forma de entradas o aumentos del valor de los activos, o como decrementos de las obligaciones.</li>
+                        <li><strong>Gastos:</strong> Son los decrementos en el patrimonio durante el periodo contable, ya sea en forma de salidas o disminuciones del valor de los activos, o por el surgimiento de obligaciones.</li>
+                        <li><strong>Costos:</strong> Representan las erogaciones y cargos asociados directamente con la adquisición o producción de bienes o la prestación de servicios, de los cuales se esperan obtener ingresos o que contribuyen al cumplimiento de la función de cometido estatal.</li>
+                    </ul>
+                    <p>La lógica deductiva que debe aplicar un candidato ante un problema contable complejo en el examen es la siguiente: primero, determinar si el hecho económico cumple con la definición de alguno de los elementos de los estados financieros según el Marco Conceptual. Segundo, aplicar los principios fundamentales, como el de devengo, para determinar el momento del reconocimiento. Tercero, considerar las características cualitativas para asegurar que la medición y revelación sean útiles. Solo después de este análisis conceptual se procede a la aplicación de la norma técnica específica y a la selección de la cuenta contable. Esta capacidad de razonar desde los principios es la competencia más valiosa que se evaluará.</p>
+                </div>
+            </div>
+
+            <div id="seccion3" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 3: Las Normas para el Reconocimiento, Medición, Revelación y Presentación de los Hechos Económicos</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.1. Visión General de las Normas Específicas para Entidades de Gobierno</h3>
+                    <p>Dentro del Marco Normativo para Entidades de Gobierno, el componente denominado "Normas para el Reconocimiento, Medición, Revelación y Presentación de los Hechos Económicos" constituye el cuerpo técnico principal. Este conjunto de normas, contenido en el anexo de la Resolución 533 de 2015, detalla los tratamientos contables específicos para cada uno de los elementos de los estados financieros. Su estructura y contenido están fuertemente influenciados por las Normas Internacionales de Contabilidad del Sector Público (NICSP).</p>
+                    <p>Estas normas establecen los criterios para decidir cuándo un hecho económico debe ser incorporado en los estados financieros (reconocimiento), qué valor monetario se le debe asignar (medición inicial y posterior), qué información debe presentarse en el cuerpo de los estados financieros (presentación) y qué detalles adicionales deben incluirse en las notas (revelación). Para el aspirante, es crucial entender que estas normas no son un conjunto de reglas arbitrarias, sino la aplicación práctica de los conceptos y principios definidos en el Marco Conceptual.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.2. Estudio Detallado de Normas Clave (Ejemplos ilustrativos)</h3>
+                    <p>Si bien el marco normativo es extenso, existen ciertas áreas que, por su materialidad y naturaleza, son de especial interés para la vigilancia y el control fiscal. A continuación, se analiza el tratamiento normativo de algunas de ellas, destacando las particularidades del sector público.</p>
+
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Activos</h4>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Propiedades, Planta y Equipo (PPE):</strong> Esta norma regula el tratamiento de los activos tangibles utilizados para la prestación de servicios o para propósitos administrativos durante más de un periodo. Los criterios de reconocimiento exigen que sea probable que los beneficios económicos futuros o el potencial de servicio asociados con el activo fluyan a la entidad y que el costo del activo pueda ser medido con fiabilidad. La medición inicial es al costo. Posteriormente, se deprecian a lo largo de su vida útil. Una particularidad fundamental en el sector público es el tratamiento de los <strong>Bienes de Uso Público e Históricos y Culturales</strong> (Grupo 17 del CGC). Estos activos, como carreteras, parques o monumentos, no generan flujos de efectivo, pero poseen un "potencial de servicio" que debe ser reconocido y gestionado contablemente, incluyendo su depreciación o deterioro.</li>
+                        <li><strong>Activos Intangibles:</strong> Esta norma aborda los activos no monetarios sin apariencia física, como licencias o software. Una distinción clave es entre los activos intangibles adquiridos y los generados internamente. Para los generados internamente, la norma exige separar el proceso en una fase de <strong>investigación</strong> (cuyos costos se reconocen siempre como gasto) y una fase de <strong>desarrollo</strong>. Los costos de la fase de desarrollo solo pueden capitalizarse como un activo si se cumplen criterios estrictos que demuestren la viabilidad técnica y financiera del proyecto. Este es un punto de auditoría crítico para evitar la activación indebida de gastos.</li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Pasivos</h4>
+                     <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Beneficios a los Empleados:</strong> Esta norma es de alta complejidad y materialidad, pues cubre todas las formas de contraprestación que la entidad proporciona a sus empleados a cambio de sus servicios. Incluye obligaciones a corto plazo (salarios), beneficios posempleo (pensiones y otros planes de retiro), otros beneficios a largo plazo y beneficios por terminación. El tratamiento de los pasivos pensionales, que a menudo requiere cálculos actuariales complejos, representa una de las obligaciones más significativas para el Estado y es un foco central del control fiscal.</li>
+                        <li><strong>Provisiones, Pasivos Contingentes y Activos Contingentes:</strong> Esta norma es crucial para la gestión de los riesgos legales del Estado. Establece los criterios para diferenciar entre una <strong>provisión</strong> y un <strong>pasivo contingente</strong>. Se debe reconocer una provisión (un pasivo en el balance) solo cuando: a) existe una obligación presente (legal o implícita) como resultado de un suceso pasado; b) es probable que se requiera una salida de recursos para liquidar la obligación; y c) puede hacerse una estimación fiable del importe de la obligación. Si alguna de estas condiciones no se cumple (por ejemplo, la salida de recursos no es probable, sino solo posible), no se reconoce un pasivo, pero se debe revelar un pasivo contingente en las notas a los estados financieros. Esta distinción es vital para no subestimar ni sobreestimar las obligaciones del Estado.</li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-sky-500 mt-3">Ingresos</h4>
+                    <p>La principal distinción conceptual en la contabilidad pública radica en la naturaleza de sus ingresos.</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Ingresos de Transacciones sin Contraprestación:</strong> Esta es la categoría más representativa para las entidades de gobierno. Corresponde a transacciones donde la entidad recibe valor de otra entidad (o individuo) sin dar directamente a cambio un valor aproximadamente igual. Los ejemplos por excelencia son los <strong>impuestos</strong> y las <strong>transferencias</strong>. El punto crítico de reconocimiento para los impuestos es el momento en que ocurre el hecho generador definido en la ley, no cuando se recauda el dinero. Para las transferencias, el reconocimiento depende de si existen condiciones o restricciones asociadas.</li>
+                        <li><strong>Ingresos de Transacciones con Contraprestación:</strong> Son aquellas en las que la entidad vende bienes o presta servicios a cambio de una contraprestación aproximadamente igual en valor. El tratamiento es similar al del sector privado, reconociendo el ingreso cuando se han transferido los riesgos y ventajas inherentes a la propiedad de los bienes o cuando se ha prestado el servicio.</li>
+                    </ul>
+                    <p>El dominio de estas áreas distintivas, especialmente el tratamiento de los ingresos sin contraprestación y de los activos que generan potencial de servicio, es un indicador clave del nivel de preparación del candidato para enfrentar los desafíos contables del sector público.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">3.3. El Proceso Contable y el Sistema Documental</h3>
+                    <p>Las normas técnicas se aplican a través de un proceso contable ordenado que incluye las etapas de reconocimiento, medición, revelación y presentación. Un principio fundamental, inherente a la característica cualitativa de verificabilidad, es que toda operación registrada en la contabilidad debe estar respaldada por un soporte documental idóneo. Este sistema documental (facturas, contratos, resoluciones, etc.) es la base probatoria que permite a los auditores de la CGR verificar la legalidad, veracidad y correcta clasificación de las transacciones. La ausencia o deficiencia en los soportes contables constituye en sí misma un hallazgo de auditoría significativo.</p>
+                </div>
+            </div>
+
+            <div id="seccion4" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 4: Dominio del Catálogo General de Cuentas (CGC) para Entidades de Gobierno</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.1. Estructura, Niveles y Lógica de Codificación del CGC</h3>
+                    <p>El Catálogo General de Cuentas para Entidades de Gobierno fue incorporado al marco normativo mediante la <strong>Resolución 620 de 2015</strong>. No es simplemente una lista de cuentas, sino un sistema de clasificación jerárquico y codificado que traduce los conceptos y normas contables en un lenguaje uniforme para todo el sector público. Su correcta aplicación es lo que garantiza la agregación y consolidación de la información financiera a nivel nacional.</p>
+                    <p>La estructura del CGC se basa en una codificación numérica que permite identificar la naturaleza de cada partida. Está conformada por los siguientes niveles:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Clase:</strong> Corresponde al primer dígito del código. Identifica la categoría más amplia a la que pertenece una cuenta (ej. Clase 1 para Activos, Clase 2 para Pasivos).</li>
+                        <li><strong>Grupo:</strong> Corresponde al segundo dígito. Es una desagregación de la clase que agrupa cuentas de naturaleza similar (ej. Grupo 11 para Efectivo y Equivalentes al Efectivo, dentro de la Clase 1).</li>
+                        <li><strong>Cuenta:</strong> Corresponde al tercer y cuarto dígito. Representa la unidad mínima de registro para la revelación en los estados financieros (ej. Cuenta 1110 para Depósitos en Instituciones Financieras).</li>
+                        <li><strong>Subcuenta:</strong> Corresponde al quinto y sexto dígito. Es el nivel de detalle requerido para la preparación y presentación de la información contable a la CGN (ej. Subcuenta 111005 para Cuentas Corrientes).</li>
+                    </ul>
+                    <p>La CGN tiene la facultad exclusiva de definir la estructura hasta el nivel de subcuenta. A partir de ahí, cada entidad pública puede crear niveles auxiliares adicionales según sus necesidades específicas de información y control, siempre que no se altere la estructura oficial.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.2. Descripción Detallada de las Clases de Cuentas</h3>
+                    <p>La comprensión de la estructura de clases es el primer paso para dominar el CGC. Cada clase agrupa los elementos de los estados financieros definidos en el Marco Conceptual, proporcionando un mapa general de la contabilidad pública.</p>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow mt-4">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-sky-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Clase</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Denominación</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">Descripción Fundamental</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>1</strong></td>
+                                    <td class="px-4 py-3 text-sm">ACTIVOS</td>
+                                    <td class="px-4 py-3 text-sm">Recursos controlados por la entidad como resultado de sucesos pasados, de los que se espera obtener un potencial de servicios o beneficios económicos futuros.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>2</strong></td>
+                                    <td class="px-4 py-3 text-sm">PASIVOS</td>
+                                    <td class="px-4 py-3 text-sm">Obligaciones presentes de la entidad, surgidas a raíz de sucesos pasados, para cuya cancelación se espera una salida de recursos.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>3</strong></td>
+                                    <td class="px-4 py-3 text-sm">PATRIMONIO</td>
+                                    <td class="px-4 py-3 text-sm">Valor residual de los activos de la entidad, una vez deducidos todos sus pasivos. Representa los recursos netos del sector público.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>4</strong></td>
+                                    <td class="px-4 py-3 text-sm">INGRESOS</td>
+                                    <td class="px-4 py-3 text-sm">Flujos de entrada de recursos que incrementan el patrimonio, originados en transacciones con o sin contraprestación.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>5</strong></td>
+                                    <td class="px-4 py-3 text-sm">GASTOS</td>
+                                    <td class="px-4 py-3 text-sm">Flujos de salida de recursos que disminuyen el patrimonio, relacionados con las funciones de cometido estatal (administración, operación, etc.).</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>6</strong></td>
+                                    <td class="px-4 py-3 text-sm">COSTOS DE VENTA Y DE OPERACIÓN</td>
+                                    <td class="px-4 py-3 text-sm">Erogaciones y cargos asociados con la adquisición o producción de bienes y la prestación de servicios _vendidos_ por la entidad.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>7</strong></td>
+                                    <td class="px-4 py-3 text-sm">COSTOS DE PRODUCCIÓN</td>
+                                    <td class="px-4 py-3 text-sm">Erogaciones y cargos relacionados con la producción de bienes o prestación de servicios que surgen de las funciones de cometido estatal (no necesariamente vendidos).</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>8</strong></td>
+                                    <td class="px-4 py-3 text-sm">CUENTAS DE ORDEN DEUDORAS</td>
+                                    <td class="px-4 py-3 text-sm">Registran hechos o circunstancias que no afectan aún la situación financiera pero que podrían hacerlo en el futuro (ej. litigios a favor) o que se usan para fines de control.</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm"><strong>9</strong></td>
+                                    <td class="px-4 py-3 text-sm">CUENTAS DE ORDEN ACREEDORAS</td>
+                                    <td class="px-4 py-3 text-sm">Contrapartida de las cuentas de orden deudoras. Registran posibles obligaciones o responsabilidades (ej. bienes de terceros en poder de la entidad).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">4.3. Análisis de Grupos y Cuentas Relevantes para el Control Fiscal</h3>
+                    <p>Más allá de las clases, el conocimiento de los principales grupos de cuentas es esencial para la aplicación práctica en los casos que se presenten en el examen. A continuación, se listan algunos de los grupos más relevantes para el control fiscal:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Clase 1 - Activos:</strong>
+                            <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Grupo 11 - Efectivo y Equivalentes al Efectivo:</strong> Controla los recursos de liquidez inmediata. Es un área de alto riesgo y foco de auditoría.</li>
+                                <li><strong>Grupo 13 - Cuentas por Cobrar:</strong> Registra los derechos a favor de la entidad, como los impuestos por cobrar a los contribuyentes. Su correcta gestión y la estimación de su deterioro son claves.</li>
+                                <li><strong>Grupo 16 - Propiedades, Planta y Equipo:</strong> Agrupa los activos tangibles para uso de la entidad, como edificios, vehículos y maquinaria. La correcta depreciación y control físico son fundamentales.</li>
+                                <li><strong>Grupo 17 - Bienes de Uso Público e Históricos y Culturales:</strong> Como se mencionó, este grupo es particular del sector público y su correcta valoración y control es un desafío y un punto de interés para la CGR.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Clase 2 - Pasivos:</strong>
+                            <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Grupo 24 - Cuentas por Pagar:</strong> Registra las obligaciones con proveedores y contratistas. Su correcta causación y pago oportuno son objeto de revisión.</li>
+                                <li><strong>Grupo 25 - Obligaciones Laborales y de Seguridad Social Integral:</strong> Incluye las deudas por salarios, prestaciones sociales y aportes.</li>
+                                <li><strong>Grupo 27 - Pasivos Estimados:</strong> Agrupa las provisiones para contingencias, como los procesos judiciales en contra de la nación.</li>
+                            </ul>
+                        </li>
+                         <li><strong>Clase 3 - Patrimonio:</strong>
+                            <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Grupo 31 - Hacienda Pública:</strong> Representa el patrimonio del Estado, incluyendo el capital fiscal, las actualizaciones y las donaciones.</li>
+                                <li><strong>Grupo 32 - Resultados:</strong> Acumula los resultados de ejercicios anteriores y el resultado del ejercicio corriente.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>La estandarización que provee el CGC es la que permite, en última instancia, que la CGN pueda consolidar la información financiera de miles de entidades públicas para generar el Balance General de la Nación, y que la CGR pueda realizar auditorías eficientes y comparables a lo largo y ancho del país. Para el concursante, la habilidad de identificar la clase y el grupo correctos para una transacción dada es una competencia instrumental básica que será evaluada.</p>
+                     <h3 class="text-xl font-semibold text-sky-600 mt-4">4.4. La Importancia de las Actualizaciones al CGC y Dónde Consultar la Versión Vigente</h3>
+                    <p>Es de vital importancia comprender que el CGC no es un documento estático. La CGN lo actualiza periódicamente para incorporar nuevas normas, detallar el tratamiento de transacciones complejas o responder a nuevas realidades económicas. Se ha mencionado que estas actualizaciones pueden tener una periodicidad trimestral. Por lo tanto, estudiar con una versión desactualizada del CGC es un error que puede costar puntos valiosos en el examen.</p>
+                    <p>La única fuente oficial, confiable y actualizada para consultar y descargar la última versión del Catálogo General de Cuentas para Entidades de Gobierno, junto con las resoluciones que lo modifican (como las Resoluciones 340 de 2022 o la 089 de 2024, entre otras), es el portal web de la <strong>Contaduría General de la Nación (www.contaduria.gov.co)</strong>. El aspirante debe navegar a la sección del Régimen de Contabilidad Pública (RCP) y, dentro de esta, al Marco Normativo para Entidades de Gobierno. La consulta periódica de esta fuente es una parte indispensable de una preparación rigurosa y profesional.</p>
+                </div>
+            </div>
+
+            <div id="seccion5" class="content-section hidden">
+                <h2 class="text-3xl font-semibold text-sky-700 mb-6">Sección 5: Estrategias de Preparación y Aplicación Práctica para el Concurso</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+                     <h3 class="text-xl font-semibold text-sky-600 mt-4">5.1. De la Teoría a la Práctica: La Perspectiva del Auditor de la CGR</h3>
+                     <p>Existe una relación simbiótica e ineludible entre la Contaduría General de la Nación (CGN) y la Contraloría General de la República (CGR). La CGN, como ente regulador, establece el "deber ser" de la contabilidad pública. La CGR, como máximo órgano de control fiscal, utiliza ese marco normativo como el <strong>criterio de auditoría</strong> fundamental para evaluar la gestión de las entidades públicas.</p>
+                     <p>El objetivo principal de una auditoría financiera realizada por la CGR es emitir una opinión sobre si los estados financieros de la entidad auditada presentan razonablemente su situación financiera y resultados, en todos los aspectos materiales, de conformidad con el Régimen de Contabilidad Pública expedido por la CGN. El proceso de "fenecer la cuenta" se basa en esta evaluación de cumplimiento normativo.</p>
+                     <p>Esta relación tiene una implicación directa y poderosa para el estudio: el aspirante debe abordar cada norma, cada principio y cada cuenta no solo desde la perspectiva de un preparador de información, sino fundamentalmente desde la mentalidad de un auditor. Al estudiar la norma de Propiedades, Planta y Equipo, la pregunta no debe ser solo "¿Cómo se registra un edificio?", sino también "¿Qué evidencia necesitaría para verificar que el valor del edificio es correcto? ¿Cómo comprobaría que la vida útil asignada para la depreciación es razonable? ¿Qué riesgos de incorrección material existen en esta cuenta?". Adoptar esta perspectiva crítica y evaluativa transformará el estudio de un ejercicio de memorización a uno de análisis y aplicación, que es precisamente lo que se medirá en la prueba.</p>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.2. Análisis de Preguntas Tipo Juicio Situacional</h3>
+                    <p>Las pruebas de conocimiento en los concursos de méritos modernos, como el de la CGR, han evolucionado más allá de las preguntas puramente teóricas. La metodología predominante es la de <strong>juicio situacional</strong>, que presenta un caso o escenario práctico y exige que el candidato aplique su conocimiento para analizar la situación y elegir el curso de acción más adecuado.</p>
+                    <p>Un excelente análogo para este tipo de evaluación son las pruebas <strong>Saber Pro</strong> en el módulo de <strong>Información y Control Contable</strong>, diseñadas por el ICFES. Analizar su estructura y lógica es una forma eficaz de prepararse. A continuación, se desglosan ejemplos basados en este modelo para ilustrar el proceso de razonamiento requerido:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Ejemplo 1: Reconocimiento de Ingresos (Tributario/Contable)</strong>
+                             <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Caso:</strong> Se presenta una situación donde una sociedad decreta dividendos a favor de sus socios personas naturales.</li>
+                                <li><strong>Pregunta:</strong> ¿En qué momento se considera realizado el ingreso para el socio desde una perspectiva fiscal?</li>
+                                <li><strong>Proceso de Razonamiento:</strong>
+                                    <ol class="list-decimal list-inside ml-8">
+                                        <li><strong>Identificar el tema:</strong> El núcleo de la pregunta es el momento del reconocimiento de un ingreso específico, contrastando la base contable de devengo con las reglas fiscales.</li>
+                                        <li><strong>Recordar el principio/norma:</strong> Se debe recordar el principio de devengo del Marco Conceptual, pero también la norma fiscal específica que puede modificarlo. La Ley 1819 de 2016 y el Estatuto Tributario establecen que los dividendos se entienden realizados fiscalmente cuando son "abonados en cuenta en calidad de exigibles", lo que ocurre en el momento en que la asamblea los decreta.</li>
+                                        <li><strong>Evaluar opciones:</strong> Las opciones podrían ser "cuando se pagan", "cuando la empresa genera la utilidad" o "cuando se decretan".</li>
+                                        <li><strong>Seleccionar:</strong> La opción correcta es "cuando se decretan", ya que es en ese momento que nace el derecho exigible para el socio, alineándose con la normativa fiscal aplicable.</li>
+                                    </ol>
+                                </li>
+                             </ul>
+                        </li>
+                         <li><strong>Ejemplo 2: Costos de Producción</strong>
+                             <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Caso:</strong> Una entidad productiva presenta sus costos unitarios de materiales, mano de obra directa, y sus costos fijos mensuales de producción (alquiler) y de administración. Se informa el número de unidades producidas y vendidas.</li>
+                                <li><strong>Pregunta:</strong> ¿Cuál es el costo unitario del producto bajo el sistema de costeo total (o por absorción) y bajo el sistema de costeo variable (o directo)?</li>
+                                <li><strong>Proceso de Razonamiento:</strong>
+                                    <ol class="list-decimal list-inside ml-8">
+                                        <li><strong>Identificar el tema:</strong> Diferenciación entre sistemas de costeo.</li>
+                                        <li><strong>Recordar el principio/norma:</strong> La norma de inventarios y costos establece que el costeo por absorción incluye en el costo del producto todos los costos de producción, tanto variables (materiales, mano de obra directa) como fijos (alquiler de la planta). El costeo variable solo incluye los costos variables de producción, tratando los costos fijos de producción como un gasto del periodo. Los gastos de administración y ventas son siempre gastos del periodo en ambos sistemas.</li>
+                                        <li><strong>Evaluar opciones y calcular:</strong>
+                                            <ul class="list-disc list-inside ml-10">
+                                                <li>Costo Variable Unitario = Materiales + Mano de Obra Directa.</li>
+                                                <li>Costo Fijo de Producción Unitario = Total Alquiler / Unidades Producidas.</li>
+                                                <li>Costo Total Unitario = Costo Variable Unitario + Costo Fijo de Producción Unitario.</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Seleccionar:</strong> Se elige la opción que presente los dos cálculos correctos.</li>
+                                    </ol>
+                                </li>
+                             </ul>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-sky-600 mt-4">5.3. Recursos Esenciales y Recomendaciones Finales</h3>
+                    <p>Una preparación exitosa requiere el uso de recursos de alta calidad y una estrategia de estudio bien definida.</p>
+                     <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Fuentes Primarias (Obligatorias):</strong> El recurso de estudio más importante e indispensable es la normativa original. El sitio web oficial de la <strong>Contaduría General de la Nación (www.contaduria.gov.co)</strong> debe ser la fuente principal y de consulta permanente para descargar el Marco Normativo para Entidades de Gobierno, el Catálogo General de Cuentas vigente y todas las resoluciones y doctrinas relacionadas.</li>
+                        <li><strong>Material de Práctica:</strong> Es fundamental practicar con preguntas de formato similar al del examen. Se recomiendan las siguientes fuentes:
+                             <ul class="list-disc list-inside space-y-2 ml-6">
+                                <li><strong>Plataformas especializadas:</strong> Sitios como <strong>Grufae</strong> ofrecen cursos y simulacros diseñados específicamente para los concursos de las contralorías, incluyendo módulos de Contabilidad Pública y Control Fiscal.</li>
+                                <li><strong>ICFES - Pruebas Saber Pro:</strong> La "Caja de Herramientas" del ICFES es un recurso gratuito y de excepcional calidad. Los cuadernillos de preguntas del módulo "Información y Control Contable" son altamente recomendables para familiarizarse con la estructura de las preguntas de juicio situacional.</li>
+                                <li><strong>Otros recursos:</strong> Plataformas como <strong>Misión Mérito</strong> también ofrecen simulacros gratuitos para diversos concursos públicos en Colombia.</li>
+                             </ul>
+                        </li>
+                    </ul>
+                    <p class="font-bold mt-4">Recomendación Final:</p>
+                    <p>El enfoque del estudio debe ser estratégico. En lugar de intentar memorizar cada subcuenta del CGC, el aspirante debe concentrar sus esfuerzos en la comprensión profunda de los principios y conceptos del Marco Conceptual, ya que son la herramienta para resolver problemas imprevistos. Adicionalmente, se debe dar prioridad a las áreas distintivas de la contabilidad pública: el tratamiento de los ingresos sin contraprestación (impuestos, transferencias), la contabilidad de los bienes de uso público, y los pasivos complejos como las provisiones para litigios y los beneficios a empleados. Son estos los temas que con mayor probabilidad serán utilizados en las preguntas de juicio situacional para diferenciar a los candidatos que poseen un entendimiento superficial de aquellos que han alcanzado un dominio experto de la materia.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-hidden');
+            mainContent.classList.toggle('content-full');
+        });
+
+        function showContent(sectionId, navElement) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-nav');
+            });
+            navElement.classList.add('active-nav');
+
+            mainContent.scrollTop = 0;
+
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('content-full');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('inicio', document.querySelector('.sidebar-item'));
+        });
+    </script>
+</body>
+</html>
